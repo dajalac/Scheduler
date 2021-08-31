@@ -87,6 +87,7 @@ public class Patient {
 
 	public Patient() {}
 	
+
 	public Patient(int memberNumber,
 			LocalDate birthday,
 			String firstName,

@@ -2,6 +2,8 @@ package com.dajalac.AppointmentSchedule.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -45,5 +47,20 @@ public class PatientController {
 		
 		return ResponseEntity.ok("Done");
 	}
+	
+	@GetMapping ("/serachByNameBirthday")
+	public ResponseEntity< List <Patient> > getPatientByNameAndBirthday(@RequestBody Map<String, Object> payload ){
+	
+		return ResponseEntity.ok().body(patientService.getPatientByNameAndBirthday(String.valueOf(payload.get("firstName")),
+																				   String.valueOf(payload.get("lastName")),
+																				   String.valueOf(payload.get("birthday"))));
+	}
+
+	@GetMapping ("/serachByMemberNumber")
+	public ResponseEntity< Optional <Patient> > getPatientBymemberNumber(@RequestBody int memberNumber){
+		return ResponseEntity.ok().body(patientService.getPatientByMemnberNumber(memberNumber));
+	}
+	
+	
 	
 }

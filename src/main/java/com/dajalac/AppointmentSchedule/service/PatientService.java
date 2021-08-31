@@ -64,7 +64,20 @@ public class PatientService {
 		//because it is a transaction, no need to save 
 		
 	}
+
+
 	
+	public List <Patient> getPatientByNameAndBirthday(String firstName, String lastName, String birthday) {
+		
+		LocalDate formatedBirthday = LocalDate.parse(birthday);
+		return patientRepository.findPatientByNameAndBirthday(firstName, lastName, formatedBirthday );
+		
+	}
+
+	public Optional <Patient> getPatientByMemnberNumber(int memberNumber){
+		return patientRepository.findPatientByMemberNumber(memberNumber);
+	}
+	 
 	
 
 }
