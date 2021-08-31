@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table (name ="provider")
@@ -29,18 +31,24 @@ public class Provider {
 	@Column(name="provider_id", updatable=false)
 	private Long id;
 	
+	@NotBlank
+	@Pattern(regexp ="^[a-zA-Z]*$")
 	@Column(name="first_name", nullable=false)
 	private String firstName;
 	
+	@NotBlank
+	@Pattern(regexp ="^[a-zA-Z]*$")
 	@Column(name="last_name", nullable=false)
 	private String lastName;
 	
+	@NotBlank
 	@Column(name="phone")
 	private String phone;
 	
 	@Column(name="email")
 	private String email;
 	
+	@NotBlank
 	@Column(name="speciality", nullable=false)
 	private String speciality;
 	
