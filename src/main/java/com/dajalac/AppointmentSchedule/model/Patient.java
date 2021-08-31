@@ -14,6 +14,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
+
 
 @Entity
 @Table (name="patient")
@@ -36,34 +45,37 @@ public class Patient {
 	@Column(name="birthday", nullable=false)
 	private LocalDate birthday; 
 	
-	public LocalDate getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(LocalDate birthday) {
-		this.birthday = birthday;
-	}
-
+	@NotBlank
+	@Pattern(regexp ="^[a-zA-Z]*$")
 	@Column(name="first_name", nullable=false)
 	private String firstName;
 	
+	@NotBlank
+	@Pattern(regexp ="^[a-zA-Z]*$")
 	@Column(name="last_name", nullable=false)
 	private String lastName;
 	
+	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
 	@Column(name="phone")
 	private String phone;
 	
 	@Column(name="email")
+	@Email
 	private String email;
 	
+	
 	@Column(name="address")
+	
 	private String address;
 	
+	@Pattern(regexp ="^[a-zA-Z]*$")
 	@Column(name="city")
 	private String city;
 	
+	@Pattern(regexp ="^[a-zA-Z]*$")
 	@Column(name="state")
 	private String state;
+	
 	
 	@Column(name="zipcode")
 	private int zipCode;
@@ -73,9 +85,10 @@ public class Patient {
 			fetch = FetchType.LAZY)
 	private List<Appointment> appointment = new ArrayList<>();
 
-	
+	public Patient() {}
 	
 	public Patient(int memberNumber,
+			LocalDate birthday,
 			String firstName,
 			String lastName,
 			String phone,
@@ -86,6 +99,7 @@ public class Patient {
 			int zipCode) {
 		
 		this.memberNumber = memberNumber;
+		this.birthday=birthday;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;
@@ -102,6 +116,14 @@ public class Patient {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = birthday;
 	}
 
 	public int getMemberNumber() {

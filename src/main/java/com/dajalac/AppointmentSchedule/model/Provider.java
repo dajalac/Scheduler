@@ -49,6 +49,7 @@ public class Provider {
 			fetch = FetchType.LAZY)
 	private List<Appointment> appointment = new ArrayList<>();
 	
+	public Provider() {}
 	
 	public Provider(String firstName,
 			String lastName,

@@ -46,7 +46,7 @@ public class Appointment {
 	@Column(name="appointment_date", nullable=false)
 	private LocalDate apptDate;
 
-	
+	public Appointment() {}
 	
 	public Appointment(Patient patientId, Provider providerId, LocalTime starTime, LocalTime endTime,
 			LocalDate apptDate) {
