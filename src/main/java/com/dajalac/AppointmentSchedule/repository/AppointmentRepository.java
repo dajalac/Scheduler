@@ -15,11 +15,14 @@ import com.dajalac.AppointmentSchedule.model.Appointment;
 @Repository
 public interface AppointmentRepository extends JpaRepository <Appointment, Long>{
 
-	/*
-	Optional<Appointment> findAppointmentByDate(LocalDate date);
+	
+	List<Appointment> findAppointmentByDate(LocalDate date);
 	
 	@Query("Select a from Appointment a WHERE providerId =?1")
-	List<Appointment> findAppointmentByProdiverId(int id);*/
+	List<Appointment> findAppointmentByProdiverId(Long id);
+	
+	@Query("Select a from Appointment a WHERE patientId =?1")
+	List<Appointment> findAppointmentByPatientId(Long id);
 	
 	
 	@Query(value= "SELECT * FROM generate_series\r\n"

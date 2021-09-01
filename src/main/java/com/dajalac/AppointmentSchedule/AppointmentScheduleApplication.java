@@ -52,7 +52,6 @@ public class AppointmentScheduleApplication {
 			appointmentRepository.save(new Appointment(patient1,
 					provider1,
 					LocalTime.parse("10:00"),
-					LocalTime.parse("10:30"),
 					LocalDate.of(2021, 8, 31)
 					));
 			

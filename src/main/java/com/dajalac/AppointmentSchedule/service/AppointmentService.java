@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,15 +23,47 @@ public class AppointmentService {
 		this.appointmentRepository = appointmentRepository;
 	}
 	
+	public List<Appointment> getAllAppts(){
+		return appointmentRepository.findAll();
+	}
+	
 	public List<String>getAvailableAppts(String fromDate, String toDate, int providerId){
 		
 		return appointmentRepository.findAppointmentAvailable(fromDate,toDate,providerId);
 	}
-	  
 	
-	// to format date
-	public LocalDate stringToDate (String date) {
-		LocalDate formatedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		return formatedDate;
+	public void newAppt (Appointment appointment) {
+		
+		//try to check if will have conflicts 
+		appointmentRepository.save(appointment);
+	}
+	
+	//could it also be by id?
+	public void deleteAppt (Appointment appointment) {
+		appointmentRepository.delete(appointment);
+	}
+
+	@Transactional
+	public void updateAppt(Appointment appointment) {
+		Appointment apptToUpdate = appointmentRepository.findById(appointment.getId())
+				.orElseThrow(()->
+				new IllegalStateException("Appointment id"+appointment.getId()+"does not exists"));
+		
+		apptToUpdate.setApptDate(appointment.getApptDate());
+		apptToUpdate.setStarTime(appointment.getStarTime());
+		apptToUpdate.setPatientId(appointment.getPatientId());
+		apptToUpdate.setProviderId(appointment.getProviderId());
+	}
+	
+	public List<Appointment>getApptByDate (LocalDate date){
+		return appointmentRepository.findAppointmentByDate(date);
+	}
+	
+	public List<Appointment>getApptByProvider (Long providerId){
+		return appointmentRepository.findAppointmentByProdiverId(providerId);
+	}
+	
+	public List<Appointment>getApptByPatient (Long patientId){
+		return appointmentRepository.findAppointmentByPatientId(patientId);
 	}
 }

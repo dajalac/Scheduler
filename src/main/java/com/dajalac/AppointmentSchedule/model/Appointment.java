@@ -40,20 +40,17 @@ public class Appointment {
 	@Column(name="start_time", nullable=false)
 	private LocalTime starTime;
 	
-	@Column(name="end_time", nullable=false)
-	private LocalTime endTime;
 	
 	@Column(name="appointment_date", nullable=false)
 	private LocalDate apptDate;
 
 	public Appointment() {}
 	
-	public Appointment(Patient patientId, Provider providerId, LocalTime starTime, LocalTime endTime,
+	public Appointment(Patient patientId, Provider providerId, LocalTime starTime,
 			LocalDate apptDate) {
 		this.patientId = patientId;
 		this.providerId = providerId;
 		this.starTime = starTime;
-		this.endTime = endTime;
 		this.apptDate = apptDate;
 	}
 
@@ -89,14 +86,6 @@ public class Appointment {
 		this.starTime = starTime;
 	}
 
-	public LocalTime getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(LocalTime endTime) {
-		this.endTime = endTime;
-	}
-
 	public LocalDate getApptDate() {
 		return apptDate;
 	}
@@ -108,7 +97,7 @@ public class Appointment {
 	@Override
 	public String toString() {
 		return "Appointment [id=" + id + ", patientId=" + patientId + ", providerId=" + providerId + ", starTime="
-				+ starTime + ", endTime=" + endTime + ", apptDate=" + apptDate + "]";
+				+ starTime + ", apptDate=" + apptDate + "]";
 	}
 	
 	
