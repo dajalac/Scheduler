@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.dajalac.AppointmentSchedule.model.Appointment;
@@ -21,11 +22,15 @@ public interface AppointmentRepository extends JpaRepository <Appointment, Long>
 	List<Appointment> findAppointmentByProdiverId(int id);*/
 	
 	
-	@Query(value= "select * from generate_series(TO_TIMESTAMP('2021-08-30 8:00:00','YYYY/MM/DD HH24:MI:SS'), TO_TIMESTAMP('2021-09-01 18:00:00','YYYY/MM/DD HH24:MI:SS'),'30 minutes') as date\r\n"
+	@Query(value= "SELECT * FROM generate_series\r\n"
+			+ "(TO_TIMESTAMP(CONCAT(:fromDate,' 8:00'),'YYYY/MM/DD HH24:MI'),\r\n"
+			+ " TO_TIMESTAMP(CONCAT(:toDate ,' 18:00'),'YYYY/MM/DD HH24:MI'),'30 minutes') as date\r\n"
 			+ "WHERE date NOT IN(\r\n"
-			+ "	select appointment_date + start_time from appointment\r\n"
-			+ ") AND cast(date as time) BETWEEN '8:00:00' and '18:00:00'",nativeQuery = true)
-	List<LocalDateTime> findAppointmentAvailable();
+			+ "	SELECT appointment_date + start_time FROM appointment WHERE provider_id=:providerId \r\n"
+			+ ") AND cast(date as time) BETWEEN '8:00:00' and '17:00:00'",nativeQuery = true)
+	List<String> findAppointmentAvailable(@Param ("fromDate") String fromDate,
+										  @Param ("toDate") String toDate,
+										  @Param ("providerId") int providerId);
 	
 	
 }

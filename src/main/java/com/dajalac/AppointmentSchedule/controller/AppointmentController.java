@@ -1,11 +1,15 @@
 package com.dajalac.AppointmentSchedule.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,8 +29,13 @@ public class AppointmentController {
 	}
 	
 	@GetMapping
-	public ResponseEntity< List <LocalDateTime> > getPatients(){
-		return ResponseEntity.ok().body(appointmentService.getAvailableAppts());
+	public ResponseEntity< List <String> > getPatients(@RequestBody Map<String, Object> payload ){
+			
+		return ResponseEntity.ok().body(appointmentService.getAvailableAppts(
+				String.valueOf(payload.get("fromDate")),
+				String.valueOf(payload.get("toDate")),
+				Integer.parseInt(String.valueOf(payload.get("providerId")))
+				));
 	}
 	
 
