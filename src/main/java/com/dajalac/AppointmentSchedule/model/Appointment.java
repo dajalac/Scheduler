@@ -50,7 +50,6 @@ public class Appointment {
 	
 	public Appointment(Patient patientId, Provider providerId, LocalTime starTime, LocalTime endTime,
 			LocalDate apptDate) {
-		super();
 		this.patientId = patientId;
 		this.providerId = providerId;
 		this.starTime = starTime;

@@ -30,7 +30,7 @@ public class ProviderController {
 		return ResponseEntity.ok().body(providerService.getAllProvider());
 	}
 	
-	@GetMapping
+	@GetMapping("/searchByArea")
 	public ResponseEntity<String>providerByArea(@RequestBody String area){
 		providerService.getProviderByField(area);
 		return ResponseEntity.ok("Done");

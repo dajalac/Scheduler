@@ -5,10 +5,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.dajalac.AppointmentSchedule.model.Appointment;
 import com.dajalac.AppointmentSchedule.model.Patient;
+import com.dajalac.AppointmentSchedule.model.Provider;
+import com.dajalac.AppointmentSchedule.repository.AppointmentRepository;
 import com.dajalac.AppointmentSchedule.repository.PatientRepository;
+import com.dajalac.AppointmentSchedule.repository.ProviderRepository;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @SpringBootApplication
 public class AppointmentScheduleApplication {
@@ -18,9 +23,12 @@ public class AppointmentScheduleApplication {
 	}
 	
 	@Bean
-	 CommandLineRunner commandLineRunner(PatientRepository patientRepository) {
+	 CommandLineRunner commandLineRunner(PatientRepository patientRepository,
+			 							ProviderRepository providerRepository,
+			 							AppointmentRepository appointmentRepository) {
+		
 		return args ->{
-			patientRepository.save(new Patient(252366,
+			Patient patient1 = new Patient(252366,
 					LocalDate.now(),
 					"ana",
 					"luz",
@@ -29,7 +37,26 @@ public class AppointmentScheduleApplication {
 					"1810 Fordem ave",
 					"Madison",
 					"Wisconsin",
-					570340));
+					570340);
+			Provider provider1 = new Provider("Molly",
+					"Smith",
+					"(123) 456-7890",
+					"msmity@gmail.com",
+					"Family doctor"
+					);
+			
+			patientRepository.save(patient1);
+			
+			providerRepository.save(provider1);
+			
+			appointmentRepository.save(new Appointment(patient1,
+					provider1,
+					LocalTime.parse("10:00"),
+					LocalTime.parse("10:30"),
+					LocalDate.of(2021, 8, 31)
+					));
+			
+			
 		};
 	}
 
