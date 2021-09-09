@@ -27,7 +27,7 @@ public class AppointmentService {
 		return appointmentRepository.findAll();
 	}
 	
-	public List<String>getAvailableAppts(String fromDate, String toDate, int providerId){
+	public List<String>getAvailableAppts(String fromDate, String toDate, Long providerId){
 		
 		return appointmentRepository.findAppointmentAvailable(fromDate,toDate,providerId);
 	}

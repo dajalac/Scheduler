@@ -27,14 +27,14 @@ public interface AppointmentRepository extends JpaRepository <Appointment, Long>
 	
 	
 	@Query(value= "SELECT * FROM generate_series\r\n"
-			+ "(TO_TIMESTAMP(CONCAT(:fromDate,' 8:00'),'YYYY/MM/DD HH24:MI'),\r\n"
-			+ " TO_TIMESTAMP(CONCAT(:toDate ,' 18:00'),'YYYY/MM/DD HH24:MI'),'30 minutes') as date\r\n"
+			+ "(TO_TIMESTAMP(CONCAT(:fromDate,' 08:00'),'YYYY/MM/DD HH24:MI'),\r\n"
+			+ " TO_TIMESTAMP(CONCAT(:toDate ,' 16:00'),'YYYY/MM/DD HH24:MI'),'30 minutes') as date\r\n"
 			+ "WHERE date NOT IN(\r\n"
 			+ "	SELECT appointment_date + start_time FROM appointment WHERE provider_id=:providerId \r\n"
-			+ ") AND cast(date as time) BETWEEN '8:00:00' and '17:00:00'",nativeQuery = true)
+			+ ") AND cast(date as time) BETWEEN '08:00:00' and '16:00:00'",nativeQuery = true)
 	List<String> findAppointmentAvailable(@Param ("fromDate") String fromDate,
 										  @Param ("toDate") String toDate,
-										  @Param ("providerId") int providerId);
+										  @Param ("providerId") Long providerId);
 	
 	
 }

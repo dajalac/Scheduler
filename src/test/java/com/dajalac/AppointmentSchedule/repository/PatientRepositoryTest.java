@@ -12,14 +12,18 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dajalac.AppointmentSchedule.model.Patient;
 
 @DataJpaTest
-@TestPropertySource(locations="classpath:application.properties")
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)//to use test db, not embedded one
+@AutoConfigureTestDatabase(replace = Replace.NONE)//to use test db, not embedded one
+@Transactional(propagation = Propagation.NOT_SUPPORTED)
+@TestPropertySource(locations="classpath:application-test.properties")
 class PatientRepositoryTest {
 
 	@Autowired

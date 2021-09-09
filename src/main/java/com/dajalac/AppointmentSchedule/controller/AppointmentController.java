@@ -42,7 +42,7 @@ public class AppointmentController {
 		return ResponseEntity.ok().body(appointmentService.getAvailableAppts(
 				String.valueOf(payload.get("fromDate")),
 				String.valueOf(payload.get("toDate")),
-				Integer.parseInt(String.valueOf(payload.get("providerId")))
+				Long.parseLong(String.valueOf(payload.get("providerId")))
 				));
 	}
 	
