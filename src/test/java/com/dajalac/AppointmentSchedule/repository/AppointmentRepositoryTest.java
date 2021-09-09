@@ -64,8 +64,6 @@ class AppointmentRepositoryTest {
 				);
 		providerRepository.save(provider);
 		
-	//given
-		
 		underTestAppointmentRepository.save(new Appointment(patient,
 				provider,
 				LocalTime.parse("08:00"),
@@ -109,7 +107,7 @@ class AppointmentRepositoryTest {
 		underTestAppointmentRepository.deleteAll();
 	}
 	@Test
-	void itShouldReturn11ApptAvailable_whenSelectedAnExistentProvider() {
+	void whenSelectedAnExistentProvider_thenReturn11ApptAvailable() {
 		
 		
 		//when
@@ -121,7 +119,7 @@ class AppointmentRepositoryTest {
 	}
 	
 	@Test
-	void itShouldReturnAllthetimeAsAvailable_whenSelectedAnNonexistentProvider() {
+	void whenSelectedAnNonexistentProvider_thenReturnAllthetimeAsAvailable_() {
 		
 	
 		//when

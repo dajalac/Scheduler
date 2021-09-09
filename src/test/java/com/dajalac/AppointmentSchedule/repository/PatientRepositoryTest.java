@@ -35,7 +35,7 @@ class PatientRepositoryTest {
 	}
 	
 	@Test
-	void itShouldReturnApatient_whenInputFullNameAndBirthday() {
+	void whenInputAnSavedFullNameAndBirthday_thenReturnApatient() {
 		//given
 		Patient patient = new Patient(252366,
 				LocalDate.now(),
@@ -67,7 +67,7 @@ class PatientRepositoryTest {
 	}
 	
 	@Test
-	void itShouldNotReturnApatient_whenInputFullNameAndBirthday() {
+	void whenInputAnNotSavedFullNameAndBirthday_thenReturnNoApatient() {
 		//given
 		Patient patient = new Patient(252366,
 				LocalDate.now(),

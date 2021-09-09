@@ -45,7 +45,7 @@ class ProviderRepositoryTest {
 	}
 	
 	@Test
-	void itShouldReturnAprovider_whenSpecialityIsSelected() {
+	void whenAnExsistentSpecialityIsSelected_thenReturnAprovider() {
 		//given
 	
 		underTestProviderRepository.save(provider);
@@ -60,7 +60,7 @@ class ProviderRepositoryTest {
 	}
 	
 	@Test
-	void itShouldNotReturnAprovider_whenNonexistentSpecialityIsSelected() {
+	void whenAnNonexsistentSpecialityIsSelected_thenReturnNoAprovider() {
 		//given
 	
 		underTestProviderRepository.save(provider);
