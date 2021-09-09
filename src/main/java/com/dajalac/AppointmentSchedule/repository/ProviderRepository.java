@@ -14,5 +14,4 @@ public interface ProviderRepository extends JpaRepository <Provider, Long> {
 	@Query("SELECT p FROM Provider p WHERE p.speciality =?1")
 	List<Provider> FindProviderBySpeciality(String speciality);
 
-
 }
