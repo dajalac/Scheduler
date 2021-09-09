@@ -208,6 +208,9 @@ public class Patient {
 				+ firstName + ", lastName=" + lastName + ", phone=" + phone + ", email=" + email + ", address="
 				+ address + ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + ", appointment="
 				+ appointment + "]";
+		
+	
+	
 	}
 
 	
