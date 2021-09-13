@@ -1,0 +1,7 @@
+.nav-bar{
+    display: flex;
+    flex-direction: column;
+    background-color: coral;
+    width: 15%;
+ 
+}
