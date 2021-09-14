@@ -1,7 +1,31 @@
 .nav-bar{
     display: flex;
     flex-direction: column;
-    background-color: coral;
-    width: 15%;
- 
+    width: 20%;
+}
+
+.nav-bar-items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin: 40px 10px;
+    list-style: none;
+    font-size: 1rem;
+    
+}
+
+.nav-bar-links{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    height: 60px;
+    text-align: center;
+    margin-bottom: 1px;
+    column-gap: 10px;
+    box-shadow:0 3px 2px -2px rgb(0,0,0,0.4);
+}
+
+.nav-bar-menu-icons{
+    
 }
