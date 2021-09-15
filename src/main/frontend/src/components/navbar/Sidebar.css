@@ -34,6 +34,11 @@
     background-color:#323643;
 }
 
+.side-bar-links a{
+    color: #f0efef;
+    text-decoration:none;
+}
+
 .side-bar-menu-icons{
     color: #757a79;
 }
@@ -46,7 +51,7 @@
         flex-direction:column; 
         margin-top: 5px;
     }
-    .side-bar-links p{
+    .side-bar-links a{
         padding: 0;
         margin: 0;
     }

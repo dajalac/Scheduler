@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
 import InfoIcon from '@material-ui/icons/Info';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
@@ -14,23 +15,23 @@ export default function sidebar() {
             <ul className = "side-bar-items">
             <li className="side-bar-links">
                     <HomeIcon className="side-bar-menu-icons"/>
-                    <p> Home</p>
+                    <Link to ='/'>Home</Link>
                 </li>
                 <li className="side-bar-links">
                     <AddIcon className="side-bar-menu-icons"/>
-                   <p> New Appointment </p>
+                   <Link to= '/newAppt'> New Appointment </Link>
                 </li>
                 <li className="side-bar-links">
                     <PersonAddIcon className="side-bar-menu-icons" />
-                    <p> New client </p>
+                    <Link to ='/newClient'> New client </Link>
                 </li>
                 <li className="side-bar-links">
                     <InfoIcon className="side-bar-menu-icons"/>
-                    <p> Client info</p>
+                    <Link to ='/clientInfo'> Client info</Link>
                 </li>
                 <li className="side-bar-links">
                     <DateRangeIcon className="side-bar-menu-icons"/>
-                     <p>Provider schedule</p>
+                     <Link to ='providerSchedule'>Provider schedule</Link>
                 </li>
             </ul>
         </nav>
