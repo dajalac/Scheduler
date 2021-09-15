@@ -7,10 +7,10 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import './Sidebar.css'
 
 export default function sidebar() {
-
+    
     return (
         <>
-        <nav className="side-bar">
+        <nav className= 'side-bar' >
             <ul className = "side-bar-items">
             <li className="side-bar-links">
                     <HomeIcon className="side-bar-menu-icons"/>

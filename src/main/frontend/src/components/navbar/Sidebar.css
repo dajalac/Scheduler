@@ -6,6 +6,7 @@
     height: 100vh;
 }
 
+
 .side-bar-items{
     display: flex;
     flex-direction: column;
@@ -51,3 +52,18 @@
     }
 
 }
+
+@media(max-width:650px){
+    .side-bar{
+       width: 60%;
+       z-index: 50;
+    }
+    .side-bar-links{
+        height: 80px;
+        align-content: center;
+        justify-content: center;
+    }
+
+}
+
+

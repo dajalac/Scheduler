@@ -2,7 +2,6 @@
   text-align: center;
 }
 
-
 .App-container{
   display: flex;
   width: 100%;
@@ -12,3 +11,6 @@
 .App-page-contaier{
   flex-grow:1;
 }
+
+
+

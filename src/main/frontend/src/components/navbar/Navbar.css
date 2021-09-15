@@ -16,4 +16,15 @@
 
 .nav-bar-burger{
     margin-left: 1rem;
+    visibility: hidden;
+}
+
+.test{
+    background-color: navy;
+}
+
+@media(max-width:650px){
+    .nav-bar-burger{
+        visibility:visible;
+    }
 }
