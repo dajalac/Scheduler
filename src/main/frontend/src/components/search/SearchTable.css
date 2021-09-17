@@ -1,6 +1,7 @@
 .searchTable{
     display: flex;
     flex-direction: column;
+    margin: 1rem;
 
 }
 
@@ -11,14 +12,16 @@
     width: 50%;
 }
 
-.searchTable-searchBy p{
-    margin: 0;
+.searchTable-input{
+    display:flex;
+    align-items: flex-start;
 }
 
+/*
 .searchTable-searchBy select {
     border-left: none;
     border-right: none;
     border-top: none;
     height: 30px;
     font-size: 1rem;
-}
+}*/

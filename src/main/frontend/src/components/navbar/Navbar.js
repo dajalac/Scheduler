@@ -1,6 +1,6 @@
 import React from 'react';
-import DehazeIcon from '@material-ui/icons/Dehaze';
-import CloseIcon from '@material-ui/icons/Close';
+import DehazeIcon from '@mui/icons-material/Dehaze';
+import CloseIcon from '@mui/icons-material/Close';
 
 import './Navbar.css'
 

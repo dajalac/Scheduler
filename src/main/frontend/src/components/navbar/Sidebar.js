@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import AddIcon from '@material-ui/icons/Add';
-import InfoIcon from '@material-ui/icons/Info';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import HomeIcon from '@material-ui/icons/Home';
-import DateRangeIcon from '@material-ui/icons/DateRange';
+import AddIcon from '@mui/icons-material/Add';
+import InfoIcon from '@mui/icons-material/Info';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import HomeIcon from '@mui/icons-material/Home';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import './Sidebar.css'
 
 export default function sidebar() {
