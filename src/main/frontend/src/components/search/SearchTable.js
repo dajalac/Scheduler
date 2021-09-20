@@ -1,27 +1,10 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+
 import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
-import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
-
-
-import { makeStyles } from '@mui/styles';
-
+import Button from '@mui/material/Button';
 import './SearchTable.css'
-
-const useStyles = makeStyles({
-    label: {
-        backgroundColor: 'white'
-    }
-});
 
 
 export default function SearchTable() {
@@ -29,7 +12,6 @@ export default function SearchTable() {
     const [userInput, setUserInput] = React.useState('');
     const [selectedDate, setDate] = React.useState('');
 
-    const classes = useStyles();
 
     const handleSearchBy = (event) => {
         setSearchBy(event.target.value);
@@ -39,11 +21,53 @@ export default function SearchTable() {
         setUserInput(event.target.value);
     }
 
+    const handleRadioBtn = (event) => {
+        console.log(event.target.value);
+    }
+
 
     return (
         <div className="searchTable">
-            <div className='searchTable-searchBy'>
-                <Box sx={{ m: 1, width: 300 }}>
+
+            <div className="searchTable-searchBy">
+                <div className="searchTable-input">
+
+                    <TextField className="searchTable-TextField"
+                        fullWidth
+                        size='small'
+                        id="input-with-icon-textfield"
+
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start" >
+                                    <SearchIcon />
+                                </InputAdornment>
+                            ),
+                        }}
+                        variant="outlined"
+                    />
+
+                </div>
+                <div className="searchTable-button">
+                    <Button variant="contained" color="success" sx={{ height: '100%' }}> Search </Button>
+                </div>
+
+            </div>
+            <div className="searchTable-radioBtn" onChange={handleRadioBtn}>
+                <lable>Search by: </lable>
+                <lable><input type="radio" value="client" name="searchBy" /> <span>Customer Name</span></lable>
+                <lable><input type="radio" value="memberNumber" name="searchBy" /> <span>Member Number</span></lable>
+                <lable><input type="radio" value="provider" name="searchBy" /> <span>Provider</span></lable>
+
+            </div>
+        </div>
+    )
+}
+
+/*
+<div className=".searchTable-searchBy">
+
+            <Box sx={{ m: 1, width: 300 }}>
                     <FormControl fullWidth>
                         <InputLabel className={classes.label}
                             id="demo-simple-select-label">Search by: </InputLabel>
@@ -60,72 +84,44 @@ export default function SearchTable() {
                             <MenuItem value={'Provider'}>Provider</MenuItem>
                         </Select>
                     </FormControl>
-                </Box>
 
-                <Box sx={{ '& > :not(style)': { m: 1 } }}>
-      <FormControl variant="standard">
-        <InputLabel htmlFor="input-with-icon-adornment">
-          With a start adornment
-        </InputLabel>
-        <Input
-          id="input-with-icon-adornment"
-          startAdornment={
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          }
-        />
-      </FormControl>
-      </Box>
+            </Box>
 
-            </div >
+            </div>
+            <div className="searchTable-searchBy-client">
+                        <TextField
+                    required
+                    id="filled-required"
+                    label= "Client name"
+                    variant="filled"
+                    helperText="Enter first and last name"
 
-            <div className="searchTable-input">
-                <TextField id="outlined-basic" onChange={handleUserInput} variant="outlined" />
+                    />
 
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                         label="Pick up a date"
+                        size="small"
                         onChange={(newValue) => {
                             setDate(newValue);
                         }}
-                        renderInput={(params) => <TextField {...params} />}
+                        renderInput={(params) => <TextField {...params} style={{ width: 150 }} />}
                     />
                 </LocalizationProvider>
 
-            </div>
-        </div>
-    )
-}
-
-/*
-  <div className='searchTable-searchBy'>
-            <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                    <InputLabel >Search by: </InputLabel>
-                    <Select
-                        value={searchBy}
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={'All'}>All Appointments</MenuItem>
-                        <MenuItem value={'Customer'}>Customer name and birthday</MenuItem>
-                        <MenuItem value={'Member number'}>Member number</MenuItem>
-                        <MenuItem value={'Provider'}>Provider</MenuItem>
-                    </Select>
-                </FormControl>
-            </Box>
+                <Button variant="outlined" startIcon={<SearchIcon />}> Search </Button>
             </div>
 
-            <div className='searchTable-searchBy'>
-            <p>Search by:  </p>
-            <select
-            value={searchBy}
-            onChange={handleChange}>
-                <option  value={'All'} defaultValue>All Appointments </option>
-                <option  value={'Customer'}>Customer name and birthday </option>
-                <option value={'Member number'}>Member number</option>
-                <option value={'Provider'}>Provider</option>
-            </select>
-            </div>
+            <div className ="searchTable-searchBy-memberNumber" >
 
-            */
+                     <TextField
+                    required
+                    id="filled-required"
+                    label="Member number"
+                    variant="filled"
+
+                    />
+
+                <Button variant="outlined" startIcon={<SearchIcon />}> Search </Button>
+            </div>
+ */
