@@ -1,0 +1,51 @@
+.SearchPatient{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 90%;
+}
+.SearchPatient-by-name{
+    display: flex;
+    justify-items: center;
+    justify-content: space-between;
+    
+}
+.SearchPatient-by-member-number{
+    display: flex;
+    justify-content: start;
+}
+
+.SeachPatient-btn{
+    display: flex;
+    justify-content: flex-end;
+    margin: 2rem;
+    
+}
+
+.SearchPatient-TextField{
+    width: 70%;
+}
+
+.SearchPatient p{
+    display: flex;
+}
+
+.SearchPatient p::before,
+.SearchPatient p::after{
+    content: "";
+            flex: 1 1;
+            border-bottom: 1px solid #bdbdbd ;
+            margin: auto;
+}
+
+
+@media(max-width:650px){
+    .SearchPatient-by-name{
+        flex-direction:column;
+        gap: 2rem;
+
+    }
+    .SearchPatient-TextField{
+        width: 100%;
+    }
+}
