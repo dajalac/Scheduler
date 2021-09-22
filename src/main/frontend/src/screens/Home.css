@@ -1,0 +1,14 @@
+.home-screen{
+    display: flex;
+    flex-direction: column;
+  
+    
+}
+
+.home-screen-table{
+    display: flex;
+    justify-content: center;
+    
+
+    
+}
