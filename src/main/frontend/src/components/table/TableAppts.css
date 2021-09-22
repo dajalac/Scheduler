@@ -31,9 +31,13 @@
   .tableAppts-table th {
     font-size: .85em;
     letter-spacing: .1em;
-    text-transform: uppercase;
   }
   
+.tableAppts-pagination{
+    display: flex;
+    padding-top: 1rem;
+}
+
   @media(max-width:650px) {
     .tableAppts-table {
       border: 0;

@@ -6,7 +6,9 @@ import './Home.css'
 export default function Home() {
     return (
         <div className="home-screen">
+            <div className="home-screen-searchMenu">
             <SearchTable/>
+            </div>
             <div className="home-screen-table">
             <TableAppts/>
             </div>
