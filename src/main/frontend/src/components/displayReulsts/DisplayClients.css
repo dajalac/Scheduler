@@ -1,0 +1,27 @@
+.displayResults{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 3px 1px rgb(0,0,0,0.4);
+    padding: 1rem;
+    width: 90%;
+}
+
+.displayResults-mainInfo,
+.displayResults-extraInfo{
+    display: flex;
+    justify-content: space-around;
+}
+
+.displayResults Link {
+    justify-content: right;
+    background-color: brown;
+}
+
+@media(max-width:650px){
+    .displayResults-mainInfo,
+    .displayResults-extraInfo{
+        flex-direction: column;
+        grid-column: 1rem;
+}
+}
+
