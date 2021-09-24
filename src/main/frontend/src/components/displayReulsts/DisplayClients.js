@@ -17,7 +17,7 @@ export default function DisplayClients() {
               <p>e-mail: analuz@gmail.com</p>
               <p>Adress: 1523 Holleman, Madison, WI</p>
           </div>
-          <Link to= '/'> Schedule an appointment</Link>
+          <Link to= '/ApptSchedule' > Schedule an appointment</Link>
 
         </div>
     )

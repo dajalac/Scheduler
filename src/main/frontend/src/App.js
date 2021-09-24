@@ -9,6 +9,7 @@ import ClientInfo from './screens/ClientInfo';
 import NewClient from './screens/NewClient';
 import NewAppt from './screens/NewAppt';
 import ProviderSchedule from './screens/ProviderSchedule'; 
+import ApptSchedule from './screens/ApptSchedule';
 
 
 function App() {
@@ -44,6 +45,8 @@ function App() {
           <Route path ='/clientInfo' component={ClientInfo}/>
           <Route path ='/newAppt' component={NewAppt}/>
           <Route path ='/ProviderSchedule' component={ProviderSchedule}/>
+          <Route path ='/ApptSchedule' component={ApptSchedule}/>
+
           <Route component = {Home}/>
           </Switch>
         </div>
