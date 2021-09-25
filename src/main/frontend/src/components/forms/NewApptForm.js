@@ -3,7 +3,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Button  from '@mui/material/Button';
+import Button from '@mui/material/Button';
 
 import './NewApptForm.css';
 
@@ -37,45 +37,45 @@ export default function NewApptForm() {
                 </div>
 
             </div>
-            
-            <div className="newApptForm-selectBoxes">
-            <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-autowidth-label" sx={{ backgroundColor: 'white' }}>Speciality</InputLabel>
-                <Select
-                    labelId="demo-simple-select-autowidth-label"
-                    id="demo-simple-select-autowidth"
-                    value={speciality}
-                    onChange={handleSpeciality}
-                    autoWidth
-                >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Twenty</MenuItem>
-                    <MenuItem value={21}>Twenty one</MenuItem>
-                    <MenuItem value={22}>Twenty one and a half</MenuItem>
-                </Select>
-            </FormControl>
 
-            <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-autowidth-label" sx={{ backgroundColor: 'white' }}>Provider</InputLabel>
-                <Select
-                    labelId="demo-simple-select-autowidth-label"
-                    id="demo-simple-select-autowidth"
-                    value={provider}
-                    onChange={handleProvider}
-                    autoWidth
-                >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Twenty</MenuItem>
-                    <MenuItem value={21}>Twenty one</MenuItem>
-                    <MenuItem value={22}>Twenty one and a half</MenuItem>
-                </Select>
-            </FormControl>
+            <div className="newApptForm-selectBoxes">
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-autowidth-label" sx={{ backgroundColor: 'white' }}>Speciality</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-autowidth-label"
+                        id="demo-simple-select-autowidth"
+                        value={speciality}
+                        onChange={handleSpeciality}
+                        autoWidth
+                    >
+                        <MenuItem value="">
+                            <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={10}>Twenty</MenuItem>
+                        <MenuItem value={21}>Twenty one</MenuItem>
+                        <MenuItem value={22}>Twenty one and a half</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-autowidth-label" sx={{ backgroundColor: 'white' }}>Provider</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-autowidth-label"
+                        id="demo-simple-select-autowidth"
+                        value={provider}
+                        onChange={handleProvider}
+                        autoWidth
+                    >
+                        <MenuItem value="">
+                            <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={10}>Twenty</MenuItem>
+                        <MenuItem value={21}>Twenty one</MenuItem>
+                        <MenuItem value={22}>Twenty one and a half</MenuItem>
+                    </Select>
+                </FormControl>
             </div>
-           
+
 
             <div className="newApptForm-radioBtn" onChange={handleRadioBtn}>
                 <lable> Periodo of day: </lable>
@@ -84,9 +84,9 @@ export default function NewApptForm() {
                 <lable><input type="radio" value="either" name="periodoOfDay" /> <span>Either</span></lable>
             </div>
             <div className="newApptForm-butn">
-            <Button variant="contained" size="small" >See appointments availables</Button>
+                <Button variant="contained" size="small" >See appointments availables</Button>
             </div>
-            
+
         </div>
     )
 }

@@ -46,9 +46,14 @@
     .newApptForm-radioBtn,
     .newApptForm-clientInfo{
         flex-direction: column;
-        justify-content: flex-start;
         gap:1rem;
-        flex:1
+    }
+    .newApptForm-lables{
+        width: 100%;
+    }
+    .newApptForm-radioBtn{
+        justify-content: left;
+        align-items: flex-start;
     }
 }
 
