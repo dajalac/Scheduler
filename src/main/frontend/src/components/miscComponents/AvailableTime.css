@@ -18,13 +18,15 @@
 
 /**hide the radio button */
 .timeTable-grid input{
-  
-  cursor: pointer;
+    opacity: 0;
+    position: fixed;
+    width: 0;
 }
 
 .timeTable-grid-container{
+    display: flex;
     margin: 3px;
-    padding: 10px;
+    height: 36px;
     background-color: white;
     box-shadow: 1px 1px 3px  rgb(0,0,0,0.4);
     border: none;
@@ -32,17 +34,18 @@
 }
 
 .timeTable-grid-checkmark{
-    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width:100%;
     height: 100%;
-    background-color: #eee;
 
 }
-.timeTable-grid-checkmark:checked{
-    background-color:turquoise;
-}
 
-.timeTable-grid-container input:checked ~ .timeTable-grid-checkmar{
-    background-color:tomato;
+.timeTable-grid-container input:checked + .timeTable-grid-checkmark{
+    background-color:#1565c0;
+    border-radius: 1rem;
+    color: white;
 }
 
 

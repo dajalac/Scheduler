@@ -7,8 +7,9 @@
 
 .App-container{
   display: flex;
+  /* side bar width was not chaging in mobile view
   width: 100%;
-  height: 100vh;
+  height: 100vh;*/
 }
 
 .App-page-contaier{

@@ -60,7 +60,7 @@
 
 @media(max-width:650px){
     .side-bar{
-       width:60%;
+       width:100%;
     }
     .side-bar-links{
         height: 80px;
