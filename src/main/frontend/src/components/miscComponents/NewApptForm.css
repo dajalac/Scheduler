@@ -2,18 +2,20 @@
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    width: 80%;
+    width: 90%;
 }
 .newApptForm-clientInfo{
     display: flex;
     justify-content:flex-start;
     gap: 2rem; 
+    
 }
 .newApptForm-lables{
     display: flex;
     align-items: baseline;
     width: 50%;
     gap:3px;
+    
 
 }
 .newApptForm-lables p {
@@ -26,20 +28,25 @@
     justify-content: space-evenly;
     gap: 2rem;
     margin-top: 1rem;
+    
 }
 .newApptForm-radioBtn{
     display: flex;
     justify-items: flex-start;
     gap:1rem;
     margin-top: 1rem;
+    
 }
 
 .newApptForm-butn{
     display: flex;
     justify-content:flex-end;
     margin-top: 1rem;
+    
 
 }
+
+
 
 @media(max-width:650px){
     .newApptForm-selectBoxes,

@@ -4,12 +4,12 @@ import { useMediaQuery } from 'react-responsive';
 import './App.css';
 import Navbar from './components/navbar/Navbar.js';
 import Sidebar from './components/navbar/Sidebar';
-import Home from './screens/Home';
-import ClientInfo from './screens/ClientInfo';
-import NewClient from './screens/NewClient';
-import NewAppt from './screens/NewAppt';
-import ProviderSchedule from './screens/ProviderSchedule'; 
-import ApptSchedule from './screens/ApptSchedule';
+import Home from './views/HomeView';
+import ClientInfo from './views/ClientInfoView';
+import NewClient from './views/NewClientView';
+import SearchClientForAppt from './views/SearchClientForApptView';
+import ProviderSchedule from './views/ProviderScheduleView'; 
+import NewAppt from './views/NewApptView';
 
 
 function App() {
@@ -43,9 +43,9 @@ function App() {
           <Route exact path ='/' component={Home}/>
           <Route path ='/newClient' component={NewClient}/>
           <Route path ='/clientInfo' component={ClientInfo}/>
-          <Route path ='/newAppt' component={NewAppt}/>
+          <Route path ='/newAppt' component={SearchClientForAppt}/>
           <Route path ='/ProviderSchedule' component={ProviderSchedule}/>
-          <Route path ='/ApptSchedule' component={ApptSchedule}/>
+          <Route path ='/ApptSchedule' component={NewAppt}/>
 
           <Route component = {Home}/>
           </Switch>

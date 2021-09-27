@@ -28,7 +28,7 @@ export default function NewApptForm() {
         <div className="newApptForm">
             <div className="newApptForm-clientInfo">
                 <div className="newApptForm-lables">
-                    <lable> Appointment for:</lable>
+                    <label> Appointment for:</label>
                     <p >Ana Luz</p>
                 </div>
                 <div className="newApptForm-lables">
@@ -78,10 +78,10 @@ export default function NewApptForm() {
 
 
             <div className="newApptForm-radioBtn" onChange={handleRadioBtn}>
-                <lable> Periodo of day: </lable>
-                <lable><input type="radio" value="morning" name="periodoOfDay" /> <span>Morning</span></lable>
-                <lable><input type="radio" value="afternoon" name="periodoOfDay" /> <span>Afternoon</span></lable>
-                <lable><input type="radio" value="either" name="periodoOfDay" /> <span>Either</span></lable>
+                <label> Periodo of day: </label>
+                <label><input type="radio" value="morning" name="periodoOfDay" /> <span>Morning</span></label>
+                <label><input type="radio" value="afternoon" name="periodoOfDay" /> <span>Afternoon</span></label>
+                <label><input type="radio" value="either" name="periodoOfDay" /> <span>Either</span></label>
             </div>
             <div className="newApptForm-butn">
                 <Button variant="contained" size="small" >See appointments availables</Button>

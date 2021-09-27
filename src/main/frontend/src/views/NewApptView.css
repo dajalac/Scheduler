@@ -1,0 +1,35 @@
+.NewAppt{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.NewAppt-result{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 1px 1px 2px 1px rgb(0,0,0,0.4);
+    padding: 1rem 0;
+    width: 90%;
+    
+}
+.NewAppt-availability{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+   
+}
+
+.NewAppt-saveBtn{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 3rem
+}
+
+@media(max-width:650px){
+    .NewAppt-availability{
+        flex-direction: column;
+        align-items: center;
+    }
+}

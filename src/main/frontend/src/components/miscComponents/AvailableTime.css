@@ -1,0 +1,71 @@
+.timeTable{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.timeTable label{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+   
+}
+
+.timeTable-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;  
+}
+
+/**hide the radio button */
+.timeTable-grid input{
+  
+  cursor: pointer;
+}
+
+.timeTable-grid-container{
+    margin: 3px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 1px 1px 3px  rgb(0,0,0,0.4);
+    border: none;
+    border-radius: 1rem;
+}
+
+.timeTable-grid-checkmark{
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+
+}
+.timeTable-grid-checkmark:checked{
+    background-color:turquoise;
+}
+
+.timeTable-grid-container input:checked ~ .timeTable-grid-checkmar{
+    background-color:tomato;
+}
+
+
+/*
+
+.timeTable-grid button{
+    margin: 3px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 1px 1px 3px  rgb(0,0,0,0.4);
+    border: none;
+    border-radius: 1rem;
+  
+}
+
+.timeTable-grid button:visited,
+.timeTable-grid button:active,
+.timeTable-grid button:focus{
+    background-color: #1565c0;
+    color: white;
+}*/
+
+
+
+
+

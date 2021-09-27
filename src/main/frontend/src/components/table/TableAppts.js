@@ -7,8 +7,6 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
 import './TableAppts.css'
-import { AlignHorizontalLeft, FormatAlignJustify } from '@mui/icons-material';
-import { display } from '@mui/system';
 
 function createData(appoitmentTime, appointmentDate, appointmentClient, appointmentProvider, appointmentId) {
     return { appoitmentTime, appointmentDate, appointmentClient, appointmentProvider, appointmentId };

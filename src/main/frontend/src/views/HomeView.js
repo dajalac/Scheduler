@@ -1,7 +1,7 @@
 import React from 'react'
-import SearchTable from '../components/search/SearchTable'
+import SearchTable from '../components/table/SearchTable'
 import TableAppts from '../components/table/TableAppts'
-import './Home.css'
+import './HomeView.css'
 
 export default function Home() {
     return (

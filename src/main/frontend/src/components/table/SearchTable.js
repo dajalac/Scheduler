@@ -54,10 +54,10 @@ export default function SearchTable() {
 
             </div>
             <div className="searchTable-radioBtn" onChange={handleRadioBtn}>
-                <lable>Search by: </lable>
-                <lable><input type="radio" value="client" name="searchBy" /> <span>Customer Name</span></lable>
-                <lable><input type="radio" value="memberNumber" name="searchBy" /> <span>Member Number</span></lable>
-                <lable><input type="radio" value="provider" name="searchBy" /> <span>Provider</span></lable>
+                <label>Search by: </label>
+                <label><input type="radio" value="client" name="searchBy" /> <span>Customer Name</span></label>
+                <label><input type="radio" value="memberNumber" name="searchBy" /> <span>Member Number</span></label>
+                <label><input type="radio" value="provider" name="searchBy" /> <span>Provider</span></label>
 
             </div>
         </div>

@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import DatePicker from '@mui/lab/DatePicker';
 
 import './SearchPatient.css'
-import { padding } from '@mui/system';
 
 export default function SearchPatient() {
     const [value, setValue] = useState(null);
