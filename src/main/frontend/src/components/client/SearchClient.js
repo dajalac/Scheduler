@@ -5,16 +5,16 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import Button from '@mui/material/Button';
 import DatePicker from '@mui/lab/DatePicker';
 
-import './SearchPatient.css'
+import './SearchClient.css'
 
-export default function SearchPatient() {
+export default function SearchClient() {
     const [value, setValue] = useState(null);
 
     return (
-        <div className="SearchPatient">
+        <div className= "SearchClient">
             <h5>Search Client by: </h5>
-            <div className="SearchPatient-by-name">
-            <TextField className ="SearchPatient-TextField"id="outlined-basic" label="Client First and last name" variant="outlined" />
+            <div className= "SearchClient-by-name">
+            <TextField className = "SearchClient-TextField"id="outlined-basic" label="Client First and last name" variant="outlined" />
             
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
@@ -28,10 +28,10 @@ export default function SearchPatient() {
             </LocalizationProvider>
             </div>
             <p> OR </p>
-            <div className="SearchPatient-by-member-number">
-            <TextField className ="SearchPatient-TextField" id="outlined-basic" label="Member number" variant="outlined"/> 
+            <div className= "SearchClient-by-member-number">
+            <TextField className = "SearchClient-TextField" id="outlined-basic" label="Member number" variant="outlined"/> 
             </div>
-            <div className="SeachPatient-btn">
+            <div className="SearchClient-btn">
             <Button variant="contained" size="small">Search</Button>
             </div>
             

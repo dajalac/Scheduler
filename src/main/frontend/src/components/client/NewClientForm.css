@@ -1,0 +1,44 @@
+.NewClientForm{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:2rem;
+    padding: 2rem;
+}
+.NewClientForm-phone{
+    display: flex;
+    background: #FFFFFF;
+    border: 1px solid #CACACA;
+    border-radius: 5px;
+    width: 300px;
+    outline: none;
+    padding: 0 1rem;
+    height: 58.5px ;
+  
+}
+
+.NewClientForm-phone:hover {
+      border-color: #000;
+ }
+
+.NewClientForm-phone:focus-within {
+      border-color: #1976d2;
+      box-shadow: 0 0 0 1px #1976d2;
+}
+
+.NewClientForm-phone input{
+    border: none;
+    font-size: 16px;
+    outline: none;
+    padding: 1rem;
+}
+
+.NewClientForm-phone placeholder{
+    color: crimson;
+}
+
+@media (max-width: 750px) {
+    .NewClientForm{
+        grid-template-columns: 1fr;
+    }
+}
+

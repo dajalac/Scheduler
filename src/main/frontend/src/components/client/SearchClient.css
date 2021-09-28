@@ -1,37 +1,37 @@
-.SearchPatient{
+.SearchClient{
     display: flex;
     flex-direction: column;
     padding: 1rem;
     width: 90%;
 }
-.SearchPatient-by-name{
+.SearchClient-by-name{
     display: flex;
     justify-items: center;
     justify-content: space-between;
     
 }
-.SearchPatient-by-member-number{
+.SearchClient-by-member-number{
     display: flex;
     justify-content: start;
 }
 
-.SeachPatient-btn{
+.SearchClient-btn{
     display: flex;
     justify-content: flex-end;
     margin: 2rem;
     
 }
 
-.SearchPatient-TextField{
+.SearchClient-TextField{
     width: 70%;
 }
 
-.SearchPatient p{
+.SearchClient p{
     display: flex;
 }
 
-.SearchPatient p::before,
-.SearchPatient p::after{
+.SearchClient p::before,
+.SearchClient p::after{
     content: "";
             flex: 1 1;
             border-bottom: 1px solid #bdbdbd ;
@@ -40,12 +40,12 @@
 
 
 @media(max-width:650px){
-    .SearchPatient-by-name{
+    .SearchClient-by-name{
         flex-direction:column;
         gap: 2rem;
 
     }
-    .SearchPatient-TextField{
+    .SearchClient-TextField{
         width: 100%;
     }
 }

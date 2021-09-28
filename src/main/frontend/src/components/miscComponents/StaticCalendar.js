@@ -24,6 +24,7 @@ export default function DisplayAvailableAppt() {
                     <StaticDatePicker
                         displayStaticWrapperAs="desktop"
                         value={value}
+                        minDate={new Date()}
                         shouldDisableDate={disableUnavailableDates}
                         onChange={(newValue) => {
                             setValue(newValue);
