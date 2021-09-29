@@ -5,7 +5,7 @@ import './App.css';
 import Navbar from './components/navbar/Navbar.js';
 import Sidebar from './components/navbar/Sidebar';
 import Home from './views/HomeView';
-import ClientInfo from './views/ClientInfoView';
+import ManageAppts from './views/ManageApptsView';
 import NewClient from './views/NewClientView';
 import SearchClientForAppt from './views/SearchClientForApptView';
 import ProviderSchedule from './views/ProviderScheduleView'; 
@@ -42,7 +42,7 @@ function App() {
           <Switch>
           <Route exact path ='/' component={Home}/>
           <Route path ='/newClient' component={NewClient}/>
-          <Route path ='/clientInfo' component={ClientInfo}/>
+          <Route path ='/ManageAppts' component={ManageAppts}/>
           <Route path ='/newAppt' component={SearchClientForAppt}/>
           <Route path ='/ProviderSchedule' component={ProviderSchedule}/>
           <Route path ='/ApptSchedule' component={NewAppt}/>
