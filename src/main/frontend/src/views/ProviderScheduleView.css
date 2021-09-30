@@ -1,0 +1,15 @@
+.ProviderSchedule{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    gap:1rem
+}
+.ProviderSchedule-title{
+    display: flex;
+    justify-content: start;
+    width: 90%;
+    font-weight: bold;
+    
+}

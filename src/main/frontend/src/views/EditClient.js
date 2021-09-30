@@ -1,11 +1,13 @@
 import React from 'react'
 import NewClientForm from '../components/client/NewClientForm';
 import Button from '@mui/material/Button';
-import './NewClientView.css'
+import DisplayClients from '../components/client/DisplayClients';
+import './NewClientView.css';
 
-export default function NewClient() {
+export default function EditClient() {
     return (
         <div className="NewClientView">
+             <DisplayClients />
             <NewClientForm/>
         <Button variant="contained" color="success" size="large"> Save </Button>
         </div>

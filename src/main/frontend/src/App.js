@@ -11,6 +11,7 @@ import SearchClientForAppt from './views/SearchClientForApptView';
 import ProviderSchedule from './views/ProviderScheduleView'; 
 import NewAppt from './views/NewApptView';
 import AppointmentsHisotoryView from './views/AppointmentsHisotoryView';
+import EditClient from './views/EditClient';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route path ='/ProviderSchedule' component={ProviderSchedule}/>
           <Route path ='/ApptSchedule' component={NewAppt}/>
           <Route path ='/AppointmentsHistory' component={AppointmentsHisotoryView}/>
+          <Route path ='/EditClient' component={EditClient}/>
           <Route component = {Home}/>
           </Switch>
         </div>

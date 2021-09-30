@@ -23,7 +23,7 @@ export default function DisplayClients() {
             </div>
             <div className="displayResults-actions">
                 <Link to='/ApptSchedule' className="displayResults-actions-options"> Schedule an appointment</Link>
-                <Link to='/newClient' className="displayResults-actions-options"> Edit information</Link>
+                <Link to='/EditClient' className="displayResults-actions-options"> Edit information</Link>
                 <Link to='/ManageAppts' className="displayResults-actions-options"> Manage appointments</Link>
                 <Link to='/AppointmentsHistory'className="displayResults-actions-options" > Appointments history</Link>
             </div>
