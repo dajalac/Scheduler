@@ -1,7 +1,7 @@
 .newApptForm{
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1rem 2rem;
     width: 90%;
 }
 .newApptForm-clientInfo{

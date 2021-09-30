@@ -7,6 +7,8 @@ export default function ManageApptsView() {
     return (
         <div className="ManageApptsView">
             <DisplayClients />
+
+            {/**the amount of manageappts will depends of the amount of app comming */}
             <ManageAppts/>
             <ManageAppts/>
             <ManageAppts/>

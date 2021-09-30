@@ -26,6 +26,7 @@ export default function NewApptForm() {
 
     return (
         <div className="newApptForm">
+           {/*
             <div className="newApptForm-clientInfo">
                 <div className="newApptForm-lables">
                     <label> Appointment for:</label>
@@ -36,7 +37,7 @@ export default function NewApptForm() {
                     <p> 12345 </p>
                 </div>
 
-            </div>
+            </div>*/}
 
             <div className="newApptForm-selectBoxes">
                 <FormControl fullWidth>

@@ -10,6 +10,7 @@ import NewClient from './views/NewClientView';
 import SearchClientForAppt from './views/SearchClientForApptView';
 import ProviderSchedule from './views/ProviderScheduleView'; 
 import NewAppt from './views/NewApptView';
+import AppointmentsHisotoryView from './views/AppointmentsHisotoryView';
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
           <Route path ='/newAppt' component={SearchClientForAppt}/>
           <Route path ='/ProviderSchedule' component={ProviderSchedule}/>
           <Route path ='/ApptSchedule' component={NewAppt}/>
-
+          <Route path ='/AppointmentsHistory' component={AppointmentsHisotoryView}/>
           <Route component = {Home}/>
           </Switch>
         </div>
