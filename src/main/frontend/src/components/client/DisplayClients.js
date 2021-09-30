@@ -14,12 +14,12 @@ export default function DisplayClients() {
         <div className="displayResults">
 
             <div className="displayResults-info">
-                <p>Name:  Ana Luz</p>
-                <p>Birthday:  05/29/1990</p>
-                <p>Member Number: 12345679</p>
-                <p>Phone:  (12)1234-1234</p>
-                <p>e-mail: analuz@gmail.com</p>
-                <p>Adress: 1523 Holleman, Madison, WI</p>
+                <div>Name:  Ana Luz</div>
+                <div>Birthday:  05/29/1990</div>
+                <div>Member Number: 12345679</div>
+                <div>Phone:  (12)1234-1234</div>
+                <div>e-mail: analuz@gmail.com</div>
+                <div>Adress: 1523 Holleman, Madison, WI</div>
             </div>
             <div className="displayResults-actions">
                 <Link to='/ApptSchedule' className="displayResults-actions-options"> Schedule an appointment</Link>

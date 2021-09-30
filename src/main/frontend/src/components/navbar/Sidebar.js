@@ -9,10 +9,10 @@ import FolderIcon from '@mui/icons-material/Folder';
 import './Sidebar.css'
 
 export default function sidebar() {
-    
+
     return (
-        <>
-        <nav className= 'side-bar' >
+        <div className= 'side-bar'>
+        <nav>
             <ul className = "side-bar-items">
             <li className="side-bar-links">
                     <HomeIcon className="side-bar-menu-icons"/>
@@ -37,7 +37,7 @@ export default function sidebar() {
                 </li>
             </ul>
         </nav>
-        </>
+        </div>
 
     )
 }

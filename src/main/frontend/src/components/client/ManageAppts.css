@@ -1,0 +1,49 @@
+.ManageAppts{
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: 1px 1px 3px 1px rgb(0,0,0,0.4);
+    padding: 12px 0;
+    width: 90%;
+    margin-top: 1rem;
+}
+
+.ManageAppts-calendar{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #eeeeee;
+    box-shadow: 1px 1px 3px rgb(0,0,0,0.4);
+    padding: 5px 10px;
+    
+}
+.ManageAppts-calendar-header{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    border-bottom: solid 1px white;
+}
+.ManageAppts-calendar-date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    padding-bottom: 5px;
+}
+
+.ManageAppts-info,
+.ManageAppts-btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+@media (max-width: 750px){
+    .ManageAppts{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+}

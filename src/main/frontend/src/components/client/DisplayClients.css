@@ -4,15 +4,16 @@
     align-items: center;
     gap: 1rem;
     box-shadow: 1px 1px 3px 1px rgb(0,0,0,0.4);
-    padding: 1rem;
+    padding: 12px 0;
     width: 90%;
 }
 
 .displayResults-info{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 10px;
     justify-items: start;
-    width: 80%;
+    width: 90%;
 
 }
 
@@ -37,11 +38,15 @@
 
 
 
-@media(max-width:650px){
-    .displayResults-mainInfo,
-    .displayResults-extraInfo{
+@media(max-width:800px){
+    .displayResults-info,
+    .displayResults-actions{
+        display: flex;
         flex-direction: column;
+        align-items: center;
         grid-column: 1rem;
-}
+        
+    }
+    
 }
 

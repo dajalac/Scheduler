@@ -1,8 +1,23 @@
+body{
+  margin: 0;
+  padding: 0;
+}
 .App {
   text-align: center;
   width: 100%;
-  overflow-x: hidden;
+  
+
  
+ /* text-align: center;
+  width: 100%;
+  overflow-x: hidden;*/
+
+  /*
+  display:flex;
+  flex-direction: column;
+  width: 100%;*/
+  /* Centering the page */
+  
 }
 
 .App-container{
@@ -13,6 +28,9 @@
 }
 
 .App-page-contaier{
+  align-items: center;
+  width: 100vw;
+  margin-top: 40px;
   flex-grow:1;
 }
 
