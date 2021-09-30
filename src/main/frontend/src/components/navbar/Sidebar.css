@@ -54,6 +54,7 @@
     }
     .side-bar-links{
         flex-direction:column; 
+        justify-content: center;
         margin-top: 5px;
     }
     .side-bar-links a{

@@ -12,3 +12,19 @@
     gap: 1rem;
 
 }
+
+@media(max-width:650px){
+    .ProviderInfoCard-info{
+        grid-template-columns: 1fr
+    }
+}
+
+@media(max-width:370px){
+    .ProviderInfoCard{
+        flex-wrap: wrap;
+    }
+    .ProviderInfoCard-info{
+        display: flex;
+        flex-direction: column;
+    }
+}
