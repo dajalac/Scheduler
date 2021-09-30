@@ -53,7 +53,7 @@ export default function NewClientForm() {
 
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                    label="birthday"
+                    label="Birthday"
                     value={birthday}
                     onChange={handleBday}
                     renderInput={(params) => <TextField {...params} sx={{ width: 250 }} required />}
