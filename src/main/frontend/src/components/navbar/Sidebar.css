@@ -33,15 +33,19 @@
 
 .side-bar-links:hover{
     background-color:#323643;
+    border-radius: 0 50% 50% 0  ;
 }
 
-.side-bar-links a{
+.side-bar-links div{
     color: #f0efef;
-    text-decoration:none;
 }
 
 .side-bar-menu-icons{
     color: #757a79;
+}
+
+.side-bar-items-active-tab{
+    background-color: #455a64;
 }
 
 @media(max-width:900px){

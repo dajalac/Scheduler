@@ -4,3 +4,26 @@
     flex-direction: column;
     align-items: center;
 }
+
+.AppointmentsHistoryView-print{
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+    cursor: pointer;
+    
+}
+@media print{
+    body * {
+        visibility: hidden;
+      }
+      #printableArea,
+      #printableArea *{
+          visibility: visible;
+      }
+      #printableArea{
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+}
