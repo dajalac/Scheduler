@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
-import TablePagination from '@mui/material/TablePagination';
 import Pagination from '@mui/material/Pagination';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
 
 import './TableAppts.css'
 

@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import './Navbar.css'
 
 export default function Navbar({setShowSideBar, showSideBar}) {
-    const viewWidth = window.outerWidth;
+   
 
     const displaySidebar =()=>{
 
