@@ -19,7 +19,19 @@ export const appointmentSlice = createSlice({
 
     },
     extraReducers: builder=>{
-        builder.addCase()
+        builder
+        .addCase(getAppts.pending, (state)=>{
+            state.status='loading';
+        })
+        .addCase(getAppts.fulfilled, (state, action)=>{
+            state.status='success';
+            state.appointments=action.payload;
+        })
+        .addCase(getAppts.rejected,(state)=>{
+            state.status ='rejected';
+        })
     }
 
 })
+
+export default appointmentSlice.reducer; 
