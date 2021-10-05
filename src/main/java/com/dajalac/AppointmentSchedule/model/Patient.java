@@ -18,6 +18,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table (name="patient")
@@ -75,9 +78,13 @@ public class Patient {
 	@Column(name="zipcode")
 	private int zipCode;
 	
+	/*tag to avoid infinite loop regarding bi-directional mapping
+	 * When we call getPatients, the patientId object (with the patient info)
+	 * will be ignored in the joined column appointments (called patientId)*/
+	@JsonIgnoreProperties("patientId") 
 	@OneToMany(mappedBy="patientId",
 			cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY)
+			fetch = FetchType.LAZY) /*it was suggested to use eager, but lazy is also working*/
 	private List<Appointment> appointment = new ArrayList<>();
 
 	public Patient() {}
@@ -202,6 +209,7 @@ public class Patient {
 		this.appointment = appointment;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Patient [id=" + id + ", memberNumber=" + memberNumber + ", birthday=" + birthday + ", firstName="

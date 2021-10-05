@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 @Entity
 @Table (name = "appointment")
 public class Appointment {
@@ -28,7 +31,9 @@ public class Appointment {
 	@Column(name="appointment_id", updatable=false)
 	private Long id;
 	
-	
+	/*tag to avoid infinite loop regarding bi-directional mapping
+	 * it will ignore the column appointment from the patient column*/
+	@JsonIgnoreProperties("appointment")
 	@ManyToOne
 	@JoinColumn(name="patient_id",nullable=false)
 	private Patient patientId;
@@ -94,6 +99,7 @@ public class Appointment {
 		this.apptDate = apptDate;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Appointment [id=" + id + ", patientId=" + patientId + ", providerId=" + providerId + ", starTime="
