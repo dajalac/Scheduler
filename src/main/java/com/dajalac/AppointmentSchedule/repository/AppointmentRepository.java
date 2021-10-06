@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import java.util.List;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,6 +14,10 @@ import com.dajalac.AppointmentSchedule.model.Appointment;
 @Repository
 public interface AppointmentRepository extends JpaRepository <Appointment, Long>{
 
+	@Query(value="SELECT * from Appointment WHERE  appointment_date > CURRENT_TIMESTAMP \r\n"
+			+ "ORDER BY appointment_date LIMIT 90"
+			,nativeQuery = true)
+	List <Appointment> findAllForNext3months();
 	
 	@Query("SELECT a FROM Appointment a WHERE a.apptDate=?1")
 	List<Appointment> findAppointmentByDate(LocalDate date);

@@ -8,6 +8,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dajalac.AppointmentSchedule.model.Appointment;
@@ -24,8 +26,10 @@ public class AppointmentService {
 	}
 	
 	public List<Appointment> getAllAppts(){
-		return appointmentRepository.findAll();
+		return appointmentRepository.findAllForNext3months();
 	}
+	
+	
 	
 	public List<String>getAvailableAppts(String fromDate, String toDate, Long providerId){
 		

@@ -49,11 +49,14 @@ public class AppointmentScheduleApplication {
 			
 			providerRepository.save(provider1);
 			
-			appointmentRepository.save(new Appointment(patient1,
-					provider1,
-					LocalTime.parse("10:00"),
-					LocalDate.of(2021, 8, 31)
-					));
+			for (int i=0; i< 12; i++) {
+				appointmentRepository.save(new Appointment(patient1,
+						provider1,
+						LocalTime.parse("10:00"),
+						LocalDate.of(2021, i+1, 10)
+						));
+				
+			}
 			
 			
 		};
