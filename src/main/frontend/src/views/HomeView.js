@@ -25,7 +25,7 @@ export default function Home() {
             <SearchTable/>
             </div>
             <div className="home-screen-table">
-            <TableAppts appointments={appointments.data}  status ={status}/>
+            <TableAppts appointments={appointments}  status ={status}/>
             </div>
            
         </div>

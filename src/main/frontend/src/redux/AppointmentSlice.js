@@ -25,7 +25,7 @@ const appointmentSlice = createSlice({
         })
         .addCase(getAppts.fulfilled, (state, action)=>{
             state.status='success';
-            state.appointments=action.payload;
+            state.appointments=action.payload.data;
         })
         .addCase(getAppts.rejected,(state)=>{
             state.status ='rejected';
