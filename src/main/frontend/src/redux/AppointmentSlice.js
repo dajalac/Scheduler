@@ -4,12 +4,12 @@ import { createSlice, createAsyncThunk  } from '@reduxjs/toolkit';
 export const getAppts = createAsyncThunk(
     'appointments/getAppts',
     async(dispatch)=>{
-        const response= await axios.get('');
+        const response= await axios.get('http://localhost:8080/appointment');
         return response; 
     }
 )
 
-export const appointmentSlice = createSlice({
+const appointmentSlice = createSlice({
     name:'appointment',
     initialState:{
         appointments:[],

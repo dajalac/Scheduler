@@ -2,35 +2,64 @@ import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
 import Pagination from '@mui/material/Pagination';
+import { useHistory } from 'react-router-dom';
+import './TableAppts.css';
 
-import './TableAppts.css'
 
-function createData(appoitmentTime, appointmentDate, appointmentClient, appointmentProvider, appointmentId) {
+const createData = (appoitmentTime, appointmentDate, appointmentClient, appointmentProvider, appointmentId) => {
     return { appoitmentTime, appointmentDate, appointmentClient, appointmentProvider, appointmentId };
 }
 
-const rows = [
-    createData('10:40', '09/21/2021', 'Ana Luz', 'Dr. Sarah Smith', '01'),
-    createData('10:40', '09/21/2021', 'Ana Luz', 'Dr. Sarah Smith', '01'),
-    createData('10:40', '09/21/2021', 'Ana Luz', 'Dr. Sarah Smith', '01'),
-];
+const insertDataInRows = (appointments, status, rows) => {
+    const dateFormat = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    const timeFormat = { hour: 'numeric', hour12: true };
 
+    if (status === 'success') {
+        appointments.map((appt) => (
+            rows.push(createData(new Date(appt.apptDate + 'T' + appt.starTime).toLocaleTimeString('en-US', timeFormat),
+                new Date(appt.apptDate).toLocaleDateString('en-US', dateFormat),
+                appt.patientId.firstName + ' ' + appt.patientId.lastName,
+                appt.providerId.firstName + ' ' + appt.providerId.lastName, appt.id))
+        ))
+    }
+}
 
-export default function TableAppts() {
-    /** states for paging */
+const pagination = (page, rows) => {
+    if (Object.keys(rows).length > 0) {
+        const indexOfLastApptInScreen = page * 10; // 10 is the number of item per page
+        const indexOfFirstApptInSceen = indexOfLastApptInScreen - 10; // 10 is the number of item per page
+        const rowsToDisplay = rows.slice(indexOfFirstApptInSceen, indexOfLastApptInScreen);
+
+        return rowsToDisplay
+    }
+    else {
+        return []
+    }
+
+}
+
+export default function TableAppts({ appointments, status }) {
     const [page, setPage] = useState(1);
-    const [numberOfPages, setNumberOfPages] = useState(1);
+    const rows = []
+    let history = useHistory()
+    let numberOfPages = 1
 
-   
-    const handleChange = (event, value) => {
-        setPage(value);   
+    if (typeof appointments !== 'undefined') {
+        numberOfPages = Math.ceil((appointments.length) / 10)
+    }
+
+
+    insertDataInRows(appointments, status, rows);
+
+    const rowsToDisplay = pagination(page, rows)
+
+    const handlePageChange = (event, value) => {
+        setPage(value);
     };
 
-
-    useEffect(() =>(
-       console.log(page)
-    ), [page])
-
+    const handleBtnClick = () => {
+        history.push('/EditClient');
+    }
 
     return (
         <div className="tableAppts">
@@ -45,8 +74,8 @@ export default function TableAppts() {
                     </tr>
                 </thead>
                 <tbody>
-                    {rows.map((appt) => (
-                        <tr>
+                    {rowsToDisplay.map((appt) => (
+                        <tr key={appt.appointmentId}>
                             <td data-label="Customer Name">{appt.appointmentClient}</td>
                             <td data-label="Appointment date">{appt.appointmentDate}</td>
                             <td data-label="Appointment time">{appt.appoitmentTime}</td>
@@ -55,17 +84,19 @@ export default function TableAppts() {
                                 <Button variant="contained"
                                     startIcon={<EditIcon />}
                                     size='small'
+                                    onClick={handleBtnClick}
                                 >Edit</Button></td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <div className='tableAppts-pagination'>
-                {/*<Typography>Page {page} of {numberOfPages} </Typography>*/}
-                <Pagination count={numberOfPages} page={page} onChange={handleChange}
-                        color='primary' shape='rounded' size='small' />
+                <Pagination count={numberOfPages} page={page} onChange={handlePageChange}
+                    color='primary' shape='rounded' size='small' />
             </div>
         </div>
     );
 
 }
+
+
