@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAppts, getApptsByMemberNumber,getApptsByCustomer,getApptsByProvider} from '../redux/appointments/AppointmentThunk';
+import { getAppts, getApptsByMemberNumber,
+    getApptsByCustomer,getApptsByProvider, getApptsNoFilter} from '../redux/appointments/AppointmentThunk';
 import SearchTable from '../components/table/SearchTable';
 import TableAppts from '../components/table/TableAppts';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -29,6 +30,11 @@ export default function Home() {
     const searchByProvider =(providerName)=>{
         dispatch(getApptsByProvider(providerName))
     }
+
+    const searchWithNoFilter=(value)=>{
+        dispatch(getApptsNoFilter(value))
+        console.log('inside home')
+    }
     
 
     return (
@@ -36,7 +42,8 @@ export default function Home() {
             <div className="home-screen-searchMenu">
             <SearchTable onSelectMemberNumber ={searchByMemeberNumber}
                          onSelectProvider = {searchByProvider}
-                         onSelectByCustomer = {searchByCustomer}/>
+                         onSelectByCustomer = {searchByCustomer}
+                         onSearchNoFilter={searchWithNoFilter}/>
             </div>
             <div className ="home-screen-refreshBtn">
                 {//TODO

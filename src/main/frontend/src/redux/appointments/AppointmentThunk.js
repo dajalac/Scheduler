@@ -33,5 +33,14 @@ export const getApptsByProvider = createAsyncThunk(
     }
 )
 
+export const getApptsNoFilter = createAsyncThunk(
+    'appointments/getApptsNoFilter',
+    async(data)=>{
+        console.log('thunk')
+        const response = await axios.post('http://localhost:8080/appointment//searchByNoFilter',{name:data});
+        return response
+    }
+)
+
 
 

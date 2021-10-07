@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import './SearchTable.css'
 
 
-export default function SearchTable({onSelectMemberNumber, onSelectProvider, onSelectByCustomer}) {
+export default function SearchTable({onSelectMemberNumber, onSelectProvider, onSelectByCustomer,onSearchNoFilter}) {
     const [userInput, setUserInput] = useState('');
     const [searchBy, setSearchBy] = useState('')
 
@@ -22,7 +22,7 @@ export default function SearchTable({onSelectMemberNumber, onSelectProvider, onS
     }
 
     const onClickSearchBtn=()=>{
-        console.log(userInput)
+        console.log(searchBy)
         if (searchBy ==='memberNumber') {
             onSelectMemberNumber(userInput)
         }
@@ -31,6 +31,10 @@ export default function SearchTable({onSelectMemberNumber, onSelectProvider, onS
         }
         if (searchBy==='client'){
             onSelectByCustomer(userInput)
+        }
+        if(!searchBy){
+            onSearchNoFilter(userInput)
+            console.log('inside search')
         }
        
     }
@@ -64,7 +68,7 @@ export default function SearchTable({onSelectMemberNumber, onSelectProvider, onS
 
             </div>
             <div className="searchTable-radioBtn" onChange={handleRadioBtn}>
-                <label>Search by: </label>
+                <label>Filter by: </label>
                 <label><input type="radio" value="client" name="searchBy"/> <span>Customer Name</span></label>
                 <label><input type="radio" value="memberNumber" name="searchBy" /> <span>Member Number</span></label>
                 <label><input type="radio" value="provider" name="searchBy" /> <span>Provider</span></label>
