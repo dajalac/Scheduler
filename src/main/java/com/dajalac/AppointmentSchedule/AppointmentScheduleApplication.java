@@ -28,7 +28,7 @@ public class AppointmentScheduleApplication {
 			 							AppointmentRepository appointmentRepository) {
 		
 		return args ->{
-			Patient patient1 = new Patient(252366,
+			Patient patient1 = new Patient("252366",
 					LocalDate.now(),
 					"ana",
 					"luz",
@@ -44,10 +44,18 @@ public class AppointmentScheduleApplication {
 					"msmity@gmail.com",
 					"Family doctor"
 					);
+			Provider provider2 = new Provider("Jim",
+					"Doe",
+					"(123) 456-7890",
+					"msmity@gmail.com",
+					"Family doctor"
+					);
+			
 			
 			patientRepository.save(patient1);
 			
 			providerRepository.save(provider1);
+			providerRepository.save(provider2);
 			
 			for (int i=0; i< 12; i++) {
 				appointmentRepository.save(new Appointment(patient1,
@@ -58,6 +66,11 @@ public class AppointmentScheduleApplication {
 				
 			}
 			
+			appointmentRepository.save(new Appointment(patient1,
+					provider2,
+					LocalTime.parse("10:00"),
+					LocalDate.of(2021, 11, 10)
+					));
 			
 		};
 	}

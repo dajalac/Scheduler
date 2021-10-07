@@ -58,7 +58,7 @@ public class PatientController {
 	}
 
 	@GetMapping ("/serachByMemberNumber")
-	public ResponseEntity< Optional <Patient> > getPatientBymemberNumber(@RequestBody int memberNumber){
+	public ResponseEntity< Optional <Patient> > getPatientBymemberNumber(@RequestBody String memberNumber){
 		return ResponseEntity.ok().body(patientService.getPatientByMemnberNumber(memberNumber));
 	}
 	

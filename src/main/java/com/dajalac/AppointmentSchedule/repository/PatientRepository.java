@@ -14,7 +14,7 @@ import com.dajalac.AppointmentSchedule.model.Patient;
 @Repository
 public interface PatientRepository extends JpaRepository <Patient, Long> {
 
-	Optional<Patient>findPatientByMemberNumber(int memberNumber);
+	Optional<Patient>findPatientByMemberNumber(String memberNumber);
 	
 	
 	@Query("SELECT p FROM Patient p WHERE p.firstName=:firstName AND p.lastName=:lastName AND p.birthday=:birthday")

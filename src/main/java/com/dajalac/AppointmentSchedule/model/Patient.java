@@ -38,7 +38,7 @@ public class Patient {
 	private Long id;
 	
 	@Column(name="member_number", nullable=false)
-	private int memberNumber;
+	private String memberNumber;
 	
 	@Column(name="birthday", nullable=false)
 	private LocalDate birthday; 
@@ -90,7 +90,7 @@ public class Patient {
 	public Patient() {}
 	
 
-	public Patient(int memberNumber,
+	public Patient(String memberNumber,
 			LocalDate birthday,
 			String firstName,
 			String lastName,
@@ -129,11 +129,11 @@ public class Patient {
 		this.birthday = birthday;
 	}
 
-	public int getMemberNumber() {
+	public String getMemberNumber() {
 		return memberNumber;
 	}
 
-	public void setMemberNumber(int memberNumber) {
+	public void setMemberNumber(String memberNumber) {
 		this.memberNumber = memberNumber;
 	}
 

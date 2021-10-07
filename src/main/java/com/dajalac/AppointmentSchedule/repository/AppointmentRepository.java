@@ -14,19 +14,24 @@ import com.dajalac.AppointmentSchedule.model.Appointment;
 @Repository
 public interface AppointmentRepository extends JpaRepository <Appointment, Long>{
 
-	@Query(value="SELECT * from Appointment WHERE  appointment_date > CURRENT_TIMESTAMP \r\n"
+	@Query(value="SELECT * FROM Appointment WHERE  appointment_date > CURRENT_TIMESTAMP \r\n"
 			+ "ORDER BY appointment_date LIMIT 90"
 			,nativeQuery = true)
 	List <Appointment> findAllForNext3months();
 	
-	@Query("SELECT a FROM Appointment a WHERE a.apptDate=?1")
-	List<Appointment> findAppointmentByDate(LocalDate date);
+	@Query("SELECT a FROM Appointment a WHERE a.patientId.memberNumber=?1")
+	List<Appointment> findAppointmentByMemeberNumber(String memberNumber);
 	
-	@Query("Select a from Appointment a WHERE a.providerId =?1")
-	List<Appointment> findAppointmentByProdiverId(Long id);
+	@Query("SELECT a FROM Appointment a WHERE concat(a.providerId.firstName,' ', a.providerId.lastName) LIKE %:name%")
+	List<Appointment> findAppointmentByProdiverId(String name);
 	
-	@Query("Select a from Appointment a WHERE a.patientId =?1")
-	List<Appointment> findAppointmentByPatientId(Long id);
+	@Query("SELECT a FROM Appointment a WHERE concat(a.patientId.firstName,' ', a.patientId.lastName) LIKE %:name%")
+	List<Appointment> findAppointmentByPatientId(String name);
+	
+	@Query("SELECT a FROM Appointment a WHERE concat(a.providerId.firstName,' ', a.providerId.lastName) LIKE %?1%\r\n"
+			+ "OR concat(a.patientId.firstName,' ', a.patientId.lastName) LIKE %?1%\r\n"
+			+"OR a.patientId.memberNumber=?1")
+	List<Appointment>findAppointmentWithNoFilter(String value);
 	
 	
 	@Query(value= "SELECT * FROM generate_series\r\n"

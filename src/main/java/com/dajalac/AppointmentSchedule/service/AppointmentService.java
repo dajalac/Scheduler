@@ -59,15 +59,19 @@ public class AppointmentService {
 		apptToUpdate.setProviderId(appointment.getProviderId());
 	}
 	
-	public List<Appointment>getApptByDate (LocalDate date){
-		return appointmentRepository.findAppointmentByDate(date);
+	public List<Appointment>getApptByMemberNumber (String memberNumber){
+		return appointmentRepository.findAppointmentByMemeberNumber(memberNumber);
 	}
 	
-	public List<Appointment>getApptByProvider (Long providerId){
-		return appointmentRepository.findAppointmentByProdiverId(providerId);
+	public List<Appointment>getApptByProvider (String name){
+		return appointmentRepository.findAppointmentByProdiverId(name);
 	}
 	
-	public List<Appointment>getApptByPatient (Long patientId){
-		return appointmentRepository.findAppointmentByPatientId(patientId);
+	public List<Appointment>getApptByPatient (String name){
+		return appointmentRepository.findAppointmentByPatientId(name);
+	}
+	
+	public List<Appointment>getApptNoFilter(String value){
+		return appointmentRepository.findAppointmentWithNoFilter(value);
 	}
 }

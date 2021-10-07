@@ -41,7 +41,7 @@ public class AppointmentController {
 		return ResponseEntity.ok().body(appointmentService.getAllAppts());
 	}
 	
-	@GetMapping("/availableAppts")
+	@PostMapping("/availableAppts")
 	public ResponseEntity< List <String> > getAvailableAppts(@RequestBody Map<String, Object> payload ){
 			
 		return ResponseEntity.ok().body(appointmentService.getAvailableAppts(
@@ -51,20 +51,29 @@ public class AppointmentController {
 				));
 	}
 	
-	@GetMapping("/searchByDate")
-	public ResponseEntity< List <Appointment> > getApptByDate(LocalDate date){
-		return ResponseEntity.ok().body(appointmentService.getApptByDate(date));
+	@PostMapping("/searchByMemberNumber")
+	public ResponseEntity< List <Appointment> > getApptByMemberNumber(@RequestBody Map<String, Object> payload){
+		return ResponseEntity.ok().body(appointmentService.getApptByMemberNumber(
+				String.valueOf(payload.get("memberNumber"))));
 	}
 	
-	@GetMapping ("/searchByProvider")
-	public ResponseEntity< List <Appointment> > getApptByProvider(Long providerId){
-		return ResponseEntity.ok().body(appointmentService.getApptByProvider(providerId));
+	@PostMapping ("/searchByProvider" )
+	public ResponseEntity< List <Appointment> > getApptByProvider(@RequestBody Map<String, Object> payload){
+		return ResponseEntity.ok().body(
+				appointmentService.getApptByProvider(String.valueOf(payload.get("name"))));
 	}
 	
-	@GetMapping ("/searchByPatient")
-	public ResponseEntity< List <Appointment> > getApptByPatient(Long patietId){
-		return ResponseEntity.ok().body(appointmentService.getApptByPatient(patietId));
+	@PostMapping ("/searchByPatient")
+	public ResponseEntity< List <Appointment> > getApptByPatient(@RequestBody Map<String, Object> payload){
+		return ResponseEntity.ok().body(appointmentService.getApptByPatient(String.valueOf(payload.get("name"))));
 	}
+	
+	@PostMapping("/searchByNoFilter")
+	public ResponseEntity< List <Appointment> > getApptNoFilter(@RequestBody Map<String, Object> payload){
+		return ResponseEntity.ok().body(appointmentService.getApptNoFilter(String.valueOf(payload.get("name"))));
+	}
+	
+	
 	
 	@PostMapping("/newAppointment")
 	public ResponseEntity<String> newAppt(Appointment appt){

@@ -74,7 +74,7 @@ public class PatientService {
 		
 	}
 
-	public Optional <Patient> getPatientByMemnberNumber(int memberNumber){
+	public Optional <Patient> getPatientByMemnberNumber(String memberNumber){
 		return patientRepository.findPatientByMemberNumber(memberNumber);
 	}
 	 
