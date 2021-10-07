@@ -17,7 +17,7 @@ const insertDataInRows = (appointments, status, rows) => {
     if (status === 'success') {
         appointments.map((appt) => (
             rows.push(createData(new Date(appt.apptDate + 'T' + appt.starTime).toLocaleTimeString('en-US', timeFormat),
-                new Date(appt.apptDate).toLocaleDateString('en-US', dateFormat),
+                new Date(appt.apptDate+ 'T' + appt.starTime).toLocaleDateString('en-US', dateFormat),
                 appt.patientId.firstName + ' ' + appt.patientId.lastName,
                 appt.providerId.firstName + ' ' + appt.providerId.lastName, appt.id))
         ))

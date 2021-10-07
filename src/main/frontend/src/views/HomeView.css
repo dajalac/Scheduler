@@ -16,6 +16,10 @@
     display: flex;
     justify-content: center;
     
+}
 
-    
+.home-screen-refreshBtn{
+    display: flex;
+    width: 90%;
+    justify-content:end;
 }

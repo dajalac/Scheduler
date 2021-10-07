@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -7,22 +7,32 @@ import Button from '@mui/material/Button';
 import './SearchTable.css'
 
 
-export default function SearchTable() {
-    const [searchBy, setSearchBy] = React.useState('All');
-    const [userInput, setUserInput] = React.useState('');
-    const [selectedDate, setDate] = React.useState('');
+export default function SearchTable({onSelectMemberNumber, onSelectProvider, onSelectByCustomer}) {
+    const [userInput, setUserInput] = useState('');
+    const [searchBy, setSearchBy] = useState('')
 
 
-    const handleSearchBy = (event) => {
-        setSearchBy(event.target.value);
-    };
 
     const handleUserInput = (event) => {
         setUserInput(event.target.value);
     }
 
     const handleRadioBtn = (event) => {
-        console.log(event.target.value);
+        setSearchBy(event.target.value);
+    }
+
+    const onClickSearchBtn=()=>{
+        console.log(userInput)
+        if (searchBy ==='memberNumber') {
+            onSelectMemberNumber(userInput)
+        }
+        if (searchBy ==='provider'){
+            onSelectProvider(userInput)
+        }
+        if (searchBy==='client'){
+            onSelectByCustomer(userInput)
+        }
+       
     }
 
 
@@ -36,7 +46,7 @@ export default function SearchTable() {
                         fullWidth
                         size='small'
                         id="input-with-icon-textfield"
-
+                        onChange={handleUserInput}
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start" >
@@ -49,13 +59,13 @@ export default function SearchTable() {
 
                 </div>
                 <div className="searchTable-button">
-                    <Button variant="contained" color="success" sx={{ height: '100%' }}> Search </Button>
+                    <Button variant="contained" color="success" sx={{ height: '100%' }} onClick={onClickSearchBtn}> Search </Button>
                 </div>
 
             </div>
             <div className="searchTable-radioBtn" onChange={handleRadioBtn}>
                 <label>Search by: </label>
-                <label><input type="radio" value="client" name="searchBy" /> <span>Customer Name</span></label>
+                <label><input type="radio" value="client" name="searchBy"/> <span>Customer Name</span></label>
                 <label><input type="radio" value="memberNumber" name="searchBy" /> <span>Member Number</span></label>
                 <label><input type="radio" value="provider" name="searchBy" /> <span>Provider</span></label>
 
