@@ -1,7 +1,7 @@
 import React from 'react';
 import {  NavLink } from 'react-router-dom';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import HomeIcon from '@mui/icons-material/Home';
+import ScheduleIcon from '@mui/icons-material/Schedule';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import FolderIcon from '@mui/icons-material/Folder';
 import './Sidebar.css'
@@ -15,8 +15,8 @@ export default function sidebar() {
                 <ul className="side-bar-items">
                     <NavLink exact to='/' style={{ textDecoration: 'none' }} activeClassName="side-bar-items-active-tab">
                         <li className="side-bar-links">
-                            <HomeIcon className="side-bar-menu-icons" />
-                            <div>Home </div>
+                            <ScheduleIcon className="side-bar-menu-icons" />
+                            <div>Upcomming </div>
                         </li>
                     </NavLink>
 
@@ -35,7 +35,7 @@ export default function sidebar() {
                     <NavLink exact to='/providerSchedule' style={{ textDecoration: 'none' }} activeClassName="side-bar-items-active-tab">
                         <li className="side-bar-links">
                             <DateRangeIcon className="side-bar-menu-icons" />
-                            <div>Provider schedule</div>
+                            <div>Provider agenda</div>
                         </li>
                     </NavLink>
                 </ul>
