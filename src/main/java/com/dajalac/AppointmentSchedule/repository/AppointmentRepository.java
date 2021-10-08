@@ -28,9 +28,10 @@ public interface AppointmentRepository extends JpaRepository <Appointment, Long>
 	@Query("SELECT a FROM Appointment a WHERE concat(a.patientId.firstName,' ', a.patientId.lastName) LIKE %:name%")
 	List<Appointment> findAppointmentByPatientId(String name);
 	
-	@Query("SELECT a FROM Appointment a WHERE concat(a.providerId.firstName,' ', a.providerId.lastName) LIKE %?1%\r\n"
-			+ "OR concat(a.patientId.firstName,' ', a.patientId.lastName) LIKE %?1%\r\n"
-			+"OR a.patientId.memberNumber=?1")
+	@Query("SELECT a FROM Appointment a WHERE\r\n"
+			+				 "concat(a.providerId.firstName,' ', a.providerId.lastName) LIKE '%' ||:value ||'%'\r\n"
+			+ " OR concat(a.patientId.firstName,' ', a.patientId.lastName) LIKE'%'||:value ||'%'\r\n"
+			+" OR a.patientId.memberNumber=:value")
 	List<Appointment>findAppointmentWithNoFilter(String value);
 	
 	
