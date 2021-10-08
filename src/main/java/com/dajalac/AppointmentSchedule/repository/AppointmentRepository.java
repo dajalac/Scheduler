@@ -1,6 +1,5 @@
 package com.dajalac.AppointmentSchedule.repository;
 
-import java.time.LocalDate;
 
 import java.util.List;
 
@@ -19,19 +18,22 @@ public interface AppointmentRepository extends JpaRepository <Appointment, Long>
 			,nativeQuery = true)
 	List <Appointment> findAllForNext3months();
 	
+	/*
 	@Query("SELECT a FROM Appointment a WHERE a.patientId.memberNumber=?1")
-	List<Appointment> findAppointmentByMemeberNumber(String memberNumber);
+	List<Appointment> findAppointmentByMemeberNumber(String memberNumber);*/
 	
-	@Query("SELECT a FROM Appointment a WHERE concat(a.providerId.firstName,' ', a.providerId.lastName) LIKE %:name%")
+	@Query("SELECT a FROM Appointment a WHERE a.apptDate > CURRENT_TIMESTAMP \r\n"
+			+ "AND concat(a.providerId.firstName,' ', a.providerId.lastName) LIKE %:name%")
 	List<Appointment> findAppointmentByProdiverId(String name);
 	
-	@Query("SELECT a FROM Appointment a WHERE concat(a.patientId.firstName,' ', a.patientId.lastName) LIKE %:name%")
+	@Query("SELECT a FROM Appointment a WHERE a.apptDate > CURRENT_TIMESTAMP \r\n"
+			+ "AND concat(a.patientId.firstName,' ', a.patientId.lastName) LIKE %:name%")
 	List<Appointment> findAppointmentByPatientId(String name);
 	
-	@Query("SELECT a FROM Appointment a WHERE\r\n"
-			+				 "concat(a.providerId.firstName,' ', a.providerId.lastName) LIKE '%' ||:value ||'%'\r\n"
+	@Query("SELECT a FROM Appointment a WHERE a.apptDate > CURRENT_TIMESTAMP \r\n"
+			+				 "AND( concat(a.providerId.firstName,' ', a.providerId.lastName) LIKE '%' ||:value ||'%'\r\n"
 			+ " OR concat(a.patientId.firstName,' ', a.patientId.lastName) LIKE'%'||:value ||'%'\r\n"
-			+" OR a.patientId.memberNumber=:value")
+			+" OR a.patientId.memberNumber=:value)")
 	List<Appointment>findAppointmentWithNoFilter(String value);
 	
 	

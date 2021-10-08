@@ -59,9 +59,10 @@ public class AppointmentService {
 		apptToUpdate.setProviderId(appointment.getProviderId());
 	}
 	
+	/*
 	public List<Appointment>getApptByMemberNumber (String memberNumber){
 		return appointmentRepository.findAppointmentByMemeberNumber(memberNumber);
-	}
+	}*/
 	
 	public List<Appointment>getApptByProvider (String name){
 		return appointmentRepository.findAppointmentByProdiverId(name);
@@ -72,6 +73,11 @@ public class AppointmentService {
 	}
 	
 	public List<Appointment>getApptNoFilter(String value){
+		//To not return any value in case the input is empty 
+		if(value.isEmpty()) {
+			value ="...";
+		}
+		System.out.print(value);
 		return appointmentRepository.findAppointmentWithNoFilter(value);
 	}
 }
