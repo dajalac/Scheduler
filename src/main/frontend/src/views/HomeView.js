@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAppts, getApptsByMemberNumber,
-    getApptsByCustomer,getApptsByProvider, getApptsNoFilter} from '../redux/appointments/AppointmentThunk';
+import { getAppts,getApptsByCustomer,getApptsByProvider, getApptsNoFilter} from '../redux/appointments/AppointmentThunk';
 import SearchTable from '../components/table/SearchTable';
 import TableAppts from '../components/table/TableAppts';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -23,10 +22,6 @@ export default function Home() {
         dispatch(getApptsByCustomer(customerName))
     }
 
-    const searchByMemeberNumber=(memberNumber)=>{
-        dispatch(getApptsByMemberNumber(memberNumber))
-    }
-
     const searchByProvider =(providerName)=>{
         dispatch(getApptsByProvider(providerName))
     }
@@ -40,7 +35,7 @@ export default function Home() {
     return (
         <div className="home-screen">
             <div className="home-screen-searchMenu">
-            <SearchTable onSelectMemberNumber ={searchByMemeberNumber}
+            <SearchTable 
                          onSelectProvider = {searchByProvider}
                          onSelectByCustomer = {searchByCustomer}
                          onSearchNoFilter={searchWithNoFilter}/>

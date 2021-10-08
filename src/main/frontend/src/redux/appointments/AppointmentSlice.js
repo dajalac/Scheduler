@@ -1,7 +1,6 @@
 import { createSlice} from '@reduxjs/toolkit';
 import {getAppts,
-     getApptsByCustomer,
-     getApptsByMemberNumber, 
+     getApptsByCustomer, 
      getApptsByProvider,
      getApptsNoFilter} from './AppointmentThunk';
 
@@ -26,16 +25,6 @@ const appointmentSlice = createSlice({
             state.appointments=action.payload.data;
         })
         .addCase(getAppts.rejected,(state)=>{
-            state.status ='rejected';
-        })
-        .addCase(getApptsByMemberNumber.pending, (state)=>{
-            state.status='loading'
-        })
-        .addCase(getApptsByMemberNumber.fulfilled, (state, action)=>{
-            state.status='success';
-            state.appointments=action.payload.data;
-        })
-        .addCase(getApptsByMemberNumber.rejected,(state)=>{
             state.status ='rejected';
         })
         .addCase(getApptsByProvider.pending, (state)=>{

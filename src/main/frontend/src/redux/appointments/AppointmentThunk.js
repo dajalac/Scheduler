@@ -17,13 +17,6 @@ export const getApptsByCustomer = createAsyncThunk(
     }
 )
 
-export const getApptsByMemberNumber = createAsyncThunk(
-    'appointments/getApptsByMemberNumber',
-    async(data)=>{
-        const response = await axios.post('http://localhost:8080/appointment//searchByMemberNumber',{memberNumber: data});
-        return response
-    }
-)
 
 export const getApptsByProvider = createAsyncThunk(
     'appointments/getApptsByProvider',
