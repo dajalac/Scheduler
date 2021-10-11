@@ -67,10 +67,10 @@ public class PatientService {
 
 
 	
-	public List <Patient> getPatientByNameAndBirthday(String firstName, String lastName, String birthday) {
+	public List <Patient> getPatientByNameAndBirthday(String name, String birthday) {
 		
 		LocalDate formatedBirthday = LocalDate.parse(birthday);
-		return patientRepository.findPatientByNameAndBirthday(firstName, lastName, formatedBirthday );
+		return patientRepository.findPatientByNameAndBirthday(name, formatedBirthday );
 		
 	}
 

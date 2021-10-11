@@ -49,17 +49,16 @@ public class PatientController {
 		return ResponseEntity.ok("Done");
 	}
 	
-	@GetMapping ("/serachByNameBirthday")
+	@PutMapping ("/serachByNameBirthday")
 	public ResponseEntity< List <Patient> > getPatientByNameAndBirthday(@RequestBody Map<String, Object> payload ){
 	
-		return ResponseEntity.ok().body(patientService.getPatientByNameAndBirthday(String.valueOf(payload.get("firstName")),
-																				   String.valueOf(payload.get("lastName")),
+		return ResponseEntity.ok().body(patientService.getPatientByNameAndBirthday(String.valueOf(payload.get("name")),
 																				   String.valueOf(payload.get("birthday"))));
 	}
 
-	@GetMapping ("/serachByMemberNumber")
-	public ResponseEntity< Optional <Patient> > getPatientBymemberNumber(@RequestBody String memberNumber){
-		return ResponseEntity.ok().body(patientService.getPatientByMemnberNumber(memberNumber));
+	@PutMapping ("/serachByMemberNumber")
+	public ResponseEntity< Optional <Patient> > getPatientBymemberNumber(@RequestBody Map<String, Object> payload){
+		return ResponseEntity.ok().body(patientService.getPatientByMemnberNumber(String.valueOf(payload.get("memberNumber"))));
 	}
 	
 	
