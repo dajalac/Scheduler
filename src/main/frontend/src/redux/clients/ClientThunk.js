@@ -5,8 +5,19 @@ import {createAsyncThunk  } from '@reduxjs/toolkit';
 export const getClientBynameAndBday = createAsyncThunk(
     'client/getClientBynameAndBday',
     async(data)=>{
-        const response = await axios.post('http://localhost:8080//patient//serachByNameBirthday',{
-            name: data.name, birthda: data.birthday });
+      
+        const year = data.birthday.getFullYear();
+        const month = data.birthday.getMonth() + 1;
+        let day =data.birthday.getDate();
+
+        if (day.toString().length<2){
+            day ='0'+day
+        }
+       const dateFormated = year + '-' + month + '-' + day; 
+       console.log(dateFormated)
+
+        const response = await axios.post('http://localhost:8080/patient/serachByNameBirthday',{
+            name: data.name, birthday:dateFormated});
         return response
     }
 )

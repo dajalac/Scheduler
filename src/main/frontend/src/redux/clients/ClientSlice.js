@@ -16,7 +16,7 @@ const clientSlice = createSlice({
         .addCase(getClientBynameAndBday.pending, (state)=>{
             state.status='loading';
         })
-        .addCase(getClientBynameAndBday.fullfiled, (state, action)=>{
+        .addCase(getClientBynameAndBday.fulfilled, (state, action)=>{
             state.status='success';
             state.clients=action.payload.data;
         })
@@ -26,7 +26,7 @@ const clientSlice = createSlice({
         .addCase(getClientByMemberNumber.pending, (state)=>{
             state.status='loading';
         })
-        .addCase(getClientByMemberNumber.fullfiled, (state, action)=>{
+        .addCase(getClientByMemberNumber.fulfilled, (state, action)=>{
             state.status='success';
             state.clients=action.payload.data;
         })

@@ -26,12 +26,12 @@
     width: 70%;
 }
 
-.SearchClient p{
+.SearchClient-OR-division{
     display: flex;
 }
 
-.SearchClient p::before,
-.SearchClient p::after{
+.SearchClient-OR-division::before,
+.SearchClient-OR-division::after{
     content: "";
             flex: 1 1;
             border-bottom: 1px solid #bdbdbd ;
