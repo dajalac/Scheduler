@@ -65,10 +65,7 @@ public class PatientService {
 		
 	}
 
-
-	
 	public List <Patient> getPatientByNameAndBirthday(String name, String birthday) {
-		
 		LocalDate formatedBirthday = LocalDate.parse(birthday);
 		return patientRepository.findPatientByNameAndBirthday(name, formatedBirthday );
 		
@@ -78,6 +75,5 @@ public class PatientService {
 		return patientRepository.findPatientByMemberNumber(memberNumber);
 	}
 	 
-	
 
 }

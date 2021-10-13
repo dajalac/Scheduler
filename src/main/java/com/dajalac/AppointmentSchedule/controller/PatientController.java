@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,27 +38,27 @@ public class PatientController {
 	}
 
 	@PostMapping("/newPatient")
-	public ResponseEntity<String>newPatient(@RequestBody Patient patient){
+	public ResponseEntity<String>newPatient(@Valid @RequestBody Patient patient){
 		patientService.addNewPatient(patient);
 		return ResponseEntity.ok("Done");
 	}
 	
 	@PutMapping("/updatePatient")
-	public ResponseEntity <String> updatePatient(@RequestBody Patient patient){
+	public ResponseEntity <String> updatePatient(@Valid @RequestBody Patient patient){
 		
 		patientService.updatePatient(patient);
 		
 		return ResponseEntity.ok("Done");
 	}
 	
-	@PutMapping ("/serachByNameBirthday")
+	@PostMapping ("/serachByNameBirthday")
 	public ResponseEntity< List <Patient> > getPatientByNameAndBirthday(@RequestBody Map<String, Object> payload ){
 	
 		return ResponseEntity.ok().body(patientService.getPatientByNameAndBirthday(String.valueOf(payload.get("name")),
 																				   String.valueOf(payload.get("birthday"))));
 	}
 
-	@PutMapping ("/serachByMemberNumber")
+	@PostMapping ("/serachByMemberNumber")
 	public ResponseEntity< Optional <Patient> > getPatientBymemberNumber(@RequestBody Map<String, Object> payload){
 		return ResponseEntity.ok().body(patientService.getPatientByMemnberNumber(String.valueOf(payload.get("memberNumber"))));
 	}
