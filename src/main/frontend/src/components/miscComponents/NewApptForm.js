@@ -7,12 +7,14 @@ import Button from '@mui/material/Button';
 
 import './NewApptForm.css';
 
-export default function NewApptForm() {
+export default function NewApptForm({providers}) {
     const [speciality, setSpeciality] = useState('');
     const [provider, setProvider] = useState('');
+    const [enableProviderName, setEnableProviderName] = useState(true)
 
     const handleSpeciality = (event) => {
         setSpeciality(event.target.value);
+        setEnableProviderName(false)  
     };
 
     const handleProvider = (event) => {
@@ -24,21 +26,42 @@ export default function NewApptForm() {
     }
 
 
+    const getSpecialities = ()=>{
+        let specialities=[]; 
+        const uniqueSpecialities = [...new Set(providers.map(p =>(p.speciality)))]
+
+        if(providers){
+            uniqueSpecialities.map(provider=>(
+               specialities.push(<MenuItem value={provider}>{provider}</MenuItem>)
+            ))
+        }
+        return specialities;
+    }
+
+    const getProviders = () =>{
+        let providersName = []
+        let providersNameToDisplay =[]
+
+        providers.map(provider=>{
+            if(provider.speciality ===speciality){
+               return  providersName.push(provider.firstName+' '+provider.lastName)
+            }else{
+                return ''
+            }
+        })
+
+        if(providers){
+            providersName.map(name=>(
+                providersNameToDisplay.push(<MenuItem value={name}>{name}</MenuItem>)
+            ))
+        }
+        return providersNameToDisplay 
+    }
+
+
+
     return (
         <div className="newApptForm">
-           {/*
-            <div className="newApptForm-clientInfo">
-                <div className="newApptForm-lables">
-                    <label> Appointment for:</label>
-                    <p >Ana Luz</p>
-                </div>
-                <div className="newApptForm-lables">
-                    <label> Member number: </label>
-                    <p> 12345 </p>
-                </div>
-
-            </div>*/}
-
             <div className="newApptForm-selectBoxes">
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-autowidth-label" sx={{ backgroundColor: 'white' }}>Speciality</InputLabel>
@@ -49,12 +72,8 @@ export default function NewApptForm() {
                         onChange={handleSpeciality}
                         autoWidth
                     >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Twenty</MenuItem>
-                        <MenuItem value={21}>Twenty one</MenuItem>
-                        <MenuItem value={22}>Twenty one and a half</MenuItem>
+                        {getSpecialities()}
+                       
                     </Select>
                 </FormControl>
 
@@ -66,13 +85,9 @@ export default function NewApptForm() {
                         value={provider}
                         onChange={handleProvider}
                         autoWidth
+                        disabled={enableProviderName}
                     >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Twenty</MenuItem>
-                        <MenuItem value={21}>Twenty one</MenuItem>
-                        <MenuItem value={22}>Twenty one and a half</MenuItem>
+                        {getProviders()}
                     </Select>
                 </FormControl>
             </div>

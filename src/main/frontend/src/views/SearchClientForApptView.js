@@ -5,6 +5,8 @@ import DisplayClients from '../components/client/DisplayClients';
 import SearchClient from '../components/client/SearchClient';
 import './SearchClientForApptView.css'
 
+
+
 export default function SearchClientForAppt() {
     const dispatch = useDispatch();
     const {clients, status} = useSelector((state)=>state.clients)
@@ -15,6 +17,14 @@ export default function SearchClientForAppt() {
 
     const serachByMemberNumber=(value)=>{
         dispatch(getClientByMemberNumber(value))
+    }
+
+    const displayClient =()=>{
+        let result = [];
+        clients.map(client =>(
+           result.push(<DisplayClients client ={client} />)
+        ))
+        return result
     }
 
     const displayResult= ()=>{
@@ -28,7 +38,8 @@ export default function SearchClientForAppt() {
             if(clients === null || clients.length===0){
                return 'The client could not be found'
             }else{
-                return <DisplayClients />
+               return displayClient()
+                
             }
         }
         if (status ===null) {

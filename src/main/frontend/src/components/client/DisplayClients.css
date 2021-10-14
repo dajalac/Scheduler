@@ -13,7 +13,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 10px;
-    justify-items: start;
+    justify-items: left;
+    justify-content: start;
     width: 90%;
 
 }

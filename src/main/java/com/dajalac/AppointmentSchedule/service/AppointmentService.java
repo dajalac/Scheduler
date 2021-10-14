@@ -31,9 +31,12 @@ public class AppointmentService {
 	
 	
 	
-	public List<String>getAvailableAppts(String fromDate, String toDate, Long providerId){
+	public List<String>getAvailableAppts(Long providerId, String fromTime, String toTime){
 		
-		return appointmentRepository.findAppointmentAvailable(fromDate,toDate,providerId);
+		String fromDate= LocalDate.now().toString()+" ";
+		String toDate = LocalDate.now().plusMonths(6).toString()+" ";
+		
+		return appointmentRepository.findAppointmentAvailable(fromDate,toDate,providerId,fromTime, toTime);
 	}
 	
 	public void newAppt (Appointment appointment) {

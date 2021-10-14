@@ -36,7 +36,7 @@ class PatientServiceTest {
 		
 		underTestPatientService=new PatientService(patientRepository);
 		
-		patient = new Patient(252366,
+		patient = new Patient("252366",
 				LocalDate.now(),
 				"ana",
 				"luz",

@@ -1,4 +1,5 @@
 import React, {useState, useEffect } from 'react';
+import { useSelector} from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import './App.css';
@@ -16,6 +17,7 @@ import EditClient from './views/EditClient';
 
 function App() {
   const[showSideBar, setShowSideBar ] = useState(false); 
+  const {clients, status} = useSelector((state)=>state.clients);
 
   let displaySidebar = null
   const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
@@ -33,6 +35,14 @@ function App() {
     displaySidebar =<Sidebar /> 
   }
 
+  // const onlyIfClientExistis = ()=>{
+  //   if(clients || clients !==null){
+  //     <Route path ='/ManageAppts' component={ManageAppts}/>
+  //     <Route path ='/ApptSchedule' component={NewAppt}/>
+  //     <Route path ='/AppointmentsHistory' component={AppointmentsHisotoryView}/>
+  //     <Route path ='/EditClient' component={EditClient}/>
+  //   }
+  // }
 
   return (
     <div className="App">
@@ -44,12 +54,16 @@ function App() {
           <Switch>
           <Route exact path ='/' component={Home}/>
           <Route path ='/newClient' component={NewClient}/>
-          <Route path ='/ManageAppts' component={ManageAppts}/>
           <Route path ='/newAppt' component={SearchClientForAppt}/>
           <Route path ='/ProviderSchedule' component={ProviderSchedule}/>
-          <Route path ='/ApptSchedule' component={NewAppt}/>
-          <Route path ='/AppointmentsHistory' component={AppointmentsHisotoryView}/>
-          <Route path ='/EditClient' component={EditClient}/>
+          {(clients.length>0 && status==='success' ) &&
+            <div>
+             <Route path ='/ManageAppts' component={ManageAppts}/>
+             <Route path ='/ApptSchedule' component={NewAppt}/>
+             <Route path ='/AppointmentsHistory' component={AppointmentsHisotoryView}/>
+             <Route path ='/EditClient' component={EditClient}/>
+             </div>
+          }
           <Route component = {Home}/>
           </Switch>
         </div>

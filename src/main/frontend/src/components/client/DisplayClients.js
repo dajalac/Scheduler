@@ -3,20 +3,19 @@ import { Link } from 'react-router-dom';
 
 import './DisplayClients.css';
 
-export default function DisplayClients() {
+export default function DisplayClients({client}) {
 
-
+    const bdayFormated= new Date(client.birthday).toLocaleDateString('en-US');
     return (
 
         <div className="displayResults">
-
             <div className="displayResults-info">
-                <div>Name:  Ana Luz</div>
-                <div>Birthday:  05/29/1990</div>
-                <div>Member Number: 12345679</div>
-                <div>Phone:  (12)1234-1234</div>
-                <div>e-mail: analuz@gmail.com</div>
-                <div>Adress: 1523 Holleman, Madison, WI</div>
+                <div>Name: {client.firstName +' '+ client.lastName}</div>
+                <div>Birthday:  {bdayFormated}</div>
+                <div>Member Number: {client.memberNumber}</div>
+                <div>Phone:  {client.phone}</div>
+                <div>e-mail: {client.email}</div>
+                <div>Adress: {client.address +', '+client.city+', '+client.state+', '+client.zipCode}</div>
             </div>
             <div className="displayResults-actions">
                 <Link to='/ApptSchedule' className="displayResults-actions-options"> Schedule an appointment</Link>

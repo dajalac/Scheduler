@@ -45,9 +45,9 @@ public class AppointmentController {
 	public ResponseEntity< List <String> > getAvailableAppts(@RequestBody Map<String, Object> payload ){
 			
 		return ResponseEntity.ok().body(appointmentService.getAvailableAppts(
-				String.valueOf(payload.get("fromDate")),
-				String.valueOf(payload.get("toDate")),
-				Long.parseLong(String.valueOf(payload.get("providerId")))
+				Long.parseLong(String.valueOf(payload.get("providerId"))),
+				String.valueOf(payload.get("fromTime")),
+				String.valueOf(payload.get("toTime"))
 				));
 	}
 	

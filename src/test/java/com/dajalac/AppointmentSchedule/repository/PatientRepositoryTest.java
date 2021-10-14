@@ -37,7 +37,7 @@ class PatientRepositoryTest {
 	@Test
 	void whenInputAnSavedFullNameAndBirthday_thenReturnApatient() {
 		//given
-		Patient patient = new Patient(252366,
+		Patient patient = new Patient("252366",
 				LocalDate.now(),
 				"ana",
 				"luz",
@@ -53,13 +53,11 @@ class PatientRepositoryTest {
 		
 		//when
 		List<Patient> result = underTestPatientRepository.
-				findPatientByNameAndBirthday(patient.getFirstName(),
-						patient.getLastName(),patient.getBirthday());
+				findPatientByNameAndBirthday(patient.getFirstName()+ " "+ patient.getLastName(),patient.getBirthday());
 	
 		//then
 		assertAll(
-				()-> assertThat(result.get(0).getFirstName()).isEqualTo("ana"),
-				()->assertThat(result.get(0).getLastName()).isEqualTo("luz"),
+				()-> assertThat(result.get(0).getFirstName()+ " "+ patient.getLastName()).isEqualTo("ana"),
 				()->assertThat(result.get(0).getBirthday()).isEqualTo(LocalDate.now()));
 		
 		;
@@ -69,7 +67,7 @@ class PatientRepositoryTest {
 	@Test
 	void whenInputAnNotSavedFullNameAndBirthday_thenReturnNoApatient() {
 		//given
-		Patient patient = new Patient(252366,
+		Patient patient = new Patient("252366",
 				LocalDate.now(),
 				"ana",
 				"luz",
@@ -85,7 +83,7 @@ class PatientRepositoryTest {
 		
 		//when
 		List<Patient> result = underTestPatientRepository.
-				findPatientByNameAndBirthday("Jhon", "Doe", LocalDate.now());
+				findPatientByNameAndBirthday("Jhon Doe", LocalDate.now());
 						
 	
 		//then

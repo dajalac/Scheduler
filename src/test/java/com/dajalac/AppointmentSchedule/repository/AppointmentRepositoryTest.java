@@ -44,7 +44,7 @@ class AppointmentRepositoryTest {
 	@BeforeEach
 	void setUp() {
 		
-		patient = new Patient(252366,
+		patient = new Patient("252366",
 				LocalDate.now(),
 				"Dani",
 				"luzy",
@@ -112,7 +112,11 @@ class AppointmentRepositoryTest {
 		
 		//when
 		List<String> actual = underTestAppointmentRepository
-				.findAppointmentAvailable("2021-8-31", "2021-8-31", provider.getId());
+				.findAppointmentAvailable("2021-8-31",
+						"2021-8-31",
+						provider.getId(),
+						"8:00",
+						"12:00");
 		
 		//then
 		assertThat(actual).hasSize(11);	
@@ -124,7 +128,11 @@ class AppointmentRepositoryTest {
 	
 		//when
 		List<String> actual = underTestAppointmentRepository
-				.findAppointmentAvailable("2021-8-31", "2021-8-31", 100L);
+				.findAppointmentAvailable("2021-8-31",
+						"2021-8-31",
+						100L,
+						"8:00",
+						"12:00");
 		
 		//then
 		assertThat(actual).hasSize(17);	
