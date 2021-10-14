@@ -36,13 +36,25 @@ public interface AppointmentRepository extends JpaRepository <Appointment, Long>
 			+" OR a.patientId.memberNumber=:value)")
 	List<Appointment>findAppointmentWithNoFilter(String value);
 	
+	@Query(value ="WITH slots AS (\r\n"
+			+ "	SELECT date_time\\:\\:date AS date, date_time\\:\\:time AS time, EXTRACT(DOW from date_time)dw\r\n"
+			+ "	FROM generate_series\r\n"
+			+ "			(CONCAT(:fromDate, :fromTime)\\:\\:timestamp,\r\n"
+			+ "    		CONCAT(:toDate, :toTime)\\:\\:timestamp,'30 minutes') as date_time\r\n"
+			+ ")\r\n"
+			+ "SELECT * FROM slots WHERE \r\n"
+			+ "	date+time NOT IN(SELECT appointment_date + start_time FROM appointment WHERE provider_id=:providerId )\r\n"
+			+ "	AND (time BETWEEN cast(:fromTime as time) and cast(:toTime as time)) \r\n"
+			+ "	AND dw not in (6,0)",
+			nativeQuery = true)
 	
-	@Query(value= "SELECT * FROM generate_series\r\n"
-			+ "(TO_TIMESTAMP(CONCAT(:fromDate, :fromTime),'YYYY/MM/DD HH24:MI'),\r\n"
-			+ " TO_TIMESTAMP(CONCAT(:toDate, :toTime),'YYYY/MM/DD HH24:MI'),'30 minutes') as date\r\n"
-			+ "WHERE date NOT IN(\r\n"
-			+ "	SELECT appointment_date + start_time FROM appointment WHERE provider_id=:providerId \r\n"
-			+ ")AND cast(date as time) BETWEEN cast(:fromTime as time) and cast(:toTime as time)",nativeQuery = true)
+//	@Query(value= "SELECT * FROM generate_series\r\n"
+//			+ "(TO_TIMESTAMP(CONCAT(:fromDate, :fromTime),'YYYY/MM/DD HH24:MI'),\r\n"
+//			+ " TO_TIMESTAMP(CONCAT(:toDate, :toTime),'YYYY/MM/DD HH24:MI'),'30 minutes') as date\r\n"
+//			+ "WHERE date NOT IN(\r\n"
+//			+ "	SELECT appointment_date + start_time FROM appointment WHERE provider_id=:providerId \r\n"
+//			+ ")AND cast(date as time) BETWEEN cast(:fromTime as time) and cast(:toTime as time)\r\n"
+//			+ "AND dw not in (6,0)",nativeQuery = true)
 	List<String> findAppointmentAvailable(@Param ("fromDate") String fromDate,
 										  @Param ("toDate") String toDate,
 										  @Param ("providerId") Long providerId,
