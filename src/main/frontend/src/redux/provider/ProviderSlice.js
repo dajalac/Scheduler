@@ -5,10 +5,13 @@ const providerSlice = createSlice({
     name:'provider',
     initialState:{
         providers:[],
+        providerSelected:{},
         status: null,
     },
     reducers:{
-
+        getProviderInfo: (state, action)=>{
+            state.providerSelected = action.payload
+        }
     },
     extraReducers: builder=>{
         builder
@@ -25,4 +28,5 @@ const providerSlice = createSlice({
     }
 })
 
+export const {getProviderInfo} = providerSlice.actions
 export default providerSlice.reducer;

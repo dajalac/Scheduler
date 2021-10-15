@@ -2,7 +2,8 @@ import { createSlice} from '@reduxjs/toolkit';
 import {getAppts,
      getApptsByCustomer, 
      getApptsByProvider,
-     getApptsNoFilter} from './AppointmentThunk';
+     getApptsNoFilter,
+     getAvailableAppts} from './AppointmentThunk';
 
 
 
@@ -10,10 +11,32 @@ const appointmentSlice = createSlice({
     name:'appointment',
     initialState:{
         appointments:[],
+        availableTime:[],
+        dateAndTimeSelected:{
+            date:'',
+            time:' '
+        },
         status: null,
     },
     reducers:{
-
+        saveDate: (state,action)=>{
+             const data = action.payload
+             let dateFormated =''
+             if (data){
+                const year = data.getFullYear();
+                const month = data.getMonth() + 1;
+                let day =data.getDate();
+        
+                if (day.toString().length<2){
+                    day ='0'+day
+                } 
+              dateFormated = year + '-' + month + '-' + day;
+             }
+            state.dateAndTimeSelected.date= dateFormated
+        },
+        saveTime:(state,action)=>{
+            state.dateAndTimeSelected.time=action.payload
+        },
     },
     extraReducers: builder=>{
         builder
@@ -57,10 +80,20 @@ const appointmentSlice = createSlice({
         .addCase(getApptsNoFilter.rejected,(state)=>{
             state.status ='rejected';
         })
-
-           
+        .addCase(getAvailableAppts.pending, (state)=>{
+            state.status='loading'
+        })
+        .addCase(getAvailableAppts.fulfilled, (state, action)=>{
+            state.status='success';
+            state.availableTime=action.payload.data;
+        })
+        .addCase(getAvailableAppts.rejected,(state)=>{
+            state.status ='rejected';
+        })
+   
     }
 
 })
 
+export const {saveDate, saveTime} = appointmentSlice.actions
 export default appointmentSlice.reducer; 

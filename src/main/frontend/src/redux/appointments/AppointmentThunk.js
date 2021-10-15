@@ -29,8 +29,25 @@ export const getApptsByProvider = createAsyncThunk(
 export const getApptsNoFilter = createAsyncThunk(
     'appointments/getApptsNoFilter',
     async(data)=>{
-        console.log('thunk')
         const response = await axios.post('http://localhost:8080/appointment//searchByNoFilter',{name:data});
+        return response
+    }
+)
+
+export const getAvailableAppts = createAsyncThunk(
+    'appointments/getAvailableAppts ',
+    async(data)=>{
+        const response = await axios.post('http://localhost:8080/appointment/availableAppts',{providerId:data.id,
+         fromTime: data.fromTime,
+         toTime:data.toTime});
+        return response
+    }
+)
+
+export const saveAppt = createAsyncThunk(
+    'appointments/saveAppt ',
+    async(data)=>{
+        const response = await axios.post('http://localhost:8080/appointment/newAppointment',data);
         return response
     }
 )

@@ -1,24 +1,26 @@
 import React,{useState}from 'react';
 import './AvailableTime.css'
 
+
+
 const createData = (appoitmentTime, id) => {
     return { appoitmentTime, id };
 }
 
-const rows = [
-    createData('10:40', 1),
-    createData('11:40',2),
-    createData('12:40',3),
-];
+
+export default function TimeTable({availableTimeSlot,getApptTime,dateSelected}) {
+    const rows = []
 
 
-export default function TimeTable() {
+    availableTimeSlot.map((item,index)=>{
+       if(item[0] ===dateSelected ){
+        rows.push(createData(item[1],index))
+       }
+    })
+
 
     const handleSelectTime = (event) => {
-
-        console.log(event.target.textContent)
-    
-     
+        getApptTime(event.target.value)
     }
     
     return (

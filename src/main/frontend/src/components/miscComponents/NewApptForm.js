@@ -7,10 +7,55 @@ import Button from '@mui/material/Button';
 
 import './NewApptForm.css';
 
-export default function NewApptForm({providers}) {
+const getSpecialities = (providers)=>{
+    let specialities=[]; 
+    const uniqueSpecialities = [...new Set(providers.map(p =>(p.speciality)))]
+
+    if(providers){
+        uniqueSpecialities.map(provider=>(
+           specialities.push(<MenuItem value={provider}>{provider}</MenuItem>)
+        ))
+    }
+    return specialities;
+}
+
+const getProviders = (providers,speciality ) =>{
+    let providersName = []
+    let providersNameToDisplay =[]
+
+    providers.map(provider=>{
+        if(provider.speciality ===speciality){
+           return  providersName.push({name: provider.firstName+' '+provider.lastName, id:provider.id})
+        }else{
+            return ''
+        }
+    })
+
+    if(providers){
+        providersName.map(p=>(
+            providersNameToDisplay.push(<MenuItem value={p.id}>{p.name}</MenuItem>)
+        ))
+    }
+
+    return providersNameToDisplay 
+}
+
+
+export default function NewApptForm({providers, onCheckAvailableTime, onGetProviderInfo}) {
     const [speciality, setSpeciality] = useState('');
-    const [provider, setProvider] = useState('');
+    const [providerId, setProviderId] = useState('');
+    const [fromTime, setFromTime] = useState('8:00');
+    const [toTime, setToTime] = useState('16:00')
     const [enableProviderName, setEnableProviderName] = useState(true)
+    const [enableBtb, setEnableBtn] = useState(true)
+
+    const saveProviderInfo=()=>{
+        const provider = providers.filter((individual)=>{
+            return individual.id === providerId
+        })
+
+        onGetProviderInfo(provider)
+    }
 
     const handleSpeciality = (event) => {
         setSpeciality(event.target.value);
@@ -18,47 +63,30 @@ export default function NewApptForm({providers}) {
     };
 
     const handleProvider = (event) => {
-        setProvider(event.target.value);
+        setProviderId(event.target.value);
+        setEnableBtn(false)
     };
 
     const handleRadioBtn = (event) => {
-        console.log(event.target.value);
-    }
-
-
-    const getSpecialities = ()=>{
-        let specialities=[]; 
-        const uniqueSpecialities = [...new Set(providers.map(p =>(p.speciality)))]
-
-        if(providers){
-            uniqueSpecialities.map(provider=>(
-               specialities.push(<MenuItem value={provider}>{provider}</MenuItem>)
-            ))
+        const timeChoosen = event.target.value
+        if(timeChoosen ==='morning'){
+            setFromTime('8:00')
+            setToTime('12:00')
         }
-        return specialities;
-    }
-
-    const getProviders = () =>{
-        let providersName = []
-        let providersNameToDisplay =[]
-
-        providers.map(provider=>{
-            if(provider.speciality ===speciality){
-               return  providersName.push(provider.firstName+' '+provider.lastName)
-            }else{
-                return ''
-            }
-        })
-
-        if(providers){
-            providersName.map(name=>(
-                providersNameToDisplay.push(<MenuItem value={name}>{name}</MenuItem>)
-            ))
+        else if(timeChoosen ==='afternoon'){
+            setFromTime('13:00')
+            setToTime('16:00')
         }
-        return providersNameToDisplay 
+        else{
+            setFromTime('18:00')
+            setToTime('16:00') 
+        }
     }
 
-
+    const onClickBtn = ()=>{
+        onCheckAvailableTime({id:providerId, fromTime:fromTime, toTime:toTime})
+        saveProviderInfo()
+    }
 
     return (
         <div className="newApptForm">
@@ -72,7 +100,7 @@ export default function NewApptForm({providers}) {
                         onChange={handleSpeciality}
                         autoWidth
                     >
-                        {getSpecialities()}
+                        {getSpecialities(providers)}
                        
                     </Select>
                 </FormControl>
@@ -82,12 +110,12 @@ export default function NewApptForm({providers}) {
                     <Select
                         labelId="demo-simple-select-autowidth-label"
                         id="demo-simple-select-autowidth"
-                        value={provider}
+                        value={providerId}
                         onChange={handleProvider}
                         autoWidth
                         disabled={enableProviderName}
                     >
-                        {getProviders()}
+                        {getProviders(providers, speciality)}
                     </Select>
                 </FormControl>
             </div>
@@ -97,10 +125,13 @@ export default function NewApptForm({providers}) {
                 <label> Periodo of day: </label>
                 <label><input type="radio" value="morning" name="periodoOfDay" /> <span>Morning</span></label>
                 <label><input type="radio" value="afternoon" name="periodoOfDay" /> <span>Afternoon</span></label>
-                <label><input type="radio" value="either" name="periodoOfDay" /> <span>Either</span></label>
+                <label><input type="radio" value="either" name="periodoOfDay" checked/> <span>Either</span></label>
             </div>
             <div className="newApptForm-butn">
-                <Button variant="contained" size="small" >See appointments availables</Button>
+                <Button variant="contained"
+                 size="small"
+                 disabled={enableBtb}
+                 onClick={onClickBtn}>See appointments availables</Button>
             </div>
 
         </div>
