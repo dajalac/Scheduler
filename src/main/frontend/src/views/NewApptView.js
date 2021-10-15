@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllProviders } from '../redux/provider/ProviderThunk';
-import { getAvailableAppts } from '../redux/appointments/AppointmentThunk';
+import { getAvailableAppts, saveAppt } from '../redux/appointments/AppointmentThunk';
 import { getProviderInfo } from '../redux/provider/ProviderSlice';
 import{saveDate, saveTime} from '../redux/appointments/AppointmentSlice';
 import StaticCalendar from '../components/miscComponents/StaticCalendar';
@@ -20,6 +20,10 @@ export default function NewAppt() {
     const { providers, providerSelected } = useSelector((state) => state.providers)
     const { availableTime, dateAndTimeSelected } = useSelector((state) => state.appointments)
 
+    useEffect(() => {
+        dispatch(getAllProviders())
+    }, [dispatch])
+
     const checkAvailableAppts = (data) => {
         dispatch(getAvailableAppts(data))
     }
@@ -36,9 +40,16 @@ export default function NewAppt() {
         dispatch(saveTime(time))
     }
 
-    useEffect(() => {
-        dispatch(getAllProviders())
-    }, [dispatch])
+    const onSaveAppt =()=>{
+        const appt = {patientId: clients[0],
+                    providerId:providerSelected[0],
+                    starTime:dateAndTimeSelected.time,
+                    apptDate: new Date(dateAndTimeSelected.date)}
+        
+        //TODO  SHOW SOME MSG THAT EVERYTHING WAS OK
+        //TODO CLEAR STATES
+       dispatch(saveAppt(appt))
+    }
 
 
     return (
@@ -53,7 +64,7 @@ export default function NewAppt() {
                     <AvailableTime availableTimeSlot={availableTime} getApptTime={getApptTime} dateSelected={dateAndTimeSelected.date}/>
                 </div>
                 <div className="NewAppt-saveBtn">
-                    <Button variant="contained" size="small" >Schedule</Button>
+                    <Button variant="contained" size="small"  onClick={onSaveAppt}>Schedule</Button>
                 </div>
             </div>
             }

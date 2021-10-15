@@ -47,7 +47,8 @@ export const getAvailableAppts = createAsyncThunk(
 export const saveAppt = createAsyncThunk(
     'appointments/saveAppt ',
     async(data)=>{
-        const response = await axios.post('http://localhost:8080/appointment/newAppointment',data);
+       const response = await axios.post('http://localhost:8080/appointment/newAppointment',data);
+
         return response
     }
 )

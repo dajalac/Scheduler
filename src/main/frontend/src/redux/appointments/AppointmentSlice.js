@@ -3,7 +3,8 @@ import {getAppts,
      getApptsByCustomer, 
      getApptsByProvider,
      getApptsNoFilter,
-     getAvailableAppts} from './AppointmentThunk';
+     getAvailableAppts,
+     saveAppt} from './AppointmentThunk';
 
 
 
@@ -88,6 +89,16 @@ const appointmentSlice = createSlice({
             state.availableTime=action.payload.data;
         })
         .addCase(getAvailableAppts.rejected,(state)=>{
+            state.status ='rejected';
+        })
+        .addCase(saveAppt.pending, (state)=>{
+            state.status='loading'
+        })
+        .addCase(saveAppt.fulfilled, (state, action)=>{
+            state.status='success';
+            console.log(action.payload)
+        })
+        .addCase(saveAppt.rejected,(state)=>{
             state.status ='rejected';
         })
    
