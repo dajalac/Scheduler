@@ -42,7 +42,7 @@ public class AppointmentController {
 	}
 	
 	@PostMapping("/availableAppts")
-	public ResponseEntity< List <String> > getAvailableAppts(@RequestBody Map<String, Object> payload ){
+	public ResponseEntity< List <String[]> > getAvailableAppts(@RequestBody Map<String, Object> payload ){
 			
 		return ResponseEntity.ok().body(appointmentService.getAvailableAppts(
 				Long.parseLong(String.valueOf(payload.get("providerId"))),

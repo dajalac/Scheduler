@@ -3,6 +3,9 @@ package com.dajalac.AppointmentSchedule.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -31,12 +34,20 @@ public class AppointmentService {
 	
 	
 	
-	public List<String>getAvailableAppts(Long providerId, String fromTime, String toTime){
-		
+	public List<String[]>getAvailableAppts(Long providerId, String fromTime, String toTime){
+		List<String[]> slotsFormated= new ArrayList<>(); 
 		String fromDate= LocalDate.now().toString()+" ";
-		String toDate = LocalDate.now().plusMonths(6).toString()+" ";
+		String toDate = LocalDate.now().plusMonths(2).toString()+" ";
 		
-		return appointmentRepository.findAppointmentAvailable(fromDate,toDate,providerId,fromTime, toTime);
+		List<String> slots = 
+				appointmentRepository.findAppointmentAvailable(fromDate,toDate,providerId,fromTime, toTime);
+		
+		for(String timeSlot : slots) { 
+			String items[]= timeSlot.split(",",3);
+			slotsFormated.add(items);
+		}
+		
+		return slotsFormated;
 	}
 	
 	public void newAppt (Appointment appointment) {
