@@ -1,16 +1,21 @@
 import { createSlice} from '@reduxjs/toolkit';
 import {getAllProviders} from './ProviderThunk';
 
+const  initialState={
+    providers:[],
+    providerSelected:{},
+    status: null,
+}
+
 const providerSlice = createSlice({
     name:'provider',
-    initialState:{
-        providers:[],
-        providerSelected:{},
-        status: null,
-    },
+    initialState,
     reducers:{
         getProviderInfo: (state, action)=>{
             state.providerSelected = action.payload
+        },
+        resetProvider :(state)=>{
+            return initialState
         }
     },
     extraReducers: builder=>{
@@ -28,5 +33,5 @@ const providerSlice = createSlice({
     }
 })
 
-export const {getProviderInfo} = providerSlice.actions
+export const {getProviderInfo,resetProvider} = providerSlice.actions
 export default providerSlice.reducer;

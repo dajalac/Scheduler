@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllProviders } from '../redux/provider/ProviderThunk';
 import { getAvailableAppts, saveAppt } from '../redux/appointments/AppointmentThunk';
-import { getProviderInfo } from '../redux/provider/ProviderSlice';
-import{saveDate, saveTime} from '../redux/appointments/AppointmentSlice';
+import { getProviderInfo,resetProvider } from '../redux/provider/ProviderSlice';
+import{saveDate, saveTime,cleaningAppts} from '../redux/appointments/AppointmentSlice';
 import StaticCalendar from '../components/miscComponents/StaticCalendar';
 import NewApptForm from '../components/miscComponents/NewApptForm';
 import AvailableTime from '../components/miscComponents/AvailableTime';
 import DisplayClients from '../components/client/DisplayClients';
 import ProviderInfoForAppt from '../components/provider/ProviderInfoForAppt';
+import Alert from '@mui/material/Alert';
 import './NewApptView.css'
 
 import Button from '@mui/material/Button';
@@ -18,7 +19,7 @@ export default function NewAppt() {
     const dispatch = useDispatch();
     const { clients } = useSelector((state) => state.clients)
     const { providers, providerSelected } = useSelector((state) => state.providers)
-    const { availableTime, dateAndTimeSelected } = useSelector((state) => state.appointments)
+    const { availableTime, dateAndTimeSelected,status,apptSaved } = useSelector((state) => state.appointments)
 
     useEffect(() => {
         dispatch(getAllProviders())
@@ -46,9 +47,11 @@ export default function NewAppt() {
                     starTime:dateAndTimeSelected.time,
                     apptDate: new Date(dateAndTimeSelected.date)}
         
-        //TODO  SHOW SOME MSG THAT EVERYTHING WAS OK
-        //TODO CLEAR STATES
        dispatch(saveAppt(appt))
+       if(status ==='success'){
+            dispatch(cleaningAppts());
+            dispatch(resetProvider())
+       }
     }
 
 
@@ -68,6 +71,8 @@ export default function NewAppt() {
                 </div>
             </div>
             }
+            {apptSaved &&
+            <Alert severity="success">Appointment saved with success!</Alert>}
         </div>
     )
 }
