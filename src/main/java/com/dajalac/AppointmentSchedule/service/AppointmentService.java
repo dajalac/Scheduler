@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -52,7 +53,13 @@ public class AppointmentService {
 	
 	public void newAppt (Appointment appointment) {
 		
-		//try to check if will have conflicts 
+		//check for conflicts
+		Optional<Appointment> apptOptional = appointmentRepository.findExistingAppt(appointment.getStarTime(),
+																					appointment.getApptDate(),
+																					appointment.getProviderId().getId());
+		if(apptOptional.isPresent()) {
+			throw new IllegalStateException("appointment already exists");	
+		}
 		appointmentRepository.save(appointment);
 	}
 	

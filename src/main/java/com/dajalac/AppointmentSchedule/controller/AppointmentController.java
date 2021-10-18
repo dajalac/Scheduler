@@ -77,19 +77,20 @@ public class AppointmentController {
 	
 	
 	@PostMapping("/newAppointment")
-	public ResponseEntity<String> newAppt(Appointment appt){
+	public ResponseEntity<String> newAppt(@RequestBody Appointment appt){
+		System.out.println("#################"+ appt.getStarTime().toString());
 		appointmentService.newAppt(appt);
 		return ResponseEntity.ok("Done");
 	}
 	
 	@DeleteMapping("/deleteAppt")
-	public ResponseEntity<?> deleteAppt (Appointment appt){
+	public ResponseEntity<?> deleteAppt (@RequestBody Appointment appt){
 		appointmentService.deleteAppt(appt);
 		return ResponseEntity.ok().build();
 	}
 	
 	@PutMapping("/updateAppt")
-	public ResponseEntity<String> updateAppt(Appointment appt){
+	public ResponseEntity<String> updateAppt( @RequestBody Appointment appt){
 		appointmentService.updateAppt(appt);
 		return ResponseEntity.ok("Done");
 	}

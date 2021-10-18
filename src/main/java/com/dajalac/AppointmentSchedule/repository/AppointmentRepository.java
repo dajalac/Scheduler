@@ -1,7 +1,10 @@
 package com.dajalac.AppointmentSchedule.repository;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +16,7 @@ import com.dajalac.AppointmentSchedule.model.Appointment;
 @Repository
 public interface AppointmentRepository extends JpaRepository <Appointment, Long>{
 
-	@Query(value="SELECT * FROM Appointment WHERE  appointment_date > CURRENT_TIMESTAMP \r\n"
+	@Query(value="SELECT * FROM Appointment WHERE  appointment_date >= CURRENT_DATE  \r\n"
 			+ "ORDER BY appointment_date LIMIT 90"
 			,nativeQuery = true)
 	List <Appointment> findAllForNext3months();
@@ -47,20 +50,18 @@ public interface AppointmentRepository extends JpaRepository <Appointment, Long>
 			+ "	AND (time BETWEEN cast(:fromTime as time) and cast(:toTime as time)) \r\n"
 			+ "	AND dw not in (6,0)",
 			nativeQuery = true)
-	
-//	@Query(value= "SELECT * FROM generate_series\r\n"
-//			+ "(TO_TIMESTAMP(CONCAT(:fromDate, :fromTime),'YYYY/MM/DD HH24:MI'),\r\n"
-//			+ " TO_TIMESTAMP(CONCAT(:toDate, :toTime),'YYYY/MM/DD HH24:MI'),'30 minutes') as date\r\n"
-//			+ "WHERE date NOT IN(\r\n"
-//			+ "	SELECT appointment_date + start_time FROM appointment WHERE provider_id=:providerId \r\n"
-//			+ ")AND cast(date as time) BETWEEN cast(:fromTime as time) and cast(:toTime as time)\r\n"
-//			+ "AND dw not in (6,0)",nativeQuery = true)
 	List<String> findAppointmentAvailable(@Param ("fromDate") String fromDate,
 										  @Param ("toDate") String toDate,
 										  @Param ("providerId") Long providerId,
 										  @Param("fromTime") String fromTime,
-										  @Param("toTime") String toTime)
-	;
+										  @Param("toTime") String toTime);
+	
+	@Query("SELECT a FROM Appointment a WHERE starTime =:startTime AND apptDate=:date\r\n"
+			+"AND providerId.id=:providerId")
+	Optional<Appointment> findExistingAppt(@Param("startTime") LocalTime startTime,
+			                               @Param("date")LocalDate apptDate,
+			                               @Param("providerId")Long providerId );
+
 	
 	
-}
+	}
