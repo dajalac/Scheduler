@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllProviders } from '../redux/provider/ProviderThunk';
 import { getAvailableAppts, saveAppt } from '../redux/appointments/AppointmentThunk';
-import { getProviderInfo,resetProvider } from '../redux/provider/ProviderSlice';
+import { getProviderInfo} from '../redux/provider/ProviderSlice';
 import{saveDate, saveTime,cleaningAppts} from '../redux/appointments/AppointmentSlice';
 import StaticCalendar from '../components/miscComponents/StaticCalendar';
 import NewApptForm from '../components/miscComponents/NewApptForm';
@@ -15,14 +15,15 @@ import './NewApptView.css'
 import Button from '@mui/material/Button';
 
 export default function NewAppt() {
-
     const dispatch = useDispatch();
     const { clients } = useSelector((state) => state.clients)
     const { providers, providerSelected } = useSelector((state) => state.providers)
-    const { availableTime, dateAndTimeSelected,status,apptSaved } = useSelector((state) => state.appointments)
+    const { availableTime, dateAndTimeSelected,status} = useSelector((state) => state.appointments)
+    const [flag, setFlag] = useState(false);
 
     useEffect(() => {
-        dispatch(getAllProviders())
+        dispatch(getAllProviders());
+        dispatch(cleaningAppts());
     }, [dispatch])
 
     const checkAvailableAppts = (data) => {
@@ -48,9 +49,10 @@ export default function NewAppt() {
                     apptDate: new Date(dateAndTimeSelected.date)}
         
        dispatch(saveAppt(appt))
+
        if(status ==='success'){
             dispatch(cleaningAppts());
-            dispatch(resetProvider())
+            setFlag(true)
        }
     }
 
@@ -71,8 +73,11 @@ export default function NewAppt() {
                 </div>
             </div>
             }
-            {apptSaved &&
-            <Alert severity="success">Appointment saved with success!</Alert>}
+            {flag &&
+            <div className="NewAppt-saveAlert" >
+                <Alert severity="success">Appointment saved with success!</Alert>
+            </div>
+            }
         </div>
     )
 }

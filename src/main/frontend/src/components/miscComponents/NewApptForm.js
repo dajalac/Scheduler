@@ -77,7 +77,7 @@ export default function NewApptForm({providers, onCheckAvailableTime, onGetProvi
             setFromTime('13:00')
             setToTime('16:00')
         }
-        else{
+        else if (timeChoosen ==='either'){
             setFromTime('18:00')
             setToTime('16:00') 
         }

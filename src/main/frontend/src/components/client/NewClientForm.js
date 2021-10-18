@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import * as validators  from '../../utils/Validation';
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -9,27 +10,89 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
 import './NewClientForm.css';
+import { TurnedIn } from '@mui/icons-material';
 
 
-
-
-export default function NewClientForm() {
-    const [birthday, setBirthday] = useState(null);
+export default function NewClientForm({addNewClient }) {
+    const [firstName, setFirstName] = useState({value:'', error:false, errorMsg:''});
+    const [lastName, setLastName] = useState({value:'', error:false, errorMsg:''});
+    const [email, setEmail] = useState({value:'', error:false, errorMsg:''});
+    const [city, setCity] = useState({value:'', error:false, errorMsg:''});
+    const [address, setAddress] =useState({value:'', error:false, errorMsg:''});
+    const [zipcode, setZipCode] = useState({value:'', error:false, errorMsg:''});
+    const [memberNumber, setMemberNumber] = useState({value:'', error:false, errorMsg:''});
+    const [birthday, setBirthday] = useState({value:null, error:false, errorMsg:''});
     const [phone, setPhone] = useState();
     const [usaStates, setUsaState] = useState('');
+    const [isBtnDisable, setIsBtnDisable]= useState(true)
+
+    let errorList=[]
+
+    // useEffect(() => {
+    //     addNewClient({memberNumber:memberNumber.value,
+    //         birthday:birthday,
+    //         firstName:firstName.value,
+    //         lastName:lastName.value,
+    //         phone:phone,
+    //         email:email.value,
+    //         address:address.value,
+    //         city:city.value,
+    //         state:usaStates,
+    //         zipCode:zipcode.value})
+    // }, [])
 
     const handleBday = ((event) => {
-        const date = new Date(event);
-        const dateFormated = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate(); // to format the date to go the db
-        setBirthday(dateFormated)
-    })
+        //const date = new Date(event).toISOString().slice(0, 10)
+        
+        const errorBday = validators.validateBirthday(event)
+        setBirthday({value: event, error: errorBday.error, errorMsg: errorBday.msg })
+       
 
-    
+    })
 
     const handleStates = (event) => {
         setUsaState(event.target.value);
     };
+
+    const handleFirstName = (event)=>{
+        const nameError = validators.validateName(event.target.value);
+        setFirstName({ value: event.target.value, error: nameError.error, errorMsg: nameError.msg })
+    }
+    const handleLastName = (event)=>{
+        const nameError = validators.validateName(event.target.value);
+        setLastName({ value: event.target.value, error: nameError.error, errorMsg: nameError.msg })
+    }
+    const handleMemberNumber = (event) => {
+        const memberNumberError = validators.validateMemberNumber(event.target.value)
+        setMemberNumber({ value: event.target.value, error: memberNumberError.error, errorMsg: memberNumberError.msg })
+    }
+    const handleEmail = (event) => {
+        const checkForError = validators.validateEmail(event.target.value)
+        setEmail({ value: event.target.value, error: checkForError.error, errorMsg: checkForError.msg })
+    }
+    const handleCity = (event) => {
+        const checkForError = validators.validateCity(event.target.value)
+        setCity({ value: event.target.value, error: checkForError.error, errorMsg: checkForError.msg })
+    }
+    const handleAddress = (event) => {
+        const checkForError = validators.validateAddress(event.target.value)
+        setAddress({ value: event.target.value, error: checkForError.error, errorMsg: checkForError.msg })
+    }
+    const handleZipCode = (event) => {
+        const checkForError = validators.validateZipCode(event.target.value)
+        setZipCode({ value: event.target.value, error: checkForError.error, errorMsg: checkForError.msg })
+    }
+
+    const onSave =()=>{
+      //  if()
+    }
+
+
+   
+
+
 
     return (
         <div className="NewClientForm">
@@ -37,25 +100,41 @@ export default function NewClientForm() {
                 id="outlined-basic"
                 label="First name"
                 variant="outlined"
+                value={firstName.value}
+                error ={firstName.error}
+                helperText={firstName.errorMsg}
+                onChange={handleFirstName}
                 required />
             <TextField className="NewClientForm-TextField"
                 id="outlined-basic"
                 label="Last name"
                 variant="outlined"
+                value={lastName.value}
+                error ={lastName.error}
+                helperText={lastName.errorMsg}
+                onChange={handleLastName}
                 required />
 
             <TextField className="NewClientForm-TextField"
                 id="outlined-basic"
                 label="Member number"
                 variant="outlined"
+                value={memberNumber.value}
+                error ={memberNumber.error}
+                helperText={memberNumber.errorMsg}
+                onChange={handleMemberNumber}
                 required />
 
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                     label="Birthday"
-                    value={birthday}
+                    value={birthday.value}
                     onChange={handleBday}
-                    renderInput={(params) => <TextField {...params} sx={{ width: 250 }} required />}
+                    renderInput={(params) => <TextField {...params} 
+                                            sx={{ width: 250 }}
+                                            required
+                                            error={birthday.error}
+                                            helperText={birthday.errorMsg} />}
                 />
             </LocalizationProvider>
 
@@ -70,6 +149,10 @@ export default function NewClientForm() {
                 id="outlined-basic"
                 label="e-mail"
                 variant="outlined"
+                value={email.value}
+                error ={email.error}
+                helperText={email.errorMsg}
+                onChange={handleEmail}
             />
             <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Satate</InputLabel>
@@ -137,18 +220,32 @@ export default function NewClientForm() {
                 id="outlined-basic"
                 label="City"
                 variant="outlined"
+                value={city.value}
+                error ={city.error}
+                helperText={city.errorMsg}
+                onChange={handleCity}
                 />
             <TextField className="NewClientForm-TextField"
                 id="outlined-basic"
                 label="Address"
                 variant="outlined"
+                value={address.value}
+                error ={address.errorMsg}
+                helperText={address.errorMsg}
+                onChange={handleAddress}
                  />
             <TextField className="NewClientForm-TextField"
                 id="outlined-basic"
                 label="zip code"
                 variant="outlined"
+                value={zipcode.value}
+                error ={zipcode.errorMsg}
+                helperText={zipcode.errorMsg}
+                onChange={handleZipCode}
                 />
-
+            <div className="NewClientForm-btn">
+            <Button variant="contained" color="success" size="large" sx={{width:'15%'}} disabled={isBtnDisable}> Save </Button>
+            </div>
         </div>
     )
 }

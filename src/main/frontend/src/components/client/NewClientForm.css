@@ -33,6 +33,10 @@
     padding: 1rem;
 }
 
+.NewClientForm-btn{
+    grid-column: 1/-1;
+}
+
 
 
 @media (max-width: 750px) {

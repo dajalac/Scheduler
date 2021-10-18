@@ -14,7 +14,6 @@ const initialState= {
         date:'',
         time:' '
     },
-    apptSaved : false,
     status: null,
 }
 
@@ -103,7 +102,6 @@ const appointmentSlice = createSlice({
         })
         .addCase(saveAppt.fulfilled, (state, action)=>{
             state.status='success';
-            state.apptSaved =action.payload.data
         })
         .addCase(saveAppt.rejected,(state)=>{
             state.status ='rejected';

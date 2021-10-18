@@ -25,7 +25,15 @@ export const getClientBynameAndBday = createAsyncThunk(
 export const getClientByMemberNumber = createAsyncThunk(
     'client/getClientByMemberNumber',
     async(data)=>{
-        const response = await axios.post('http://localhost:8080//patient/serachByMemberNumber',{memberNumber:data});
+        const response = await axios.post('http://localhost:8080/patient/serachByMemberNumber',{memberNumber:data});
+        return response
+    }
+)
+
+export const addNewClient =  createAsyncThunk(
+    'client/addNewClient',
+    async(data)=>{
+        const response = await axios.post('http://localhost:8080/patient/newPatient',data);
         return response
     }
 )

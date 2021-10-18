@@ -12,7 +12,7 @@ const createData = (appoitmentTime, appointmentDate, appointmentClient, appointm
 
 const insertDataInRows = (appointments, status, rows) => {
     const dateFormat = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-    const timeFormat = { hour: 'numeric', hour12: true };
+    const timeFormat = {hour: 'numeric', minute: 'numeric', hour12: true };
 
     if (status === 'success') {
         appointments.map((appt) => (
