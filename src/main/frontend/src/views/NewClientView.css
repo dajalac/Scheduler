@@ -4,3 +4,16 @@
     justify-content: center;
     align-items: center;
 }
+
+.NewClientView-saveAlert{
+    animation: fadeinout 2s linear 1 forwards;
+}
+.NewClientView-errorAlert{
+    animation: fadeinout 20s linear 1 forwards;
+}
+
+
+    @keyframes fadeinout {
+        100% { opacity: 1; }
+        100% { opacity: 0; }
+      }

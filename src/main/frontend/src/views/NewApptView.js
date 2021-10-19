@@ -75,7 +75,7 @@ export default function NewAppt() {
             }
             {flag &&
             <div className="NewAppt-saveAlert" >
-                <Alert severity="success">Appointment saved with success!</Alert>
+                <Alert severity="success" variant="filled">Appointment saved with success!</Alert>
             </div>
             }
         </div>

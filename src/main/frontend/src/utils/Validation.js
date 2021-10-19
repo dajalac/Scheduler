@@ -49,7 +49,7 @@ export const validateAddress =(address)=>{
 
 export const validateBirthday = (bday)=>{
     let validator={error:false, msg:''}
-    if(bday.length<0){
+    if(!bday){
         validator.error=true
         validator.msg='birthday cannot be empty'
     }

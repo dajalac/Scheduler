@@ -12,44 +12,63 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import './NewClientForm.css';
-import { TurnedIn } from '@mui/icons-material';
 
 
-export default function NewClientForm({addNewClient }) {
-    const [firstName, setFirstName] = useState({value:'', error:false, errorMsg:''});
-    const [lastName, setLastName] = useState({value:'', error:false, errorMsg:''});
-    const [email, setEmail] = useState({value:'', error:false, errorMsg:''});
-    const [city, setCity] = useState({value:'', error:false, errorMsg:''});
-    const [address, setAddress] =useState({value:'', error:false, errorMsg:''});
-    const [zipcode, setZipCode] = useState({value:'', error:false, errorMsg:''});
-    const [memberNumber, setMemberNumber] = useState({value:'', error:false, errorMsg:''});
+export default function NewClientForm({saveNewClient}) {
+    const initialState= {value:'', error:false, errorMsg:''}
+    const [firstName, setFirstName] = useState(initialState);
+    const [lastName, setLastName] = useState(initialState);
+    const [email, setEmail] = useState(initialState);
+    const [city, setCity] = useState(initialState);
+    const [address, setAddress] =useState(initialState);
+    const [zipcode, setZipCode] = useState(initialState);
+    const [memberNumber, setMemberNumber] = useState(initialState);
     const [birthday, setBirthday] = useState({value:null, error:false, errorMsg:''});
     const [phone, setPhone] = useState();
     const [usaStates, setUsaState] = useState('');
-    const [isBtnDisable, setIsBtnDisable]= useState(true)
 
-    let errorList=[]
+    const errorList=[firstName, lastName, memberNumber, birthday, email, city, address,
+                     zipcode];
 
-    // useEffect(() => {
-    //     addNewClient({memberNumber:memberNumber.value,
-    //         birthday:birthday,
-    //         firstName:firstName.value,
-    //         lastName:lastName.value,
-    //         phone:phone,
-    //         email:email.value,
-    //         address:address.value,
-    //         city:city.value,
-    //         state:usaStates,
-    //         zipCode:zipcode.value})
-    // }, [])
+
+    const desableSaveBtn=()=>{
+
+        let flag = false
+        // until 3 because the 4 required fields are in the first 4 positions
+        for(let step=0; step<4; step++){
+            if (errorList[step].error){
+                return flag=true
+            }
+            if(!errorList[step].error && !errorList[step].value){
+                return flag=true
+            }
+        }
+        for(let step=4; step<errorList.length; step++){
+            if(errorList[step].error && errorList[step].value)
+            return flag = true
+        }
+        
+    }
+
+    const resetFields =()=>{
+        setFirstName({...initialState})
+        setLastName({...initialState})
+        setEmail({...initialState})
+        setCity({...initialState})
+        setAddress({...initialState})
+        setZipCode({...initialState})
+        setMemberNumber({...initialState})
+        setBirthday({value:null, error:false, errorMsg:''})
+        setPhone('')
+        setUsaState('')
+
+    }
 
     const handleBday = ((event) => {
-        //const date = new Date(event).toISOString().slice(0, 10)
+       // const date = new Date(event).toISOString().slice(0, 10)
         
         const errorBday = validators.validateBirthday(event)
         setBirthday({value: event, error: errorBday.error, errorMsg: errorBday.msg })
-       
-
     })
 
     const handleStates = (event) => {
@@ -59,14 +78,18 @@ export default function NewClientForm({addNewClient }) {
     const handleFirstName = (event)=>{
         const nameError = validators.validateName(event.target.value);
         setFirstName({ value: event.target.value, error: nameError.error, errorMsg: nameError.msg })
+       // desableSaveBtn()
+       
     }
     const handleLastName = (event)=>{
         const nameError = validators.validateName(event.target.value);
         setLastName({ value: event.target.value, error: nameError.error, errorMsg: nameError.msg })
+        //desableSaveBtn()
     }
     const handleMemberNumber = (event) => {
         const memberNumberError = validators.validateMemberNumber(event.target.value)
         setMemberNumber({ value: event.target.value, error: memberNumberError.error, errorMsg: memberNumberError.msg })
+        //desableSaveBtn()
     }
     const handleEmail = (event) => {
         const checkForError = validators.validateEmail(event.target.value)
@@ -86,7 +109,21 @@ export default function NewClientForm({addNewClient }) {
     }
 
     const onSave =()=>{
-      //  if()
+        //format birthday date
+        const bdayFormated = new Date(birthday.value).toISOString().slice(0, 10)
+
+        saveNewClient({memberNumber:memberNumber.value,
+            birthday:bdayFormated,
+            firstName:firstName.value,
+            lastName:lastName.value,
+            phone:phone,
+            email:email.value,
+            address:address.value,
+            city:city.value,
+            state:usaStates,
+            zipCode:zipcode.value})
+       
+            resetFields()
     }
 
 
@@ -244,7 +281,12 @@ export default function NewClientForm({addNewClient }) {
                 onChange={handleZipCode}
                 />
             <div className="NewClientForm-btn">
-            <Button variant="contained" color="success" size="large" sx={{width:'15%'}} disabled={isBtnDisable}> Save </Button>
+            <Button variant="contained"
+                     color="success"
+                    size="large" 
+                    sx={{width:'15%'}} 
+                    disabled={desableSaveBtn()}
+                    onClick={onSave}> Save </Button>
             </div>
         </div>
     )

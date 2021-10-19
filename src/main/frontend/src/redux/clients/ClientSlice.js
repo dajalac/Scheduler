@@ -3,30 +3,18 @@ import{getClientBynameAndBday,
      getClientByMemberNumber,
      addNewClient} from './ClientThunk';
 
+const initialState={
+    clients:[],
+    status: null,
+}
 
 const clientSlice = createSlice({
     name:'client',
-    initialState:{
-        clients:[],
-        status: null,
-        client:{
-            memberNumber:'',
-            birthday:'',
-            firstName:'',
-            lastName:'',
-            phone:'',
-            email:'',
-            address:'',
-            city:'',
-            state:'',
-            zipCode:''}
-
-    },
+    initialState,
     reducers:{
-        setClient:(state,action)=>{
-            state.client=action.payload
+        resetClient:(state)=>{
+            return initialState 
         }
-
     },
     extraReducers: builder=>{
         builder
@@ -52,7 +40,6 @@ const clientSlice = createSlice({
         })
         .addCase(addNewClient.fulfilled, (state, action)=>{
             state.status='success';
-            state.clients=action.payload.data;
         })
         .addCase(addNewClient.rejected, (state)=>{
             state.status='rejected';
@@ -63,5 +50,5 @@ const clientSlice = createSlice({
     }
 })
 
-export const {setClient} = clientSlice.actions
+export const {resetClient} = clientSlice.actions
 export default clientSlice.reducer; 
