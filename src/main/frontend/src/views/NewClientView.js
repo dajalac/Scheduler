@@ -21,7 +21,7 @@ export default function NewClient() {
 
     return (
         <div className="NewClientView">
-            <NewClientForm saveNewClient={handleAddNewClient} />
+            <NewClientForm saveClient={handleAddNewClient} />
 
             {status === 'success' &&
                 <div className="NewClientView-saveAlert" >

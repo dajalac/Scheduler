@@ -1,7 +1,7 @@
 import { createSlice} from '@reduxjs/toolkit';
 import{getClientBynameAndBday,
      getClientByMemberNumber,
-     addNewClient} from './ClientThunk';
+     addNewClient,updateClient} from './ClientThunk';
 
 const initialState={
     clients:[],
@@ -42,6 +42,12 @@ const clientSlice = createSlice({
             state.status='success';
         })
         .addCase(addNewClient.rejected, (state)=>{
+            state.status='rejected';
+        })
+        .addCase(updateClient.fulfilled, (state)=>{
+            state.status='success';
+        })
+        .addCase(updateClient.rejected, (state)=>{
             state.status='rejected';
         })
 

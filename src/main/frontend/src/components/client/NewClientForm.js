@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import './NewClientForm.css';
 
 
-export default function NewClientForm({saveNewClient}) {
+export default function NewClientForm({saveClient, client}) {
     const initialState= {value:'', error:false, errorMsg:''}
     const [firstName, setFirstName] = useState(initialState);
     const [lastName, setLastName] = useState(initialState);
@@ -26,10 +26,24 @@ export default function NewClientForm({saveNewClient}) {
     const [birthday, setBirthday] = useState({value:null, error:false, errorMsg:''});
     const [phone, setPhone] = useState();
     const [usaStates, setUsaState] = useState('');
-
     const errorList=[firstName, lastName, memberNumber, birthday, email, city, address,
                      zipcode];
 
+    useEffect(() => {
+        if(client){
+            setFirstName({...firstName, value: client.firstName})
+            setLastName({...lastName, value:client.lastName})
+            setEmail({...email, value:client.email})
+            setCity({...city, value:client.city})
+            setAddress({...address, value:client.address})
+            setZipCode({...zipcode, value:client.zipCode})
+            setMemberNumber({...memberNumber, value:client.memberNumber})
+            setBirthday({...birthday, value:client.birthday})
+            setPhone(client.phone)
+            setUsaState(client.state)
+         }          
+    }, [])
+    
 
     const desableSaveBtn=()=>{
 
@@ -112,7 +126,9 @@ export default function NewClientForm({saveNewClient}) {
         //format birthday date
         const bdayFormated = new Date(birthday.value).toISOString().slice(0, 10)
 
-        saveNewClient({memberNumber:memberNumber.value,
+        saveClient({
+            ...client&& {id:client.id},
+            memberNumber:memberNumber.value,
             birthday:bdayFormated,
             firstName:firstName.value,
             lastName:lastName.value,
@@ -123,13 +139,11 @@ export default function NewClientForm({saveNewClient}) {
             state:usaStates,
             zipCode:zipcode.value})
        
-            resetFields()
+            if(!client){
+                resetFields()
+            }
+           
     }
-
-
-   
-
-
 
     return (
         <div className="NewClientForm">
@@ -160,6 +174,7 @@ export default function NewClientForm({saveNewClient}) {
                 error ={memberNumber.error}
                 helperText={memberNumber.errorMsg}
                 onChange={handleMemberNumber}
+                disabled={client}
                 required />
 
             <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -182,6 +197,7 @@ export default function NewClientForm({saveNewClient}) {
                     value={phone}
                     onChange={setPhone} />
             </div>
+
             <TextField className="NewClientForm-TextField"
                 id="outlined-basic"
                 label="e-mail"

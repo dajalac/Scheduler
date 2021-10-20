@@ -56,7 +56,7 @@ function App() {
           <Route path ='/newClient' component={NewClient}/>
           <Route path ='/newAppt' component={SearchClientForAppt}/>
           <Route path ='/ProviderSchedule' component={ProviderSchedule}/>
-          {(clients.length>0 && status==='success' ) &&
+          {(clients.length>0 /*&& status==='success' */) &&
             <div>
              <Route path ='/ManageAppts' component={ManageAppts}/>
              <Route path ='/ApptSchedule' component={NewAppt}/>

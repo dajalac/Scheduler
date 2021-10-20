@@ -1,5 +1,6 @@
-import React from 'react';
+import React , { useEffect } from  'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { resetClient } from '../redux/clients/ClientSlice';
 import {getClientByMemberNumber, getClientBynameAndBday} from '../redux/clients/ClientThunk';
 import DisplayClients from '../components/client/DisplayClients';
 import SearchClient from '../components/client/SearchClient';
@@ -10,6 +11,10 @@ import './SearchClientForApptView.css'
 export default function SearchClientForAppt() {
     const dispatch = useDispatch();
     const {clients, status} = useSelector((state)=>state.clients)
+
+    useEffect(() => {
+        dispatch(resetClient())
+    }, [dispatch])
 
     const searchByNameAndBday =(values)=>{
         dispatch(getClientBynameAndBday(values))

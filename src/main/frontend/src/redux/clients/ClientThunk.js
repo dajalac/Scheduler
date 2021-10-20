@@ -38,3 +38,12 @@ export const addNewClient =  createAsyncThunk(
     }
 )
 
+export const updateClient =  createAsyncThunk(
+    'client/updateClient',
+    async(data)=>{
+        const response = await axios.put('http://localhost:8080/patient/updatePatient',data);
+        return response
+    }
+)
+
+
