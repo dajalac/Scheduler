@@ -1,6 +1,7 @@
 import React , { useEffect } from  'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { resetClient } from '../redux/clients/ClientSlice';
+import { resetProvider} from '../redux/provider/ProviderSlice';
 import {getClientByMemberNumber, getClientBynameAndBday} from '../redux/clients/ClientThunk';
 import DisplayClients from '../components/client/DisplayClients';
 import SearchClient from '../components/client/SearchClient';
@@ -14,6 +15,7 @@ export default function SearchClientForAppt() {
 
     useEffect(() => {
         dispatch(resetClient())
+        dispatch(resetProvider())
     }, [dispatch])
 
     const searchByNameAndBday =(values)=>{
@@ -55,7 +57,7 @@ export default function SearchClientForAppt() {
     return (
         <div className="SearchClientForAppt">
             <SearchClient onSearchByMemberNum={serachByMemberNumber} onSeachByNameAndBday={searchByNameAndBday}/>
-            {displayResult ()}
+            {displayResult()}
         </div>
     )
 }

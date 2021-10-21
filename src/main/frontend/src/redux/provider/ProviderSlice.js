@@ -1,9 +1,9 @@
 import { createSlice} from '@reduxjs/toolkit';
-import {getAllProviders} from './ProviderThunk';
+import {getAllProviders,getProviderByName} from './ProviderThunk';
 
 const  initialState={
     providers:[],
-    providerSelected:{},
+    providerSelected:[],
     status: null,
 }
 
@@ -29,6 +29,13 @@ const providerSlice = createSlice({
         })
         .addCase(getAllProviders.rejected, (state)=>{
             state.status='rejected';
+        })
+        .addCase(getProviderByName.fulfilled, (state, action)=>{
+            state.status='fulfilled';
+            state.providers=action.payload.data;
+        })
+        .addCase(getProviderByName.rejected, (state)=>{
+            state.status='not found';
         })
     }
 })

@@ -10,5 +10,15 @@ export const getAllProviders = createAsyncThunk(
     }
 )
 
+export const getProviderByName = createAsyncThunk(
+    'provider/getProviderByName',
+    async(data)=>{
+        const response = await axios.post('http://localhost:8080/provider/searchByName', {name:data});
+        return response
+    }
+)
+
+
+
 
 

@@ -13,13 +13,13 @@
 
 }
 
-@media(max-width:650px){
+@media(max-width:800px){
     .ProviderInfoCard-info{
         grid-template-columns: 1fr
     }
 }
 
-@media(max-width:370px){
+@media(max-width:430px){
     .ProviderInfoCard{
         flex-wrap: wrap;
     }

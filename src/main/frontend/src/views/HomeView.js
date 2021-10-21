@@ -12,6 +12,7 @@ export default function Home() {
     const {appointments, status} = useSelector((state)=>state.appointments)
 
      useEffect(()=>{
+         //TODO reset clients
         dispatch(getAppts())
      }, [dispatch])
 
