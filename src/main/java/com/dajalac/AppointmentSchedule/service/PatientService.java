@@ -52,7 +52,7 @@ public class PatientService {
 				new IllegalStateException("Patient id"+patient.getId()+"does not exists"));
 		
 		
-		patientToUpdate.setMemberNumber(patient.getMemberNumber());
+		//patientToUpdate.setMemberNumber(patient.getMemberNumber());
 		patientToUpdate.setBirthday(patient.getBirthday());
 		patientToUpdate.setFirstName(patient.getFirstName());
 		patientToUpdate.setLastName(patient.getLastName());
@@ -60,12 +60,17 @@ public class PatientService {
 		patientToUpdate.setEmail(patient.getEmail());
 		patientToUpdate.setAddress(patient.getAddress());
 		patientToUpdate.setCity(patient.getCity());
+		patientToUpdate.setState(patient.getState());
 		patientToUpdate.setZipCode(patient.getZipCode());
 		//because it is a transaction, no need to save 
 		
 	}
+	
+	public Optional<Patient>  getPatientById (Long id) {
+		return patientRepository.findPatientById(id);
+	}
 
-	public List <Patient> getPatientByNameAndBirthday(String name, String birthday) {
+	public Optional <Patient> getPatientByNameAndBirthday(String name, String birthday) {
 		LocalDate formatedBirthday = LocalDate.parse(birthday);
 		return patientRepository.findPatientByNameAndBirthday(name, formatedBirthday );
 		

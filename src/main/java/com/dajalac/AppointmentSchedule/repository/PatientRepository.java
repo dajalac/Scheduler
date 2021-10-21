@@ -18,6 +18,9 @@ public interface PatientRepository extends JpaRepository <Patient, Long> {
 	
 	
 	@Query("SELECT p FROM Patient p WHERE concat(p.firstName,' ', p.lastName) LIKE %:name% AND p.birthday=:birthday")
-	List<Patient> findPatientByNameAndBirthday(@Param("name") String name,
+	Optional<Patient> findPatientByNameAndBirthday(@Param("name") String name,
 											@Param("birthday") LocalDate birthday);
+	
+	@Query("SELECT p FROM Patient p WHERE p.id=?1")
+	Optional<Patient>findPatientById(Long id);
 }

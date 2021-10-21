@@ -51,8 +51,14 @@ public class PatientController {
 		return ResponseEntity.ok("Done");
 	}
 	
+	@PostMapping("/getPatientById")
+	public ResponseEntity<Optional<Patient>>getPatientById(@Valid @RequestBody Map<String, Object> payload){
+		Long id = Long.valueOf(String.valueOf(payload.get("id")));
+		return ResponseEntity.ok().body(patientService.getPatientById(id)); 
+	}
+	
 	@PostMapping ("/serachByNameBirthday")
-	public ResponseEntity< List <Patient> > getPatientByNameAndBirthday(@RequestBody Map<String, Object> payload ){
+	public ResponseEntity< Optional <Patient> > getPatientByNameAndBirthday(@RequestBody Map<String, Object> payload ){
 	
 		return ResponseEntity.ok().body(patientService.getPatientByNameAndBirthday(String.valueOf(payload.get("name")),
 																				   String.valueOf(payload.get("birthday"))));

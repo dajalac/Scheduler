@@ -32,12 +32,12 @@ public class AppointmentScheduleApplication {
 					LocalDate.now(),
 					"ana",
 					"luz",
-					"(123) 456-7890",
+					"+19794567890",
 					"ana@gmail.com",
 					"1810 Fordem ave",
 					"Madison",
-					"Wisconsin",
-					570340);
+					"WI",
+					"53740");
 			Provider provider1 = new Provider("Molly",
 					"Smith",
 					"(123) 456-7890",

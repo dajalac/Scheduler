@@ -1,6 +1,8 @@
 package com.dajalac.AppointmentSchedule.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,13 +34,13 @@ public class ProviderController {
 		return ResponseEntity.ok().body(providerService.getAllProvider());
 	}
 	
-	@GetMapping("/searchByArea")
-	public ResponseEntity<String>providerByArea(@RequestBody String area){
-		providerService.getProviderByField(area);
-		return ResponseEntity.ok("Done");
+	@PostMapping("/searchByName")
+	public ResponseEntity<List<Provider>> getProviderByName(@RequestBody Map<String, Object> payload ){
+			
+		return ResponseEntity.ok().body(providerService.getProviderByName(
+				String.valueOf(payload.get("name"))
+				));
 	}
-	
-	
 	
 	
 

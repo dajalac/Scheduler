@@ -44,16 +44,16 @@ public class Patient {
 	private LocalDate birthday; 
 	
 	@NotBlank
-	@Pattern(regexp ="^[a-zA-Z]*$")
+	@Pattern(regexp ="^[a-zA-Z\s]*$")
 	@Column(name="first_name", nullable=false)
 	private String firstName;
 	
 	@NotBlank
-	@Pattern(regexp ="^[a-zA-Z]*$")
+	@Pattern(regexp ="^[a-zA-Z\s]*$")
 	@Column(name="last_name", nullable=false)
 	private String lastName;
 	
-	@Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
+	@Pattern(regexp = "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$")
 	@Column(name="phone")
 	private String phone;
 	
@@ -61,22 +61,22 @@ public class Patient {
 	@Email
 	private String email;
 	
-	
+	@Pattern(regexp ="^[a-zA-Z\s\\d]*$")
 	@Column(name="address")
 	
 	private String address;
 	
-	@Pattern(regexp ="^[a-zA-Z]*$")
+	@Pattern(regexp ="^[a-zA-Z\s]*$")
 	@Column(name="city")
 	private String city;
 	
-	@Pattern(regexp ="^[a-zA-Z]*$")
+	@Pattern(regexp ="^[a-zA-Z\s]*$")
 	@Column(name="state")
 	private String state;
 	
-	
+	@Pattern(regexp ="^\\d{5}(?:[-\\s]\\d{4})?$")
 	@Column(name="zipcode")
-	private int zipCode;
+	private String zipCode;
 	
 	/*tag to avoid infinite loop regarding bi-directional mapping
 	 * When we call getPatients, the patientId object (with the patient info)
@@ -99,7 +99,7 @@ public class Patient {
 			String address,
 			String city,
 			String state,
-			int zipCode) {
+			String zipCode) {
 		
 		this.memberNumber = memberNumber;
 		this.birthday=birthday;
@@ -193,11 +193,11 @@ public class Patient {
 		this.state = state;
 	}
 
-	public int getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(int zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 
