@@ -6,27 +6,52 @@ function createData(appoitmentTime, appointmentDate, appointmentSpeciality, appo
     return { appoitmentTime, appointmentDate, appointmentSpeciality, appointmentProvider, appointmentId };
 }
 
-const rows = [
-    createData('10:40', '09/21/2021', 'Family doctor', 'Dr. Sarah Smith', '01'),
-    createData('10:40', '09/21/2021', 'Family doctor', 'Dr. Sarah Smith', '01'),
-    createData('10:40', '09/21/2021', 'Family doctor', 'Dr. Sarah Smith', '01'),
-];
+const insertDataInRows = (appointments,rows) => {
+    const dateFormat = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    const timeFormat = {hour: 'numeric', minute: 'numeric', hour12: true };
 
+    appointments.map((appt)=>{
+        
+        rows.push(createData(new Date(appt.apptDate + 'T' + appt.starTime).toLocaleTimeString('en-US', timeFormat),
+                            new Date(appt.apptDate+ 'T' + appt.starTime).toLocaleDateString('en-US', dateFormat),
+                            appt.providerId.speciality,
+                            appt.providerId.firstName +' '+appt.providerId.lastName,
+                            appt.id ))
+    })
+}
 
-export default function ApptHistory() {
-     /** states for paging */
+const pagination = (page, rows) => {
+    if (Object.keys(rows).length > 0) {
+        const indexOfLastApptInScreen = page * 10; // 10 is the number of item per page
+        const indexOfFirstApptInSceen = indexOfLastApptInScreen - 10; // 10 is the number of item per page
+        const rowsToDisplay = rows.slice(indexOfFirstApptInSceen, indexOfLastApptInScreen);
+
+        return rowsToDisplay
+    }
+    else {
+        return []
+    }
+
+}
+
+export default function ApptHistory({appointments}) {
      const [page, setPage] = useState(1);
-     const [numberOfPages, setNumberOfPages] = useState(1);
- 
+     let numberOfPages = 1
+
+     if (typeof appointments !== 'undefined') {
+         numberOfPages = Math.ceil((appointments.length) / 10)
+     }
+
+
+    const rows =[]
+
+    insertDataInRows(appointments,rows);
+    const rowsToDisplay = pagination(page, rows)
+
     
      const handleChange = (event, value) => {
          setPage(value);   
      };
- 
- 
-     useEffect(() =>(
-        console.log(page)
-     ), [page])
  
     return (
         <div className="tableAppts">
@@ -40,7 +65,7 @@ export default function ApptHistory() {
                     </tr>
                 </thead>
                 <tbody>
-                    {rows.map((appt) => (
+                    {rowsToDisplay.map((appt) => (
                         <tr>
                             <td data-label="Appointment date">{appt.appointmentDate}</td>
                             <td data-label="Appointment time">{appt.appoitmentTime}</td>
@@ -52,7 +77,6 @@ export default function ApptHistory() {
                 </tbody>
             </table>
             <div className='tableAppts-pagination'>
-                {/*<Typography>Page {page} of {numberOfPages} </Typography>*/}
                 <Pagination count={numberOfPages} page={page} onChange={handleChange}
                         color='primary' shape='rounded' size='small' />
             </div>

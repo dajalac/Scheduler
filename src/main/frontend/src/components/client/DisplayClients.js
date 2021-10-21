@@ -4,8 +4,19 @@ import { Link } from 'react-router-dom';
 import './DisplayClients.css';
 
 export default function DisplayClients({client}) {
-    
     const bdayFormated= new Date(client.birthday).toLocaleDateString('en-US');
+    
+    const addressFormated =()=>{
+        let address = []
+        if(client.address){address.push(client.address)}
+        if(client.city){address.push(client.city)}
+        if(client.state){address.push(client.state)}
+        if(client.zipCode){address.push(client.zipCode)}
+
+        return address.join(', ')
+
+    }
+                             
     return (
 
         <div className="displayResults">
@@ -15,7 +26,7 @@ export default function DisplayClients({client}) {
                 <div>Member Number: {client.memberNumber}</div>
                 <div>Phone:  {client.phone}</div>
                 <div>e-mail: {client.email}</div>
-                <div>Adress: {client.address +', '+client.city+', '+client.state+', '+client.zipCode}</div>
+                <div>Adress: {addressFormated()}</div>
             </div>
             <div className="displayResults-actions">
                 <Link to='/ApptSchedule' className="displayResults-actions-options"> Schedule an appointment</Link>

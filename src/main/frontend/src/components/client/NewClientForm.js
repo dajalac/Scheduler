@@ -192,7 +192,7 @@ export default function NewClientForm({saveClient, client}) {
                 />
             </LocalizationProvider>
 
-            <div className="NewClientForm-phone" data-placeholder="in case this div is empty" >
+            <div className="NewClientForm-phone" /*data-placeholder="in case this div is empty"*/ >
                 <PhoneInput
                     placeholder="Enter phone number"
                     defaultCountry='US'
