@@ -29,8 +29,10 @@ export default function NewClientForm({saveClient, client}) {
     const errorList=[firstName, lastName, memberNumber, birthday, email, city, address,
                      zipcode];
 
+
     useEffect(() => {
         if(client){
+            
             setFirstName({...firstName, value: client.firstName})
             setLastName({...lastName, value:client.lastName})
             setEmail({...email, value:client.email})
@@ -42,7 +44,7 @@ export default function NewClientForm({saveClient, client}) {
             setPhone(client.phone)
             setUsaState(client.state)
          }          
-    }, [])
+    }, [client])
     
 
     const desableSaveBtn=()=>{

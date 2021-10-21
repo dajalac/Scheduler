@@ -24,13 +24,13 @@ export default function SearchClientForAppt() {
         dispatch(getClientByMemberNumber(value))
     }
 
-    const displayClient =()=>{
-        let result = [];
-        clients.map(client =>(
-           result.push(<DisplayClients client ={client} />)
-        ))
-        return result
-    }
+    // const displayClient =()=>{
+    //     let result = [];
+    //     clients.map(client =>(
+    //        result.push(<DisplayClients client ={client} />)
+    //     ))
+    //     return result
+    // }
 
     const displayResult= ()=>{
         if(status === 'loading'){
@@ -43,7 +43,7 @@ export default function SearchClientForAppt() {
             if(clients === null || clients.length===0){
                return 'The client could not be found'
             }else{
-               return displayClient()
+               return <DisplayClients client ={clients} />
                 
             }
         }

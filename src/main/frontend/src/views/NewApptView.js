@@ -43,7 +43,7 @@ export default function NewAppt() {
     }
 
     const onSaveAppt =()=>{
-        const appt = {patientId: clients[0],
+        const appt = {patientId: clients, // chenged here
                     providerId:providerSelected[0],
                     starTime:dateAndTimeSelected.time,
                     apptDate: new Date(dateAndTimeSelected.date)}
@@ -59,7 +59,7 @@ export default function NewAppt() {
 
     return (
         <div className="NewAppt">
-            <DisplayClients client={clients[0]} />
+            <DisplayClients client={clients} />
             <NewApptForm providers={providers} onCheckAvailableTime={checkAvailableAppts} onGetProviderInfo={getSelectedProviderInfo} />
             {availableTime.length > 0 &&
             <div className="NewAppt-result">

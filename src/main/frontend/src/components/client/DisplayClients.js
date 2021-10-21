@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './DisplayClients.css';
 
 export default function DisplayClients({client}) {
-
+    
     const bdayFormated= new Date(client.birthday).toLocaleDateString('en-US');
     return (
 

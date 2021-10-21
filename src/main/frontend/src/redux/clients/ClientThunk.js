@@ -30,6 +30,14 @@ export const getClientByMemberNumber = createAsyncThunk(
     }
 )
 
+export const getClientById = createAsyncThunk(
+    'client/getClientById',
+    async(data)=>{
+        const response = await axios.post('http://localhost:8080/patient/getPatientById',{id:data});
+        return response
+    }
+)
+
 export const addNewClient =  createAsyncThunk(
     'client/addNewClient',
     async(data)=>{

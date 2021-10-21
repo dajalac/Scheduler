@@ -1,10 +1,10 @@
 import { createSlice} from '@reduxjs/toolkit';
 import{getClientBynameAndBday,
      getClientByMemberNumber,
-     addNewClient,updateClient} from './ClientThunk';
+     addNewClient,updateClient,getClientById } from './ClientThunk';
 
 const initialState={
-    clients:[],
+    clients:null,
     status: null,
 }
 
@@ -45,9 +45,16 @@ const clientSlice = createSlice({
             state.status='rejected';
         })
         .addCase(updateClient.fulfilled, (state)=>{
-            state.status='success';
+            state.status='update succeeded';
         })
         .addCase(updateClient.rejected, (state)=>{
+            state.status=' update rejected';
+        })
+        .addCase(getClientById.fulfilled, (state,action)=>{
+            state.status='fulfilled';
+            state.clients=action.payload.data;
+        })
+        .addCase(getClientById.rejected, (state)=>{
             state.status='rejected';
         })
 
@@ -56,5 +63,5 @@ const clientSlice = createSlice({
     }
 })
 
-export const {resetClient} = clientSlice.actions
+export const {resetClient, setClientId} = clientSlice.actions
 export default clientSlice.reducer; 
