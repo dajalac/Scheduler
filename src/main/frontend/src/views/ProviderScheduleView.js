@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { resetClient } from '../redux/clients/ClientSlice';
 import { resetProvider, getProviderInfo } from '../redux/provider/ProviderSlice';
 import { getProviderByName } from '../redux/provider/ProviderThunk';
+import{apptToEdit} from '../redux/appointments/AppointmentSlice';
+import{setClient} from '../redux/clients/ClientSlice';
+import{ getClientById} from '../redux/clients/ClientThunk';
 import { getApptsByProvider } from '../redux/appointments/AppointmentThunk';
 import ManageAppts from '../components/client/ManageAppts';
 import ProviderInfoCard from '../components/provider/ProviderInfoCard';
@@ -17,9 +20,11 @@ export default function ProviderSchedule() {
 
 
     useEffect(() => {
-        dispatch(resetClient())
+        console.log('here')
         dispatch(resetProvider())
-    }, [dispatch])
+        dispatch(resetClient())
+    }, [])
+
 
     const getProviderName = (name) => {
         dispatch(resetProvider())
@@ -29,6 +34,13 @@ export default function ProviderSchedule() {
         dispatch(getProviderInfo(info))
         console.log(info.firstName + ' ' + info.lastName)
         dispatch(getApptsByProvider(info.firstName + ' ' + info.lastName))
+    }
+
+    const selectApptToUpdate=(appt)=>{
+        dispatch(apptToEdit(appt))
+    }
+    const selectClientToUpdate=(id)=>{
+        dispatch(getClientById(id))
     }
 
     const displayProviderInfo = () => {
@@ -61,10 +73,10 @@ export default function ProviderSchedule() {
 
         appointments.map((appt) => {
             if ((appt.apptDate === today && appt.starTime > timeNow)) {
-                toDisplay.push(<ManageAppts appointment={appt} />)
+                toDisplay.push(<ManageAppts appointment={appt} selectApptToUpdate={selectApptToUpdate} selectClientToUpdate={selectClientToUpdate} />)
             }
             if ((appt.apptDate > today)) {
-                toDisplay.push(<ManageAppts appointment={appt} />)
+                toDisplay.push(<ManageAppts appointment={appt} selectApptToUpdate={selectApptToUpdate} selectClientToUpdate={selectClientToUpdate}/>)
             }
         })
 

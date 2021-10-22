@@ -14,7 +14,12 @@ const clientSlice = createSlice({
     reducers:{
         resetClient:(state)=>{
             return initialState 
+        },
+        setClient:(state,action)=>{
+           state.clients=action.payload
+          // console.log(action.payload)
         }
+
     },
     extraReducers: builder=>{
         builder
@@ -63,5 +68,5 @@ const clientSlice = createSlice({
     }
 })
 
-export const {resetClient, setClientId} = clientSlice.actions
+export const {resetClient, setClient} = clientSlice.actions
 export default clientSlice.reducer; 

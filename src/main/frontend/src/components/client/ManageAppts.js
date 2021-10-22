@@ -1,10 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './ManageAppts.css';
 
-export default function ManageAppts({appointment}) {
+export default function ManageAppts({appointment,selectApptToUpdate,selectClientToUpdate}) {
     const providerName = appointment.providerId.firstName +' '+appointment.providerId.lastName
     const speciality = appointment.providerId.speciality
 
@@ -15,6 +16,16 @@ export default function ManageAppts({appointment}) {
     const year = new Date(appointment.apptDate+ 'T' + appointment.starTime).getFullYear();
     const date = new Date(appointment.apptDate+ 'T' + appointment.starTime).toLocaleDateString('en-US', {month: 'short', day: 'numeric'})
 
+    
+    let history = useHistory()
+
+    const handleEditarAppt=()=>{
+        if(selectClientToUpdate){
+            selectClientToUpdate(appointment.patientId.id)
+        }
+        selectApptToUpdate(appointment)
+        history.push('/ApptSchedule');
+    }
     return (
         <div className="ManageAppts">
             <div className="ManageAppts-calendar">
@@ -32,7 +43,8 @@ export default function ManageAppts({appointment}) {
             <div className="ManageAppts-btns">
                 <Button variant="contained"
                     startIcon={<EditIcon />}
-                    size='small' sx={{width:'100px'}}>Edit</Button>
+                    size='small' sx={{width:'100px'}}
+                    onClick={handleEditarAppt}>Edit</Button>
                 <Button variant="contained"
                     startIcon={< DeleteIcon />}
                     size='small' sx={{width:'100px'}}>Cancel</Button>

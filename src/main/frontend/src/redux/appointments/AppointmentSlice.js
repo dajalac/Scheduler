@@ -4,12 +4,13 @@ import {getAppts,
      getApptsByProvider,
      getApptsNoFilter,
      getAvailableAppts,
-     saveAppt} from './AppointmentThunk';
+     saveAppt, updateAppt} from './AppointmentThunk';
 
 
 const initialState= {
     appointments:[],
     availableTime:[],
+    apptToEdit:[],
     dateAndTimeSelected:{
         date:'',
         time:' '
@@ -42,6 +43,9 @@ const appointmentSlice = createSlice({
         },
         cleaningAppts:(state)=>{
             return initialState 
+        },
+        apptToEdit:(state,action)=>{
+            state.apptToEdit=action.payload
         }
         
     },
@@ -106,10 +110,18 @@ const appointmentSlice = createSlice({
         .addCase(saveAppt.rejected,(state)=>{
             state.status ='rejected';
         })
+        .addCase(updateAppt.fulfilled, (state, action)=>{
+            state.status='success';
+            console.log(action.payload)
+        })
+        .addCase(updateAppt.rejected,(state,action)=>{
+            state.status ='rejected';
+            console.log(action.payload)
+        })
    
     }
 
 })
 
-export const {saveDate, saveTime,cleaningAppts} = appointmentSlice.actions
+export const {saveDate, saveTime,cleaningAppts,apptToEdit} = appointmentSlice.actions
 export default appointmentSlice.reducer; 

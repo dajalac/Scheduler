@@ -53,5 +53,14 @@ export const saveAppt = createAsyncThunk(
     }
 )
 
+export const updateAppt = createAsyncThunk(
+    'appointments/ updateAppt',
+    async(data)=>{
+        console.log(data)
+       const response = await axios.put('http://localhost:8080/appointment/updateAppt',data);
+
+        return response
+    }
+)
 
 

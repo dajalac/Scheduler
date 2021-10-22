@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAppts,getApptsByCustomer,getApptsByProvider, getApptsNoFilter} from '../redux/appointments/AppointmentThunk';
+import{apptToEdit} from '../redux/appointments/AppointmentSlice';
+import{setClient} from '../redux/clients/ClientSlice';
+import{ getClientById} from '../redux/clients/ClientThunk';
 import SearchTable from '../components/table/SearchTable';
 import TableAppts from '../components/table/TableAppts';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -29,7 +32,15 @@ export default function Home() {
 
     const searchWithNoFilter=(value)=>{
         dispatch(getApptsNoFilter(value))
-        console.log('inside home')
+    }
+
+    const selectClientToUpdate=(id)=>{
+        //dispatch(setClient(client))
+        dispatch(getClientById(id))
+    }
+    
+    const selectApptToUpdate=(appt)=>{
+        dispatch(apptToEdit(appt))
     }
     
 
@@ -47,7 +58,10 @@ export default function Home() {
                 <RefreshIcon onClick={handleRefresh}/>
             </div>
             <div className="home-screen-table">
-            <TableAppts appointments={appointments}  status ={status}/>
+            <TableAppts appointments={appointments}
+                        status ={status}
+                        selectClientToUpdate={selectClientToUpdate} 
+                        selectApptToUpdate={selectApptToUpdate}/>
             </div>
            
         </div>

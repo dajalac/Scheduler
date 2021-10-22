@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
 import Pagination from '@mui/material/Pagination';
@@ -6,8 +6,8 @@ import { useHistory } from 'react-router-dom';
 import './TableAppts.css';
 
 
-const createData = (appoitmentTime, appointmentDate, appointmentClient, appointmentProvider, appointmentId) => {
-    return { appoitmentTime, appointmentDate, appointmentClient, appointmentProvider, appointmentId };
+const createData = (appoitmentTime, appointmentDate, appointmentClient, appointmentProvider, appointmentId, clientObject,apptObject) => {
+    return { appoitmentTime, appointmentDate, appointmentClient, appointmentProvider, appointmentId,clientObject, apptObject};
 }
 
 const insertDataInRows = (appointments, status, rows) => {
@@ -19,7 +19,7 @@ const insertDataInRows = (appointments, status, rows) => {
             rows.push(createData(new Date(appt.apptDate + 'T' + appt.starTime).toLocaleTimeString('en-US', timeFormat),
                 new Date(appt.apptDate+ 'T' + appt.starTime).toLocaleDateString('en-US', dateFormat),
                 appt.patientId.firstName + ' ' + appt.patientId.lastName,
-                appt.providerId.firstName + ' ' + appt.providerId.lastName, appt.id))
+                appt.providerId.firstName + ' ' + appt.providerId.lastName, appt.id,appt.patientId, appt))
         ))
     }
 }
@@ -38,7 +38,7 @@ const pagination = (page, rows) => {
 
 }
 
-export default function TableAppts({ appointments, status }) {
+export default function TableAppts({ appointments, status,selectClientToUpdate,selectApptToUpdate }) {
     const [page, setPage] = useState(1);
     const rows = []
     let history = useHistory()
@@ -57,8 +57,10 @@ export default function TableAppts({ appointments, status }) {
         setPage(value);
     };
 
-    const handleBtnClick = () => {
-        history.push('/EditClient');
+    const handleBtnClick = (appt) => {
+        selectClientToUpdate(appt.clientObject.id)
+        selectApptToUpdate (appt.apptObject)
+        history.push('/ApptSchedule');
     }
 
     return (
@@ -84,7 +86,7 @@ export default function TableAppts({ appointments, status }) {
                                 <Button variant="contained"
                                     startIcon={<EditIcon />}
                                     size='small'
-                                    onClick={handleBtnClick}
+                                    onClick={()=>handleBtnClick(appt)}
                                 >Edit</Button></td>
                         </tr>
                     ))}

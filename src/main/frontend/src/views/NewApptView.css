@@ -20,6 +20,15 @@
     width: 100%;
    
 }
+.NewAppt-updateAppt{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    width: 90%;
+
+}
 
 .NewAppt-saveBtn{
     display: flex;
