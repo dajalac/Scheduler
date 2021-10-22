@@ -10,6 +10,7 @@ import { getApptsByProvider } from '../redux/appointments/AppointmentThunk';
 import ManageAppts from '../components/client/ManageAppts';
 import ProviderInfoCard from '../components/provider/ProviderInfoCard';
 import ProviderSearchByName from '../components/provider/ProviderSearchByName';
+import { deleteAppt } from '../redux/appointments/AppointmentThunk';
 
 import './ProviderScheduleView.css'
 
@@ -32,7 +33,6 @@ export default function ProviderSchedule() {
     }
     const getSelectedProviderInfo = (info) => {
         dispatch(getProviderInfo(info))
-        console.log(info.firstName + ' ' + info.lastName)
         dispatch(getApptsByProvider(info.firstName + ' ' + info.lastName))
     }
 
@@ -60,6 +60,10 @@ export default function ProviderSchedule() {
 
     }
 
+    const deleteAppointment=(appt)=>{
+        dispatch(deleteAppt(appt))
+    }
+
     const displaySelectedProviderAgenda = () => {
         let toDisplay = []
 
@@ -73,10 +77,16 @@ export default function ProviderSchedule() {
 
         appointments.map((appt) => {
             if ((appt.apptDate === today && appt.starTime > timeNow)) {
-                toDisplay.push(<ManageAppts appointment={appt} selectApptToUpdate={selectApptToUpdate} selectClientToUpdate={selectClientToUpdate} />)
+                toDisplay.push(<ManageAppts appointment={appt}
+                               selectApptToUpdate={selectApptToUpdate}
+                               selectClientToUpdate={selectClientToUpdate}
+                               deleteAppt={deleteAppointment} />)
             }
             if ((appt.apptDate > today)) {
-                toDisplay.push(<ManageAppts appointment={appt} selectApptToUpdate={selectApptToUpdate} selectClientToUpdate={selectClientToUpdate}/>)
+                toDisplay.push(<ManageAppts appointment={appt}
+                                selectApptToUpdate={selectApptToUpdate}
+                                selectClientToUpdate={selectClientToUpdate}
+                                deleteAppt={deleteAppointment}/>)
             }
         })
 

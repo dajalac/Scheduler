@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import './ManageAppts.css';
 
-export default function ManageAppts({appointment,selectApptToUpdate,selectClientToUpdate}) {
+export default function ManageAppts({appointment,selectApptToUpdate,selectClientToUpdate,deleteAppt}) {
+    const [open, setOpen] = useState(false);
+
     const providerName = appointment.providerId.firstName +' '+appointment.providerId.lastName
     const speciality = appointment.providerId.speciality
 
@@ -20,12 +27,29 @@ export default function ManageAppts({appointment,selectApptToUpdate,selectClient
     let history = useHistory()
 
     const handleEditarAppt=()=>{
-        if(selectClientToUpdate){
+        
+        if(selectClientToUpdate()){
             selectClientToUpdate(appointment.patientId.id)
         }
+        
         selectApptToUpdate(appointment)
         history.push('/ApptSchedule');
     }
+
+    const handleCancelAppointment=()=>{
+        setOpen(true)
+    }
+    const handleClose = () => {
+        setOpen(false);
+      };
+
+    
+    const handleAgreed=()=>{
+        setOpen(false);
+        deleteAppt(appointment)  
+    }
+    
+
     return (
         <div className="ManageAppts">
             <div className="ManageAppts-calendar">
@@ -47,7 +71,23 @@ export default function ManageAppts({appointment,selectApptToUpdate,selectClient
                     onClick={handleEditarAppt}>Edit</Button>
                 <Button variant="contained"
                     startIcon={< DeleteIcon />}
-                    size='small' sx={{width:'100px'}}>Cancel</Button>
+                    size='small' sx={{width:'100px'}}
+                    onClick={handleCancelAppointment}>Cancel</Button>
+                  <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title"
+                   aria-describedby="alert-dialog-description">
+                    <DialogTitle id="alert-dialog-title">
+                      {'Cancel Appointment'}
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        Are you sure do you want to CANCEL this appointment? 
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClose}>Disagree</Button>
+                      <Button onClick={handleAgreed} autoFocus>Agree</Button>
+                    </DialogActions>
+                  </Dialog>
 
             </div>
 

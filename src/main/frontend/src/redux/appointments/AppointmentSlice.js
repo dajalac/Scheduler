@@ -4,7 +4,7 @@ import {getAppts,
      getApptsByProvider,
      getApptsNoFilter,
      getAvailableAppts,
-     saveAppt, updateAppt} from './AppointmentThunk';
+     saveAppt, updateAppt,deleteAppt} from './AppointmentThunk';
 
 
 const initialState= {
@@ -112,13 +112,16 @@ const appointmentSlice = createSlice({
         })
         .addCase(updateAppt.fulfilled, (state, action)=>{
             state.status='success';
-            console.log(action.payload)
         })
         .addCase(updateAppt.rejected,(state,action)=>{
             state.status ='rejected';
-            console.log(action.payload)
         })
-   
+        .addCase(deleteAppt.fulfilled, (state)=>{
+            state.status='deleted';
+        })
+        .addCase(deleteAppt.rejected,(state)=>{
+            state.status ='rejected';
+        })
     }
 
 })

@@ -63,4 +63,14 @@ export const updateAppt = createAsyncThunk(
     }
 )
 
+export const deleteAppt = createAsyncThunk(
+    'appointments/ deleteAppt',
+    async(appointment)=>{
+        console.log(appointment)
+       const response = await axios.delete('http://localhost:8080/appointment/deleteAppt', {data:appointment});
+
+        return response
+    }
+)
+
 
