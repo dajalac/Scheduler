@@ -78,7 +78,6 @@ public class AppointmentController {
 	
 	@PostMapping("/newAppointment")
 	public ResponseEntity<String> newAppt(@RequestBody Appointment appt){
-		System.out.println("#################"+ appt.getStarTime().toString());
 		appointmentService.newAppt(appt);
 		return ResponseEntity.ok("Done");
 	}
