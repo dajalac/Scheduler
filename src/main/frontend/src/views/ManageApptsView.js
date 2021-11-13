@@ -16,7 +16,7 @@ export default function ManageApptsView() {
     useEffect(() => {
        dispatch(getClientById(clients.id)) // get the client from the db again, but with the updates saved 
        console.log('id changed')
-    }, [deleteAppt])
+    }, []) // need to make it update when appt is deleted
 
     const deleteAppointment=(appt)=>{
         dispatch(deleteAppt(appt))

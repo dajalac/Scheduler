@@ -12,6 +12,7 @@ export default function Navbar({setShowSideBar, showSideBar}) {
         setShowSideBar(!showSideBar);
 
     }
+    
     return (
         <>
         <div className = "nav-bar">

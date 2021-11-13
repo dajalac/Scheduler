@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetClient } from '../redux/clients/ClientSlice';
 import { resetProvider, getProviderInfo } from '../redux/provider/ProviderSlice';
@@ -18,13 +18,16 @@ export default function ProviderSchedule() {
     const dispatch = useDispatch();
     const { status, providers, providerSelected } = useSelector((state) => state.providers)
     const { appointments } = useSelector((state) => state.appointments)
+    const [flag, setFlag] = useState(false)
 
-
+    // TODO when add a appt and go to manage appt and then go to providers agenda, there is a error. useEfect not called. I tryed to use flag. 
     useEffect(() => {
-        console.log('here')
         dispatch(resetProvider())
         dispatch(resetClient())
+        setFlag(true)
     }, [])
+
+   
 
 
     const getProviderName = (name) => {
@@ -66,8 +69,7 @@ export default function ProviderSchedule() {
 
     const displaySelectedProviderAgenda = () => {
         let toDisplay = []
-
- 
+     if(Object.keys(providerSelected).length > 0 && flag){
         toDisplay.push(<ProviderInfoCard provider={providerSelected} onSelectProvider={getSelectedProviderInfo} disableBtn={true} />)
         toDisplay.push(<div className="ProviderSchedule-title">Next Appointments:</div>)
 
@@ -80,7 +82,7 @@ export default function ProviderSchedule() {
                 toDisplay.push(<ManageAppts appointment={appt}
                                selectApptToUpdate={selectApptToUpdate}
                                selectClientToUpdate={selectClientToUpdate}
-                               deleteAppt={deleteAppointment} />)
+                               deleteAppt={deleteAppointment}/>)
             }
             if ((appt.apptDate > today)) {
                 toDisplay.push(<ManageAppts appointment={appt}
@@ -89,20 +91,16 @@ export default function ProviderSchedule() {
                                 deleteAppt={deleteAppointment}/>)
             }
         })
-
+    
         return toDisplay
-
+      }
     }
 
 
     return (
         <div className="ProviderSchedule">
             <ProviderSearchByName onGetProvider={getProviderName} />
-            {/* {displayProviderInfo()}
-            <div className="ProviderSchedule-title">Next Appointments:</div>
-            {/**here you will pass the client name instead of the provider 
-            <ManageAppts/>*/}
-            {(providerSelected.length === 0) ? displayProviderInfo() : displaySelectedProviderAgenda()}
+            {providerSelected.length===0 ? displayProviderInfo() : displaySelectedProviderAgenda()}
         </div>
     )
 }
