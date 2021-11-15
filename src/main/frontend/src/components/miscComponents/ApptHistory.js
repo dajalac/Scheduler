@@ -1,4 +1,5 @@
-import React ,{ useState, useEffect } from 'react';
+import React ,{ useState} from 'react';
+import { formatName } from '../../utils/Formating';
 import Pagination from '@mui/material/Pagination';
 
 
@@ -69,7 +70,7 @@ export default function ApptHistory({appointments}) {
                         <tr>
                             <td data-label="Appointment date">{appt.appointmentDate}</td>
                             <td data-label="Appointment time">{appt.appoitmentTime}</td>
-                            <td data-label="Provider">{appt.appointmentProvider}</td>
+                            <td data-label="Provider">{formatName(appt.appointmentProvider)}</td>
                             <td data-label="Speciality">{appt.appointmentSpeciality}</td>
 
                         </tr>

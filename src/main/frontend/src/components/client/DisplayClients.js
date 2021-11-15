@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatName } from '../../utils/Formating';
 import { Link } from 'react-router-dom';
 
 import './DisplayClients.css';
@@ -21,7 +22,7 @@ export default function DisplayClients({client}) {
 
         <div className="displayResults">
             <div className="displayResults-info">
-                <div>Name: {client.firstName +' '+ client.lastName}</div>
+                <div>Name: {formatName(client.firstName +' '+ client.lastName)}</div>
                 <div>Birthday:  {bdayFormated}</div>
                 <div>Member Number: {client.memberNumber}</div>
                 <div>Phone:  {client.phone}</div>

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { formatName } from '../../utils/Formating';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import './ProviderInfoForAppt.css'
-import { Provider } from 'react-redux';
+import './ProviderInfoForAppt.css';
 
 export default function ProviderInfoForAppt({provider}) {
     //console.log('provider'+ provider[0].firstName)
@@ -10,7 +10,7 @@ export default function ProviderInfoForAppt({provider}) {
             <AccountCircleIcon  sx={{fontSize: '3rem'}}/>
             <div>
             <label>Provider:</label>
-            <p>{provider.firstName+' '+provider.lastName}</p>
+            <p>{formatName(provider.firstName+' '+provider.lastName)}</p>
             </div>
             <div>
             <label>Speciality:</label>

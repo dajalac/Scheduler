@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
+import { formatName } from '../../utils/Formating';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -25,7 +26,7 @@ const getProviders = (providers,speciality ) =>{
 
     providers.map(provider=>{
         if(provider.speciality ===speciality){
-           return  providersName.push({name: provider.firstName+' '+provider.lastName, id:provider.id})
+           return  providersName.push({name: formatName(provider.firstName+' '+provider.lastName), id:provider.id})
         }else{
             return ''
         }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as validators  from '../../utils/Validation';
+import { formatName } from '../../utils/Formating';
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -33,8 +34,8 @@ export default function NewClientForm({saveClient, client}) {
     useEffect(() => {
         if(client){
             
-            setFirstName({...firstName, value: client.firstName})
-            setLastName({...lastName, value:client.lastName})
+            setFirstName({...firstName, value: formatName(client.firstName)})
+            setLastName({...lastName, value: formatName(client.lastName)})
             setEmail({...email, value:client.email})
             setCity({...city, value:client.city})
             setAddress({...address, value:client.address})

@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatName } from '../../utils/Formating';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import './ProviderInfoCard.css'
@@ -15,7 +16,7 @@ export default function ProviderInfoCard({ provider,onSelectProvider,disableBtn}
         <div className="ProviderInfoCard">
             <Avatar sx={{ width: 56, height: 56 }}>{firstNameLetter + lastNameLetter}</Avatar>
             <div className="ProviderInfoCard-info">
-                <div>Name: {provider.firstName + ' ' + provider.lastName}</div>
+                <div>Name: {formatName(provider.firstName) + ' ' + formatName(provider.lastName)}</div>
                 <div>Speciality: {provider.speciality}</div>
                 <div>e-mail: {provider.email}</div>
                 <div>phone: {provider.phone}</div>

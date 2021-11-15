@@ -1,4 +1,5 @@
 import React, { useState} from 'react';
+import { formatName } from '../../utils/Formating';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
 import Pagination from '@mui/material/Pagination';
@@ -78,10 +79,10 @@ export default function TableAppts({ appointments, status,selectClientToUpdate,s
                 <tbody>
                     {rowsToDisplay.map((appt) => (
                         <tr key={appt.appointmentId}>
-                            <td data-label="Customer Name">{appt.appointmentClient}</td>
+                            <td data-label="Customer Name">{formatName(appt.appointmentClient)}</td>
                             <td data-label="Appointment date">{appt.appointmentDate}</td>
                             <td data-label="Appointment time">{appt.appoitmentTime}</td>
-                            <td data-label="Provider">{appt.appointmentProvider}</td>
+                            <td data-label="Provider">{formatName(appt.appointmentProvider)}</td>
                             <td data-label="" >
                                 <Button variant="contained"
                                     startIcon={<EditIcon />}

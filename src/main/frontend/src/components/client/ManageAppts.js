@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { formatName } from '../../utils/Formating';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -14,7 +15,7 @@ export default function ManageAppts({ appointment, selectApptToUpdate, selectCli
     const [open, setOpen] = useState(false);
     const [show, setShow] = useState(true)
 
-    const providerName = appointment.providerId.firstName + ' ' + appointment.providerId.lastName
+    const providerName = formatName(appointment.providerId.firstName + ' ' + appointment.providerId.lastName)
     const speciality = appointment.providerId.speciality
 
     const timeFormat = { hour: 'numeric', minute: 'numeric', hour12: true };
