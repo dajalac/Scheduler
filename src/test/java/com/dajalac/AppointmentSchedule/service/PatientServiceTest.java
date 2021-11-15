@@ -45,7 +45,7 @@ class PatientServiceTest {
 				"1810 Fordem ave",
 				"Madison",
 				"Wisconsin",
-				570340);
+				"57034");
 	}
 	@Test
 	void whenInputaNewPatient_thenPatientIsSaved() {

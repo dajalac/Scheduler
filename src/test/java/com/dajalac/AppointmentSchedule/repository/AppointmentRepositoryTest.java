@@ -53,7 +53,7 @@ class AppointmentRepositoryTest {
 				"1810 Fordem ave",
 				"Madison",
 				"Wisconsin",
-				570340);
+				"57034");
 		patientRepository.save(patient);
 		
 		provider = new Provider("Molly",

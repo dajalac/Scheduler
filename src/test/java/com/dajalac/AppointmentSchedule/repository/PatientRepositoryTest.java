@@ -7,6 +7,7 @@ import static org.hamcrest.CoreMatchers.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -46,19 +47,19 @@ class PatientRepositoryTest {
 				"1810 Fordem ave",
 				"Madison",
 				"Wisconsin",
-				570340);
+				"57034");
 		
 		
 		underTestPatientRepository.save(patient);
 		
 		//when
-		List<Patient> result = underTestPatientRepository.
+		Optional<Patient> result = underTestPatientRepository.
 				findPatientByNameAndBirthday(patient.getFirstName()+ " "+ patient.getLastName(),patient.getBirthday());
 	
 		//then
 		assertAll(
-				()-> assertThat(result.get(0).getFirstName()+ " "+ patient.getLastName()).isEqualTo("ana"),
-				()->assertThat(result.get(0).getBirthday()).isEqualTo(LocalDate.now()));
+				()-> assertThat(result.get().getFirstName()+ " "+ patient.getLastName()).isEqualTo("ana"),
+				()->assertThat(result.get().getBirthday()).isEqualTo(LocalDate.now()));
 		
 		;
 			
@@ -76,13 +77,13 @@ class PatientRepositoryTest {
 				"1810 Fordem ave",
 				"Madison",
 				"Wisconsin",
-				570340);
+				"57034");
 		
 		
 		underTestPatientRepository.save(patient);
 		
 		//when
-		List<Patient> result = underTestPatientRepository.
+		Optional<Patient> result = underTestPatientRepository.
 				findPatientByNameAndBirthday("Jhon Doe", LocalDate.now());
 						
 	

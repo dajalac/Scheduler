@@ -40,20 +40,4 @@ class ProviderServiceTest {
 		verify(providerRepository).findAll();
 	}
 	
-	@Test
-	void whenSelectAnSpecialization_thenFindProvidersBySpecilizationType() {
-		//given
-		Provider provider = new Provider("Molly",
-				"Smith",
-				"(123) 456-7890",
-				"msmity@gmail.com",
-				"Family doctor"
-				);
-		//when
-		underTestProviderService.getProviderByField(provider.getSpeciality());
-		
-		//then
-		verify(providerRepository).FindProviderBySpeciality(provider.getSpeciality());
-	
-	}
 }
