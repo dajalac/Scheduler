@@ -103,8 +103,8 @@ public class Patient {
 		
 		this.memberNumber = memberNumber;
 		this.birthday=birthday;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.firstName = firstName.toUpperCase();
+		this.lastName = lastName.toUpperCase();
 		this.phone = phone;
 		this.email = email;
 		this.address = address;

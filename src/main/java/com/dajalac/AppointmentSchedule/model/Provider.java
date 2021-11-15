@@ -68,8 +68,8 @@ public class Provider {
 			String email,
 			String speciality) {
 		
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.firstName = firstName.toUpperCase();
+		this.lastName = lastName.toUpperCase();
 		this.phone = phone;
 		this.email = email;
 		this.speciality = speciality;

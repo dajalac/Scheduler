@@ -72,7 +72,7 @@ public class PatientService {
 
 	public Optional <Patient> getPatientByNameAndBirthday(String name, String birthday) {
 		LocalDate formatedBirthday = LocalDate.parse(birthday);
-		return patientRepository.findPatientByNameAndBirthday(name, formatedBirthday );
+		return patientRepository.findPatientByNameAndBirthday(name.toUpperCase(), formatedBirthday );
 		
 	}
 

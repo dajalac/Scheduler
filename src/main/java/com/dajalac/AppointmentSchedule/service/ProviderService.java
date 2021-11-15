@@ -28,7 +28,7 @@ public class ProviderService {
 //	}
 	
 	public List<Provider> getProviderByName(String name){
-		return providerRepository.findProviderByName(name);
+		return providerRepository.findProviderByName(name.toUpperCase());
 	}
 	
 	
