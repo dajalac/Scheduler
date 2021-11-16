@@ -1,4 +1,4 @@
-# Appointment-Schedule
+# Scheduler
 This is a web application that allows a business to manage its past and upcoming appointments.
 
 ## Functionalities implemented so far
