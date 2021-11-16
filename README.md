@@ -9,12 +9,14 @@ This is a web application that allows businesses to manage their past and upcomi
 - Search for a client or provider
 
 ## Tools
-- Front end
+Front end
 - JavaScript
+- HTML/CSS
 - React
 - Redux-toolkit
+- MUI (Material - UI)
 
-## Back end
+Back end
 - Java
 - Spring Boot
 - Spring JPA
