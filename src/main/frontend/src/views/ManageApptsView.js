@@ -19,7 +19,6 @@ export default function ManageApptsView() {
 
     const deleteAppointment=(appt)=>{
         dispatch(deleteAppt(appt))
-        //dispatch(getClientById(clients.id)) // to update , nhe, did not work
     }
 
     const selectApptToUpdate=(appt)=>{

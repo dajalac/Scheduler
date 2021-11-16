@@ -29,6 +29,13 @@
     width: 90%;
 
 }
+.NewAppt-updateAppt-info{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
 .NewAppt-saveBtn{
     display: flex;

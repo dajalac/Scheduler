@@ -10,6 +10,7 @@ import AvailableTime from '../components/miscComponents/AvailableTime';
 import DisplayClients from '../components/client/DisplayClients';
 import ProviderInfoForAppt from '../components/provider/ProviderInfoForAppt';
 import Alert from '@mui/material/Alert';
+
 import './NewApptView.css'
 
 import Button from '@mui/material/Button';
@@ -88,15 +89,24 @@ export default function NewAppt() {
         }
     }
 
+    const onCancelUpdate = () =>{
+        dispatch(cleaningAppts());
+    }
+
     const apptToUpdateInfo = () => {
         const format = {hour: 'numeric', minute: 'numeric', hour12: true,
                     weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric'  };
         return (
         <div className="NewAppt-updateAppt">
             <Alert variant="filled" severity="info">
-            You are updating the appointment with the {apptToEdit.providerId.speciality+' '}
+            <div className= "NewAppt-updateAppt-info">
+                <div>
+                You are updating the appointment with the {apptToEdit.providerId.speciality+' '}
                 {' ' + apptToEdit.providerId.firstName + ' ' + apptToEdit.providerId.lastName + ' '}
                 at {new Date(apptToEdit.apptDate + 'T' + apptToEdit.starTime).toLocaleString('en-US',format)}.
+                </div>
+                <Button onClick={onCancelUpdate} sx={{color:'#e0e0e0'}}>Cancel Update</Button>
+            </div>
              </Alert>
         </div>
         )
