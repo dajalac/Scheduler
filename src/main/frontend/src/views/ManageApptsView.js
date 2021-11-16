@@ -15,7 +15,6 @@ export default function ManageApptsView() {
 
     useEffect(() => {
        dispatch(getClientById(clients.id)) // get the client from the db again, but with the updates saved 
-       console.log('id changed')
     }, []) // need to make it update when appt is deleted
 
     const deleteAppointment=(appt)=>{
@@ -44,13 +43,15 @@ export default function ManageApptsView() {
                 toDisplay.push(<ManageAppts appointment={appt}  
                                 selectApptToUpdate={selectApptToUpdate}
                                 selectClientToUpdate={selectClientToUpdate}
-                                deleteAppt={deleteAppointment}/>)
+                                deleteAppt={deleteAppointment}
+                                displayProviderInfo = {true}/>)
             }
             if((appt.apptDate >today)){
                 toDisplay.push(<ManageAppts appointment={appt}
                                selectApptToUpdate={selectApptToUpdate}
                                selectClientToUpdate={selectClientToUpdate}
-                               deleteAppt={deleteAppointment}/>)
+                               deleteAppt={deleteAppointment}
+                               displayProviderInfo = {true}/>)
             }
   
         })

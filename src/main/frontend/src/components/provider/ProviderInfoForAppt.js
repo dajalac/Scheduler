@@ -4,7 +4,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './ProviderInfoForAppt.css';
 
 export default function ProviderInfoForAppt({provider}) {
-    //console.log('provider'+ provider[0].firstName)
     return (
         <div className="ProviderInfoForAppt">
             <AccountCircleIcon  sx={{fontSize: '3rem'}}/>

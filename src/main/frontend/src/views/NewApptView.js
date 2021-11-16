@@ -24,7 +24,7 @@ export default function NewAppt() {
     useEffect(() => {
 
         /**if an appointment is to be updated, so we will get this appt information here */
-        if(apptToEdit.id>=0){
+        if(apptToEdit.id){
             dispatch(getProviderInfo(apptToEdit.providerId))
             dispatch(saveDate(new Date(apptToEdit.apptDate)))
             dispatch(saveTime(apptToEdit.starTime))
@@ -60,7 +60,7 @@ export default function NewAppt() {
         if(apptToEdit.id>=0){
             const appt = {
                 id:apptToEdit.id,
-                patientId: clients, // chenged here
+                patientId: clients, 
                 providerId: providerSelected[0],
                 starTime: dateAndTimeSelected.time,
                 apptDate: new Date(dateAndTimeSelected.date)
@@ -71,7 +71,7 @@ export default function NewAppt() {
         }else{
 
             const appt = {
-                patientId: clients, // chenged here
+                patientId: clients, 
                 providerId: providerSelected[0],
                 starTime: dateAndTimeSelected.time,
                 apptDate: new Date(dateAndTimeSelected.date)
@@ -89,12 +89,14 @@ export default function NewAppt() {
     }
 
     const apptToUpdateInfo = () => {
+        const format = {hour: 'numeric', minute: 'numeric', hour12: true,
+                    weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric'  };
         return (
         <div className="NewAppt-updateAppt">
             <Alert variant="filled" severity="info">
             You are updating the appointment with the {apptToEdit.providerId.speciality+' '}
                 {' ' + apptToEdit.providerId.firstName + ' ' + apptToEdit.providerId.lastName + ' '}
-                at {new Date(apptToEdit.apptDate + 'T' + apptToEdit.starTime).toLocaleString('en-US')}
+                at {new Date(apptToEdit.apptDate + 'T' + apptToEdit.starTime).toLocaleString('en-US',format)}.
              </Alert>
         </div>
         )
@@ -105,7 +107,7 @@ export default function NewAppt() {
     return (
         <div className="NewAppt">
             <DisplayClients client={clients} />
-            {(apptToEdit.id >= 0) && apptToUpdateInfo()}
+            {(apptToEdit.id) && apptToUpdateInfo()}
             <NewApptForm providers={providers} onCheckAvailableTime={checkAvailableAppts} onGetProviderInfo={getSelectedProviderInfo} />
             {(availableTime.length > 0) &&
                 <div className="NewAppt-result">

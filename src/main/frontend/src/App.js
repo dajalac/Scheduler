@@ -17,7 +17,7 @@ import EditClient from './views/EditClient';
 
 function App() {
   const[showSideBar, setShowSideBar ] = useState(false); 
-  const {clients, status} = useSelector((state)=>state.clients);
+  const {clients} = useSelector((state)=>state.clients);
 
   let displaySidebar = null
   const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
@@ -35,14 +35,7 @@ function App() {
     displaySidebar =<Sidebar /> 
   }
 
-  // const onlyIfClientExistis = ()=>{
-  //   if(clients || clients !==null){
-  //     <Route path ='/ManageAppts' component={ManageAppts}/>
-  //     <Route path ='/ApptSchedule' component={NewAppt}/>
-  //     <Route path ='/AppointmentsHistory' component={AppointmentsHisotoryView}/>
-  //     <Route path ='/EditClient' component={EditClient}/>
-  //   }
-  // }
+
 
   return (
     <div className="App">
@@ -56,7 +49,7 @@ function App() {
           <Route path ='/newClient' component={NewClient}/>
           <Route path ='/newAppt' component={SearchClientForAppt}/>
           <Route path ='/ProviderSchedule' component={ProviderSchedule}/>
-          {(  clients) &&
+          {(clients) &&
             <div>
              <Route path ='/ManageAppts' component={ManageAppts}/>
              <Route path ='/ApptSchedule' component={NewAppt}/>

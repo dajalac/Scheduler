@@ -11,12 +11,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import './ManageAppts.css';
 
-export default function ManageAppts({ appointment, selectApptToUpdate, selectClientToUpdate, deleteAppt }) {
+export default function ManageAppts({ appointment, selectApptToUpdate, selectClientToUpdate, deleteAppt,displayProviderInfo }) {
     const [open, setOpen] = useState(false);
     const [show, setShow] = useState(true)
-
-    const providerName = formatName(appointment.providerId.firstName + ' ' + appointment.providerId.lastName)
-    const speciality = appointment.providerId.speciality
 
     const timeFormat = { hour: 'numeric', minute: 'numeric', hour12: true };
     const apptTime = new Date(appointment.apptDate + 'T' + appointment.starTime).toLocaleTimeString('en-US', timeFormat)
@@ -28,6 +25,26 @@ export default function ManageAppts({ appointment, selectApptToUpdate, selectCli
 
     let history = useHistory()
 
+    const getProviderOrClient =() =>{
+        let toDisplay = []
+        if(displayProviderInfo){
+            const providerName = formatName(appointment.providerId.firstName + ' ' + appointment.providerId.lastName)
+            const speciality = appointment.providerId.speciality
+            toDisplay.push( <div className="ManageAppts-info">
+            <div>Provider: {providerName}</div>
+            <div>Speciality: {speciality}</div>
+        </div>)
+        }else{
+            const clientName = formatName(appointment.patientId.firstName + ' ' + appointment.patientId.lastName)
+            const phone = appointment.providerId.phone
+            toDisplay.push(<div className="ManageAppts-info">
+            <div>{clientName}</div>
+            <div>phone: {phone}</div>
+        </div>)
+        }
+
+        return toDisplay
+    }
     const handleEditarAppt = () => {
 
         if (selectClientToUpdate()) {
@@ -64,10 +81,9 @@ export default function ManageAppts({ appointment, selectApptToUpdate, selectCli
                         <div className="ManageAppts-calendar-date">{date}</div>
                         <div className="ManageAppts-calendar-time">{apptTime}</div>
                     </div>
-                    <div className="ManageAppts-info">
-                        <div>Provider: {providerName}</div>
-                        <div>Speciality: {speciality}</div>
-                    </div>
+                   
+                    {getProviderOrClient()}
+                    
                     <div className="ManageAppts-btns">
                         <Button variant="contained"
                             startIcon={<EditIcon />}

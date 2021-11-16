@@ -20,7 +20,7 @@ export default function ProviderSchedule() {
     const { appointments } = useSelector((state) => state.appointments)
     const [flag, setFlag] = useState(false)
 
-    // TODO when add a appt and go to manage appt and then go to providers agenda, there is a error. useEfect not called. I tryed to use flag. 
+   
     useEffect(() => {
         dispatch(resetProvider())
         dispatch(resetClient())
@@ -44,6 +44,7 @@ export default function ProviderSchedule() {
     }
     const selectClientToUpdate=(id)=>{
         dispatch(getClientById(id))
+        return true
     }
 
     const displayProviderInfo = () => {
@@ -79,16 +80,21 @@ export default function ProviderSchedule() {
 
         appointments.map((appt) => {
             if ((appt.apptDate === today && appt.starTime > timeNow)) {
-                toDisplay.push(<ManageAppts appointment={appt}
+                toDisplay.push(
+                               <ManageAppts
+                               appointment={appt}
                                selectApptToUpdate={selectApptToUpdate}
                                selectClientToUpdate={selectClientToUpdate}
-                               deleteAppt={deleteAppointment}/>)
+                               deleteAppt={deleteAppointment}
+                               displayProviderInfo = {false} />)
             }
             if ((appt.apptDate > today)) {
-                toDisplay.push(<ManageAppts appointment={appt}
+                toDisplay.push( 
+                                <ManageAppts appointment={appt}
                                 selectApptToUpdate={selectApptToUpdate}
                                 selectClientToUpdate={selectClientToUpdate}
-                                deleteAppt={deleteAppointment}/>)
+                                deleteAppt={deleteAppointment} 
+                                displayProviderInfo = {false}/>)
             }
         })
     

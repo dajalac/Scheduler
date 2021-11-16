@@ -28,13 +28,6 @@ export default function SearchClientForAppt() {
         dispatch(getClientByMemberNumber(value))
     }
 
-    // const displayClient =()=>{
-    //     let result = [];
-    //     clients.map(client =>(
-    //        result.push(<DisplayClients client ={client} />)
-    //     ))
-    //     return result
-    // }
 
     const displayResult= ()=>{
         if(status === 'loading'){
