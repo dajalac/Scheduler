@@ -1,7 +1,7 @@
 # Scheduler
 This is a web application that allows businesses to manage their past and upcoming appointments.
 
-## Functionalities implemented so far
+### Functionalities implemented so far
 - Schedule, delete, update and delete an appointment
 - Register new client
 - See and print appointments history
