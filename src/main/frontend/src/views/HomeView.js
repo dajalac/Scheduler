@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAppts,getApptsByCustomer,getApptsByProvider, getApptsNoFilter} from '../redux/appointments/AppointmentThunk';
 import{apptToEdit} from '../redux/appointments/AppointmentSlice';
-import{setClient} from '../redux/clients/ClientSlice';
 import{ getClientById} from '../redux/clients/ClientThunk';
 import SearchTable from '../components/table/SearchTable';
 import TableAppts from '../components/table/TableAppts';

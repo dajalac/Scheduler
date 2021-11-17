@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import DisplayClients from '../components/client/DisplayClients';
 import ManageAppts from '../components/client/ManageAppts';
 import{apptToEdit} from '../redux/appointments/AppointmentSlice';
-import{setClient} from '../redux/clients/ClientSlice';
 import{ getClientById} from '../redux/clients/ClientThunk';
 import { deleteAppt } from '../redux/appointments/AppointmentThunk';
 import './ManageApptsView.css';
@@ -11,7 +10,6 @@ import './ManageApptsView.css';
 export default function ManageApptsView() {
     const dispatch = useDispatch();
     const { clients} = useSelector((state) => state.clients)
-    // const { status} = useSelector((state) => state.appointments)
 
     useEffect(() => {
        dispatch(getClientById(clients.id)) // get the client from the db again, but with the updates saved 
@@ -27,7 +25,6 @@ export default function ManageApptsView() {
 
     const selectClientToUpdate=(id)=>{
         return false
-        //dispatch(getClientById(id))
     }
 
     //TODO fix the order in which the appointments are displayed. I want in ACS order

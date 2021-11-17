@@ -17,7 +17,6 @@ const clientSlice = createSlice({
         },
         setClient:(state,action)=>{
            state.clients=action.payload
-          // console.log(action.payload)
         }
 
     },

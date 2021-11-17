@@ -32,7 +32,6 @@ export default function NewAppt() {
         }
             
         dispatch(getAllProviders());
-        // TODO gotta resert the appt to edit if save btn not pressed !!! 
         //TODO enable save just if info are inserted
        // dispatch(getAllProviders());
         //TODO check the effects of bellow comment

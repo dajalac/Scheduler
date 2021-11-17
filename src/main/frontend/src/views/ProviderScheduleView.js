@@ -4,7 +4,6 @@ import { resetClient } from '../redux/clients/ClientSlice';
 import { resetProvider, getProviderInfo } from '../redux/provider/ProviderSlice';
 import { getProviderByName } from '../redux/provider/ProviderThunk';
 import{apptToEdit} from '../redux/appointments/AppointmentSlice';
-import{setClient} from '../redux/clients/ClientSlice';
 import{ getClientById} from '../redux/clients/ClientThunk';
 import { getApptsByProvider } from '../redux/appointments/AppointmentThunk';
 import ManageAppts from '../components/client/ManageAppts';
