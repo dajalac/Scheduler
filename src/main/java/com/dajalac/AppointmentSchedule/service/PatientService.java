@@ -52,7 +52,7 @@ public class PatientService {
 				new IllegalStateException("Patient id"+patient.getId()+"does not exists"));
 		
 		
-		//patientToUpdate.setMemberNumber(patient.getMemberNumber());
+
 		patientToUpdate.setBirthday(patient.getBirthday());
 		patientToUpdate.setFirstName(patient.getFirstName());
 		patientToUpdate.setLastName(patient.getLastName());

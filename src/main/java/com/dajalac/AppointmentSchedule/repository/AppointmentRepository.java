@@ -21,9 +21,6 @@ public interface AppointmentRepository extends JpaRepository <Appointment, Long>
 			,nativeQuery = true)
 	List <Appointment> findAllForNext3months();
 	
-	/*
-	@Query("SELECT a FROM Appointment a WHERE a.patientId.memberNumber=?1")
-	List<Appointment> findAppointmentByMemeberNumber(String memberNumber);*/
 	
 	@Query("SELECT a FROM Appointment a WHERE a.apptDate > CURRENT_TIMESTAMP \r\n"
 			+ "AND concat(a.providerId.firstName,' ', a.providerId.lastName) LIKE %:name%")

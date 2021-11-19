@@ -51,12 +51,6 @@ public class AppointmentController {
 				));
 	}
 	
-	/*
-	@PostMapping("/searchByMemberNumber")
-	public ResponseEntity< List <Appointment> > getApptByMemberNumber(@RequestBody Map<String, Object> payload){
-		return ResponseEntity.ok().body(appointmentService.getApptByMemberNumber(
-				String.valueOf(payload.get("memberNumber"))));
-	}*/
 	
 	@PostMapping ("/searchByProvider" )
 	public ResponseEntity< List <Appointment> > getApptByProvider(@RequestBody Map<String, Object> payload){

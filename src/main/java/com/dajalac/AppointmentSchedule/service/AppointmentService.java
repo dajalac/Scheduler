@@ -80,10 +80,6 @@ public class AppointmentService {
 		apptToUpdate.setProviderId(appointment.getProviderId());
 	}
 	
-	/*
-	public List<Appointment>getApptByMemberNumber (String memberNumber){
-		return appointmentRepository.findAppointmentByMemeberNumber(memberNumber);
-	}*/
 	
 	public List<Appointment>getApptByProvider (String name){
 		return appointmentRepository.findAppointmentByProdiverId(name);

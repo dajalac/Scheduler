@@ -22,11 +22,7 @@ public class ProviderService {
 	public List<Provider>getAllProvider(){
 		return providerRepository.findAll();
 	}
-	
-//	public List<Provider> getProviderByField(String speciality){
-//		return providerRepository.FindProviderBySpeciality(speciality);
-//	}
-	
+
 	public List<Provider> getProviderByName(String name){
 		return providerRepository.findProviderByName(name.toUpperCase());
 	}
